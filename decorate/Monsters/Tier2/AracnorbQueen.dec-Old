@@ -1,0 +1,280 @@
+actor AracnorbQueen //6333
+{ 
+  //$Category Monsters
+  //$Title "Aracnorb Queen"
+  MONSTER
+  +NOGRAVITY
+  +FLOAT
+  +FLOATBOB
+  +BOSS
+  Health 4250
+  Radius 34
+  Height 76
+  Mass 2000
+  Speed 12
+  PainChance 45
+  DamageFactor "Heroic", 3.0
+  Damagefactor "MonsterBeatEmUp", 3.4
+	DropItem "MiniAmmoPackDropChecker" 
+	DropItem "MiniAmmoPackDropChecker"
+	DropItem "MiniHealthSphereDropChecker"
+	DropItem "MiniArmorSphereDropChecker"
+	DropItem "BossBonusBackpackDropChecker"
+	DropItem "BigMedPackDropChecker"
+  SeeSound "queen/sight"
+  ActiveSound "queen/active"
+  PainSound "queen/pain"
+  DeathSound "queen/death"
+  MeleeSound "queen/melee"
+  Damage (6)
+  MissileHeight 36
+  Obituary "%o suffered psychic trauma from an aracnorb queen's brainwaves."
+  HitObituary "%o had %p skull chewed by an aracnorb queen."
+  //Translation "48:63=112:121", "0:2=126:127", "152:159=125:127", "64:79=120:125", "128:143=122:127", "144:151=123:127", "16:31=116:127", "208:223=114:124", "80:95=112:127"
+  Scale 0.85
+  States
+  {
+  Spawn:
+    ARNQ A 1 A_Look
+    Loop
+  See:
+    ARNQ A 2 A_Chase
+    Loop
+  Melee:
+    ARNQ ABC 5
+    ARNQ D 6 A_MeleeAttack
+    Goto See
+  Missile:
+	TNT1 A 0 A_Jump(96, "BFG")
+	TNT1 A 0 A_JumpIfCloser(512, "CloseRange")
+	Goto LongRange
+  CloseRange:
+    TNT1 A 0 A_Jump(176, "RapidFire")
+	Goto SpreadFire
+  LongRange:
+    TNT1 A 0 A_Jump(176, "SpreadFire")
+	Goto RapidFire
+  BFG:
+    TNT1 A 0 A_PlaySound("queen/fire")
+	ARNQ BCD 8 A_FaceTarget
+    ARNQ E 10 Bright A_CustomMissile("QueenBFG",50,-10,0)
+	Goto See
+  RapidFire:
+    ARNQ BCD 8 A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ P 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 0 BRIGHT A_FaceTarget
+    ARNQ E 5 BRIGHT A_CustomMissile ("QueenPlasmaBlast", 40, 0, random(-4,4))
+    ARNQ D 5 A_FaceTarget
+    //ARNQ D 5
+	Goto See
+  SpreadFire:
+    ARNQ BCD 8 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	ARNQ E 5 Bright A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-4,4))
+	ARNQ BCD 8 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	TNT1 A 0 A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
+	ARNQ E 5 Bright A_CustomMissile("QueenPlasmaBlast", 40, 0, random(-4,4))
+	ARNQ D 5 A_FaceTarget
+	Goto See
+  Pain:
+	TNT1 A 0 A_Jump(50, "PainSpam")
+    ARNQ F 4
+	ARNQ F 4 A_Pain
+    Goto See
+  PainSpam:
+    ARNQ F 4
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,5,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,25,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,45,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,65,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,85,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,105,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,125,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,145,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,165,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,185,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,205,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,225,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,245,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,265,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,285,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,305,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,325,32,0)
+    ARNQ F 0 A_custommissile("QueenPainPlasmaBlast",75,0,345,32,0)
+	ARNQ F 4 A_Pain
+    Goto See
+	Death:
+		TNT1 AAAAAA 0 A_CustomMissile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130))
+		TNT1 AAA 0 A_CustomMissile ("XDeath1", 52, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAA 0 A_CustomMissile ("XDeath2", 52, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAA 0 A_CustomMissile ("XDeath3", 52, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AA 0 A_CustomMissile ("XDeath4", 52, 0, random (0, 360), 2, random (0, 90))
+		TNT1 A 0 A_CustomMissile ("XDeath5", 32, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPiece", 32, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPiece", 32, 0, random (0, 360), 2, random (0, 90))
+		TNT1 A 0 A_CustomMissile ("Brains3", 40, 0, random (0, 360), 2, random (-5, 5))
+		TNT1 A 0 A_CustomMissile ("XDeathOrgan1", 40, 0, random (0, 360), 2, random (-5, 5))
+		TNT1 A 0 A_CustomMissile ("XDeathOrgan2", 40, 0, random (0, 360), 2, random (-5, 5))
+		TNT1 A 0 A_CustomMissile ("XDeathGuts", 52, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAAAAA 0 A_CustomMissile ("Instestin", 52, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("Brutal_FlyingBlood", 55, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAAAAAAAA 0 bright A_CustomMissile ("SuperGoreSpawner", 52, 0, random (0, 360), 2, random (50, 130))
+    ARNQ G 0 A_ChangeFlag("FLOATBOB",0)
+    ARNQ G 9 A_Scream
+	ARNQ G 3 A_Fall
+    Wait
+  Crash:
+    ARNQ HIJKL 9
+    ARNQ M -1
+    Stop
+  /*Raise:
+    ARNQ MLKJIHGA 8
+    ARNQ A 0 A_ChangeFlag("FLOATBOB",1)
+	Goto See*/
+  }
+}
+
+actor QueenPlasmaBlast
+{
+  Radius 13
+  Height 8
+  Speed 25//40
+  Damage (7)
+  DamageType "MonsterBeatEmUp"
+  Projectile
+  DamageType Disintegrate
+  scale .75
+  +RANDOMIZE
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  RenderStyle Add
+  Alpha 0.75
+  SeeSound "electricplasma/shoot"
+  DeathSound "electricplasma/hit"
+  Decal "SwordLightning"
+  States
+  {
+  Spawn:
+    EBLT GH 0 bright A_CustomMissile("QueenPlasmaBlastTrail", 0, 0, 0)
+    EBLT GH 2 bright A_BishopMissileWeave
+    loop
+  Death:
+    EBLT IJK 3 bright
+    stop
+  }
+}
+
+actor QueenPlasmaBlastTrail
+{
+  Radius 13
+  Height 8
+  Speed 0//35
+  Damage 0
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 0.75
+  States
+  {
+  Spawn:
+    EBLT ABC 3 bright A_BishopMissileWeave
+    goto death
+  Death:
+    EBLT DEF 4 bright A_FadeOut(0.25)
+    loop
+  }
+}
+
+actor QueenPainPlasmaBlast : QueenPlasmaBlast
+{
+  Speed 15
+}
+
+ACTOR QueenBFG
+{
+	Radius 12
+	Height 12
+	Speed 20
+	Damage (15)
+	DamageType "MonsterBeatEmUp"
+	PROJECTILE
+	+SEEKERMISSILE
+	Renderstyle Add
+	SEESOUND "queen/fire"
+    DEATHSOUND "queen/hit"
+    Decal BFGLightning
+	states
+	{
+	Spawn:
+		CBTS A 2 BRIGHT A_SeekerMissile(1,4)//(1,90)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS B 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS C 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS D 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS E 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS F 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS G 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS H 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS I 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		CBTS J 2 BRIGHT A_SeekerMissile(1,4)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		Loop
+	Death:
+	    CBTS K 0 Radius_Quake(15,15,0,40,0)
+		CBTS K 2 BRIGHT A_Explode((10),(10))
+		CBTS LMNOPQRSTUVW 2 BRIGHT
+		Stop
+	}
+}
+
+ACTOR ZWAVE
+{   
+   Radius 10
+   Height 10
+   Speed 0
+   seesound "queen/fire"
+   +Noclip
+   PROJECTILE
+   RENDERSTYLE Add
+   states
+   {
+   Spawn:
+      TNT1 A 4
+      BLST ABCDEFGHIJKLMNOP 3 BRIGHT A_FadeOut(0.0625)
+      Stop
+   }
+}

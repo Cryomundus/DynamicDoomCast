@@ -1,0 +1,147 @@
+//test
+version "3.2.4"
+
+#include "DDCzactors/DDCHeadShotMain.zsc"
+#include "DDCzactors/DDCHeadShotMonsters.zsc"
+
+//T1
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSZombiemen.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSShotgunguys.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSImps.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSCommando.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSPinkies.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSSpectre.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSCacos.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSLostSouls.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSElementals.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSHellknight.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSBarons.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSRevenant.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSMancubus.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSArachSpiders.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSArchViles.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSCyberDemons.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSSpiderMastermind.zs"
+
+//T2
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSTrooperZombieman.zs"
+/*
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSShotgunguys.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSImps.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSCommando.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSPinkies.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSSpectre.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSCacos.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSLostSouls.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSElementals.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSHellknight.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSBarons.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSRevenant.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSMancubus.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSArachSpiders.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSArchViles.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSCyberDemons.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSSpiderMastermind.zs"
+*/
+
+//T3
+
+
+
+//TS
+
+
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSZombiemanModinheritance.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSShotgunGuyModinheritance.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSImpModinheritance.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSChaingunGuyModinheritance.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSDemonModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSCacodemonModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSLostSoulModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSPainElementalModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSHellknightModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSBaronofHellModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSRevenantModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSFatsoModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSArachnotronModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSArchvileModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSCyberdemonModInheritence.zs"
+#include "DDCzactors/ZSMonsters/ZSCustomModInheritanceBase/ZSSpiderMastermindModInheritence.zs"
+
+
+
+/*
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSCommando.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSImps.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSPinkies.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSSpectre.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSCacos.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSHellknight.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSBarons.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSElementals.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSLostSouls.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSMancubus.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSRevenant.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSArachSpiders.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSArchviles.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSBossBrain.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSSpiderMastermind.zs"
+#include "DDCzactors/ZSMonsters/ZSTier1/ZSCyberdemons.zs"
+*/
+//Tier 2
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSTrooperZombieman.zs"
+
+/*
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSSSGZombie.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSSeere.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSGnaw.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSTheMaw.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSBonyImp.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSSlasherDemon.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSMutantFatso.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSBeamRevenant.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSKnightGuard.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSBaronGuard.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSScattertron.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSChainGunnerMajor.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSBlizzardWizard.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSGoliath.zs"
+#include "DDCzactors/ZSMonsters/ZSTier2/ZSBalrog.zs"
+//Tier 3
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSBullspider.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSImpGunner.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSCyborgCommando.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSEliteZombieman.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSAutoShotGunner.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSRadiantBeast.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSHellFireKnight.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSHellFireBaron.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSElderRev.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSSkulltron.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSSpiritBandit.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSSpiritBlade.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSHelSturm.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSDireVizar.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSJuggernaut.zs"
+#include "DDCzactors/ZSMonsters/ZSTier3/ZSGorgosturm.zs"
+//ZSTierS
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSPulseGunZombie.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSBladeGunner.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSChaosCommando.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSSpireImp.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSRotfest.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSEternalWatcher.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSLostKnight.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSBlackBlot.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSElderWraith.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSWarMonger.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSArtilleryFatso.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSArachnoTank.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSLostKing.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSBloodPriest.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSAncientOne.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSAncientGuardian.zs"
+#include "DDCzactors/ZSMonsters/ZSTierS/ZSDrone.zs"
+
+
+

@@ -1,0 +1,271 @@
+ACTOR ChaosCommando
+{
+	obituary "%o was overwhelmed by a ChaosCommando."
+	health 150
+	radius 16
+	height 56
+	mass 100
+	speed 8
+	painchance 170
+	seesound "chainguy/sight"
+	painsound "chainguy/pain"
+	deathsound "chainguy/death"
+	activesound "chainguy/active"
+	Species ChaosMarine
+	MONSTER
+	+NOBLOCKMONST
+	+FLOORCLIP
+	+MissileMore
+	+DONTHARMSPECIES
+	-THRUSPECIES
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Dropitem "ChainGunGuyItemDropper"
+	Dropitem "ChaingunGuyModItemDropper"
+	DropItem "MiniStimpackSphereDropChecker", 128
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MiniHealthSphereDropChecker", 128
+	dropitem "MiniAmmoPackDropChecker" 128
+	dropitem "MiniArmorSphereDropChecker" 128
+	dropitem "PBHellgunChanceDropper", 128
+	DropItem "MagicrodSpawner", 5
+	states
+	{
+	Spawn:
+		PYRZ AB 10 A_Look
+		loop
+	See:
+		PYRZ AABBCCDD 3 A_Chase
+		loop
+	Missile:
+		TNT1 A 0 A_Jump(256,"FireCannon","ShockCannon","AutoBlaster","BounceCannon")
+	AutoBlaster:
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  7, 0, 0)
+		PYRZ E 8 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  0, 0, 0)
+		PYRZ E 7 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  -7, 0, 0)
+		PYRZ E 6 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 15,  5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 15, -5,  3, 0, 0)
+		PYRZ E 4 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 50, -5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget //return point should here, roughly
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  0, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 33,  0,  -7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 15,  5, -3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 15, -5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("TerminatorBlaster", 50, -5, -3, 0, 0)
+		PYRZ F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+		Goto AutoBlaster+25
+	ShockCannon:
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  7, 0, 0)
+		PYRZ E 8 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  0, 0, 0)
+		PYRZ E 7 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  -7, 0, 0)
+		PYRZ E 6 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 15,  5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 15, -5,  3, 0, 0)
+		PYRZ E 4 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 50, -5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget //return point should here, roughly
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  0, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 33,  0,  -7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 15,  5, -3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 15, -5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("SimpleLightningBall", 50, -5, -3, 0, 0)
+		PYRZ F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+		Goto ShockCannon+25
+	BounceCannon:
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  7, 0, 0)
+		PYRZ E 8 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  0, 0, 0)
+		PYRZ E 7 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  -7, 0, 0)
+		PYRZ E 6 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 15,  5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 15, -5,  3, 0, 0)
+		PYRZ E 4 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 50, -5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget //return point should here, roughly
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  0, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 33,  0,  -7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 15,  5, -3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 15, -5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("ImpFireballBounce", 50, -5, -3, 0, 0)
+		PYRZ F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+		Goto BounceCannon+25
+	FireCannon:
+		TNT1 A 0 A_Jump(50, "AutoBlaster")
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  7, 0, 0)
+		PYRZ E 8 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  0, 0, 0)
+		PYRZ E 7 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  -7, 0, 0)
+		PYRZ E 6 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 15,  5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 15, -5,  3, 0, 0)
+		PYRZ E 4 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 50, -5, -3, 0, 0)
+		PYRZ E 5 bright A_FaceTarget //return point should here, roughly
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  0, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  -22, 0, 0)
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 33,  0,  -7, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 15,  5, -3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 15, -5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 50,  5,  3, 0, 0)
+		PYRZ E 3 bright A_FaceTarget
+		PYRZ F 0 bright A_PlaySound("PyroCannon/Fire",1,0.8)
+		PYRZ F 0 bright A_SpawnProjectile("magicblast", 50, -5, -3, 0, 0)
+		PYRZ F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+		Goto FireCannon+26
+	Pain:
+		PYRZ G 3
+		PYRZ G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		goto See
+	Death:
+		PYRZ H 5 
+		PYRZ I 5 A_Scream
+		PYRZ J 5 A_NoBlocking
+		PYRZ KLM 5 
+		PYRZ N -1
+		stop
+	XDeath:
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		PYRZ O 5
+		PYRZ P 5 A_XScream
+		PYRZ Q 5 A_NoBlocking
+		PYRZ RS 5 
+		PYRZ T -1
+		stop
+	Raise:
+		PYRZ NMLKJIH 5
+		goto See
+	}
+}

@@ -1,0 +1,59 @@
+Actor GrenadeAmmo
+{
+	+nointeraction
+}
+
+Actor RifleDrop
+{
+	+nointeraction
+}
+
+Actor PistolSpawner
+{
+	+nointeraction
+}
+
+Actor ShotgunSpawnerDroped
+{
+	+nointeraction
+}
+
+Actor DropedChaingunSpawner
+{
+	+nointeraction
+}
+
+Actor Berserker
+{
+	+nointeraction
+}
+
+Actor DemonStrengthRune
+{
+	+nointeraction
+}
+
+Actor SuperBlurSphere
+{
+	+nointeraction
+}
+
+Actor HellishMissileLauncher
+{
+	+nointeraction
+}
+
+Actor XDeathMancubusArm
+{
+	+nointeraction
+}
+
+Actor MP40
+{
+	+nointeraction
+}
+
+Actor Clip1
+{
+	+nointeraction
+}

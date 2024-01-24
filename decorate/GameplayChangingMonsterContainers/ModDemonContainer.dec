@@ -1,0 +1,303 @@
+/*
+ModDropper
+
+ModDropperPinkie
+ModDropperPinkieAltBrown
+ModDropperPinkieAltDarkGreen
+
+ModDropperSlasher
+ModDropperSlasherAltRed
+ModDropperSlasherAltBlue
+
+ModDropperBullSpider
+
+ModDropperRotfest
+
+*/
+Actor ModDropperPinkie
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("Pinkie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPPinkie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCPinkie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBPinkie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperPinkieAltBrown
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("PinkieAltBrown", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPPinkieAltBrown", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCPinkieAltBrown", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBPinkieAltBrown", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperPinkieAltDarkGreen
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("PinkieAltDarkGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPPinkieAltDarkGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCPinkieAltDarkGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBPinkieAltDarkGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperSlasher
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("Slasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPSlasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCSlasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBSlasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperSlasherAltRed
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("SlasherAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPSlasherAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCSlasherAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBSlasherAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperSlasherAltBlue
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("SlasherAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPSlasherAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCSlasherAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBSlasherAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperBullSpider
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("BullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPBullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCBullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBBullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperRotfest
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("Rotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPRotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCRotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBRotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

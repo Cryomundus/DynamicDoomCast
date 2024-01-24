@@ -1,0 +1,83 @@
+/*
+
+Dosh1rate128
+Dosh1rate192
+Dosh5rate64
+Dosh5rate64
+Dosh5rate128
+
+Dosh10rate96
+Dosh10rate128
+Dosh10rate192
+
+*/
+actor Dosh1rate128 : RandomSpawner
+{
+	dropitem "Dosh1", 128
+}
+
+actor Dosh1rate192 : RandomSpawner
+{
+	dropitem "Dosh1", 192
+}
+
+actor Dosh5rate64 : RandomSpawner
+{
+	dropitem "Dosh5", 64
+}
+
+actor Dosh5rate128 : RandomSpawner
+{
+	dropitem "Dosh5", 128
+}
+
+actor Dosh5rate192 : RandomSpawner
+{
+	dropitem "Dosh5", 192
+}
+
+actor Dosh10rate96 : RandomSpawner
+{
+	dropitem "Dosh10", 96
+}
+
+
+actor Dosh10rate128 : RandomSpawner
+{
+	dropitem "Dosh10", 128
+}
+
+actor Dosh10rate192 : RandomSpawner
+{
+	dropitem "Dosh10", 192
+}
+
+actor AmplifierGiverRate18 : RandomSpawner
+{
+	dropitem "AmplifierGiver", 18
+}
+
+actor TomeSpawnerRate4 : RandomSpawner
+{
+	dropitem "TomeSpawner", 4
+}
+
+actor Rubyrate192 : RandomSpawner
+{
+	dropitem "Ruby", 192
+}
+
+actor Rubyrate128 : RandomSpawner
+{
+	dropitem "Ruby", 128
+}
+
+actor AmberRate192 : RandomSpawner
+{
+	dropitem "Amber", 192
+}
+
+actor StratSpawnerRate32 : RandomSpawner
+{
+	dropitem "StratSpawner", 32
+}

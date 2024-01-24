@@ -1,0 +1,41 @@
+//more rewards n shit
+//also yay for easy copy past stuff!
+
+ACTOR MiniBlueArmorpiece : CustomInventory
+
+{
+		+INVBAR
+		+INVENTORY.UNTOSSABLE
+		+INVENTORY.UNDROPPABLE
+		Inventory.Amount 1
+		Inventory.MaxAmount 2
+		Inventory.InterHubAmount 2
+		Tag "Mini Blue Armor Sphere"
+		Inventory.Icon "Z_SPAB"
+		States
+	{
+		Use:
+		TNT1 A 0 A_TakeInventory("MiniBlueArmorpiece", 1)
+		TNT1 A 0  A_SpawnItemEx("BlueArmor", 30, 0, 15)
+		fail
+		}
+}
+
+
+ACTOR MiniBlueArmor : CustomInventory
+{
+	Inventory.Amount 1
+	scale 0.6
+	Inventory.PickupMessage "You got a Mini Blue Armor Sphere! Use it to get a Blue Armor!"
+	States
+	{
+		Spawn:
+		SPAB A 1 Bright
+		Loop
+		Pickup:
+		TNT1 A 0 A_GiveInventory ("MiniBlueArmorpiece", 1)
+		stop
+	}
+}
+
+

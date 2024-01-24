@@ -1,0 +1,96 @@
+Actor Dosh1
+{
+	+nointeraction
+}
+
+Actor Dosh5
+{
+	+nointeraction
+}
+
+Actor Dosh10
+{
+	+nointeraction
+}
+
+Actor Dosh25
+{
+	+nointeraction
+}
+
+Actor Amber
+{
+	+nointeraction
+}
+
+Actor Emerald
+{
+	+nointeraction
+}
+
+Actor Ruby
+{
+	+nointeraction
+}
+
+Actor Sapphire
+{
+	+nointeraction
+}
+
+Actor SkullfireBringer
+{
+	+nointeraction
+}
+
+Actor Mana : CustomInventory
+{
+	+nointeraction
+}
+
+Actor MinorManaPod
+{
+	+nointeraction
+}
+
+Actor AmplifierGiver
+{
+	+nointeraction
+}
+
+Actor TomeSpawner
+{
+	+nointeraction
+}
+
+Actor Diamond
+{
+	+nointeraction
+}
+
+Actor StratSpawner
+{
+	+nointeraction
+}
+
+actor TreasureChestDrop
+{
+	+nointeraction
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

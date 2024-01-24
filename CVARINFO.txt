@@ -1,0 +1,97 @@
+//test
+//eventually gonna be a list of various games for different amounts of health
+//so players aren't completely steamrolling monsters.
+
+server float DDChs_factor = 3.0;
+server bool	 DDChs_hitbox = false;
+
+//Monster Stat Cvars
+server float DDCMonsterHPStat = 0;
+server float DDCMonsterSpeedStat = 0; 
+
+// Force SpidermindLand to spawn 
+
+server int SpawnOnlySpidermindLandCvar;
+
+//This determines whether or not headshot hitboxes actually spawn
+
+server int DDCUniheadshothitboxspawn;
+
+// Toggle for onscreen info
+
+server int LemmeSeeMyHPBackpackCvar = 1;
+
+//server int DDCPlayerToggleOnscreenInfoCvar;
+
+//This is for mod compatibility
+
+server int PlayerIsUsingLegDoomCvar = 0;
+server int PlayerIsUsingKeymasterCvar = 0;
+server int PlayerIsUsingChampionsCvar = 0;
+
+//These determine whether you're looking for Vanilla spawns or Mod Spawns
+
+server int StartSpawnsCvar = 0;
+
+server int VanillaOrModSpawnsCvar = 0;
+server int VanillaSpawnChoiceCvar = 0;
+server int ChooseModNameHereCvar = 0;
+
+//This is the list of Cvars for Mod Specific Spawns
+
+server int BuffedHPSpawnsCvar = 0;
+
+server int DDCModdedMonsterChoiceCvar = 0;
+
+server int ModdedMonsterSpawnCvar = 0;
+
+server int Map07TierCheckerCvar = 0;
+
+Server bool ToggleDDCMap07CompatCvar = true;
+Server bool ToggleDDCMap07NormalSpawmCvar = true;
+Server bool ToggleDDCMap07DualSpawnCvar = false;
+Server bool ToggleDDCMap07TripleSpawnCvar = false;
+
+//Server int ArachMap07SpawnCvar = 0;
+
+//
+server int ModItemDropperCvar = 0;
+
+//The sort've intended set of cvars for normal play 
+server int ChooseMedpackSpawn = 1;
+server int ChooseMiniHealthSpawn = 1;
+server int ChooseMiniArmorSpawn = 1;
+server int ChooseMiniAmmoSpawn = 1;
+server int ChooseMiniSpecAmmoSpawn = 1;
+
+server int DrawDDCItemsInInventoryCvar = 1;
+Server bool EnableRegenKitCvar = True;
+
+//For handling weapons and ammo dropped by Possessed Humans
+//To be expanded
+server int ChoosePossessedItemDropSpawn = 0;
+//----------
+server int ChooseZombiemanWeaponDropSpawnCVAR;
+server int ChooseShotgunGuyWeaponDropSpawnCVAR;
+server int ChooseChainGunGuyWeaponDropSpawnCVAR;
+
+//Mainly exists because of DOOMRL
+server int ChooseBossBonusBackpackSpawn = 0;
+
+
+//This is mainly for mods that don't use "normal" hp
+//like Demonsteele and LaTailorGirl
+server int ChooseMedikitSphereSpawn = 0;
+server int ChooseStimpackSphereSpawn = 0;
+server int ChooseGreenArmorSphereSpawn = 0;
+server int ChooseBlueArmorSphereSpawn = 0;
+
+server int ChooseSTierSpawn = 0;
+
+
+//---OLD SHIT-------------------------------------------------------------------
+
+server int DynamicSpawnCvar = 0;
+server int TBDynamicSpawnCvar = 0;
+
+//server int TrailBlazerDynamicSpawn = 0;

@@ -1,0 +1,439 @@
+//definition for the DireVizar
+//he can fire multiple projectiles, seeking projectiles, teleport, perform a melee attack, or charge into melee range
+Actor DireVizar
+{
+	Health 800
+	Radius 20
+	Height 64
+	Mass 250 
+	Speed 22
+	Painchance 10
+	Monster
+	DamageFactor "Extinguishing", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	DropItem "MiniMedikitSphereDropChecker", 88, 2
+	DropItem "MiniGreenArmorSphereDropChecker", 88, 2
+	DropItem "MediumMedPackDropChecker", 88, 2
+	DropItem "MiniMedPackDropChecker", 88, 2
+	DropItem "MicroMedPackDropChecker", 88, 2	
+	DropItem "MicroMedPackDropChecker", 88, 2
+	DropItem "MediumMedPackDropChecker", 44, 2
+	dropitem "MiniAmmoPackDropChecker" 88, 2
+	dropitem "MiniArmorSphereDropChecker" 88, 2
+	//+FLOAT
+	//+NOGRAVITY
+	Species "Reviled"
+	-THRUSPECIES
+	+DONTHARMSPECIES
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	+FLOORCLIP
+	+NOTARGET
+	//+TELESTOMP <- enable this if it makes sense for the game you're using him in (e.g. Hexen)
+	SeeSound "DireVizar/sight"
+	//no attack sound assigned; I play it manually
+	PainSound "DireVizar/pain"
+	DeathSound "DireVizar/death"
+	ActiveSound "DireVizar/active"
+	Obituary "%o was cursed by a DireVizar."
+	HitObituary "%o was flayed by a DireVizar."
+	States
+	{
+		Spawn:
+			NOSF AB 20 A_Look
+			Loop
+		See:
+			NOSF A 3 A_VileChase
+			NOSF A 4 A_VileChase
+			NOSF A 3 A_VileChase
+			NOSF A 4 A_VileChase
+			NOSF B 3 A_VileChase
+			NOSF B 4 A_VileChase
+			NOSF B 3 A_VileChase
+			NOSF B 4 A_VileChase
+			Loop
+		Melee:
+			TNT1 A 0 A_Stop
+			NOSF H 6 A_FaceTarget
+			NOSF I 6 A_FaceTarget
+			NOSF J 0 A_PlaySound("DireVizar/attack")
+			NOSF J 12 A_CustomMeleeAttack(random(1,8)*7, "DireVizar/melee", none, melee, true)
+			Goto See
+		Missile:
+			TNT1 A 0 A_Jump(33,"LifeStealBlast")
+			TNT1 A 0 A_JumpIfCloser(192, "ShortRange")
+			TNT1 A 0 A_JumpIfCloser(384, "MediumRange")
+			Goto LongRange
+		ShortRange:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_Jump(176,"MultiShot","WizardlyShotgun","LifeStealBlast")
+			//TNT1 A 0 A_Jump(176, "AggressiveTeleport", "Charge")
+			//TNT1 A 0 A_Jump(128, "Teleport")
+			Goto BatShot
+		MediumRange:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_Jump(176,"Charge","WizardlyShotgun","BatShot","LifeStealBlast")
+			//TNT1 A 0 A_Jump(176, "AggressiveTeleport", "Charge")
+			Goto See
+		LongRange:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_Jump(176, "BatShot","LifeStealBlast")
+			//TNT1 A 0 A_Jump(176, "Teleport", "Charge")
+			Goto WizardlyWave//MultiShot
+	
+////////////////////////////////////////////////////////////////////////////////	
+	/* 
+	Thanks to FishyClockwork for the code snippet for this.
+	
+	I mean yeah it's been almost 1.3 years since I asked how to do this, 
+	but still, HUGELY appreciated!
+	*/
+		LifeStealBlast:
+			NOSF V 0 BRIGHT A_VileStart
+			NOSF V 10 A_FaceTarget 
+			NOSF "Y" 1 A_VileTarget("HeartStealBlast") 
+			NOSF "Y" 7 A_VileTarget("HeartStealBlast")
+			NOSF "Y" 1 A_VileTarget("HeartStealBlast")
+			NOSF V 3 A_FaceTarget
+			NOSF V 3 BRIGHT A_FaceTarget
+			NOSF V 3 BRIGHT A_FaceTarget
+			NOSF "Y" 1 A_VileTarget("HeartStealBlast") 
+			NOSF V 3 A_FaceTarget 
+			NOSF V 3 BRIGHT A_FaceTarget
+			NOSF "Y" 1 A_VileTarget("HeartStealBlast") 
+			NOSF V 3 A_FaceTarget
+			NOSF V 3 BRIGHT A_FaceTarget
+			NOSF "Y" 1 A_VileTarget("HeartStealBlast") 
+			NOSF V 3 A_FaceTarget
+			NOSF V 3 BRIGHT A_FaceTarget
+			NOSF V 3 BRIGHT A_FaceTarget 
+			NOSF V 0 A_JumpIfTargetInLOS(2) //If target is visible, heal yourself
+			NOSF V 0 A_Jump(256, 2) //Otherwise don't heal yourself
+			NOSF V 0 HealThing(300)
+			NOSF "Y" 3 BRIGHT A_VileAttack("vile/stop",(25),(25))
+			NOSF E 3 BRIGHT
+			Goto See  
+			/*NOSF V 0 BRIGHT A_VileStart
+			NOSF V 15 BRIGHT A_FaceTarget
+			NOSF "Y" 12 BRIGHT A_VileTarget("HeartStealBlast")
+			NOSF V 10 BRIGHT A_FaceTarget
+			NOSF V 0 A_JumpIfTargetInLOS(2) //If target is visible, heal yourself
+			NOSF V 0 A_Jump(256, 2) //Otherwise don't heal yourself
+			NOSF V 0 HealThing(300)
+			NOSF "Y" 12 BRIGHT A_VileAttack
+			NOSF E 20 BRIGHT*/
+			//Goto See
+////////////////////////////////////////////////////////////////////////////////
+
+		MultiShot:
+			NOSF D 4 Bright A_FaceTarget
+			NOSF D 4 Bright A_FaceTarget
+			TNT1 A 0 Bright A_PlaySound("DireVizar/attack")
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarShot", 48, 0, 0, CMF_AIMOFFSET)
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarShot", 48, 10, 4, CMF_AIMOFFSET)
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarShot", 48, -10, -4, CMF_AIMOFFSET)
+			NOSF E 12 Bright
+			Goto See
+		BatShot:
+			NOSF D 4 Bright A_FaceTarget
+			NOSF D 4 Bright A_FaceTarget
+			TNT1 A 0 Bright A_PlaySound("DireVizar/attack")
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarBatShot", random(16, 48), random(-16, 16), random(-8, 8), CMF_AIMOFFSET)
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarBatShot", random(16, 48), random(-16, 16), random(-8, 8), CMF_AIMOFFSET)
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarBatShot2", random(16, 48), random(-16, 16), random(-8, 8), CMF_AIMOFFSET)
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarBatShot2", random(16, 48), random(-16, 16), random(-8, 8), CMF_AIMOFFSET)
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarBatShot3", random(16, 48), random(-16, 16), random(-8, 8), CMF_AIMOFFSET)
+			TNT1 A 0 Bright A_SpawnProjectile("DireVizarBatShot3", random(16, 48), random(-16, 16), random(-8, 8), CMF_AIMOFFSET)
+			NOSF E 12 Bright
+			Goto See
+		WizardlyWave:
+			NOSF D 4 Bright A_FaceTarget
+			NOSF D 4 Bright A_FaceTarget
+			NOSF D 0 A_PlaySound("DireVizar/attack")
+			TNT1 A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			TNT1 A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			TNT1 A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			TNT1 A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			TNT1 A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			TNT1 A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			TNT1 A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			LMWZ A 0 A_SpawnItemEx("DireVizarShot",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+			NOSF E 12 Bright
+			Goto See
+		WizardlyShotgun:
+			NOSF D 4 Bright A_FaceTarget
+			NOSF D 4 Bright A_FaceTarget
+			NOSF D 1 A_PlaySound("DireVizar/attack")
+			TNT1 A 0 A_SpawnProjectile("DireVizarShot", 33,  0,  7, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("DireVizarShot", 33,  0,  0, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("DireVizarShot", 33,  0, -7, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("DireVizarShot", 15,  5, -3, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("DireVizarShot", 15, -5,  3, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("DireVizarShot", 50,  5,  3, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("DireVizarShot", 50, -5, -3, 0, 0)
+			NOSF E 12 Bright
+			Goto See
+		Charge: //note that this does no damage; it's just to get him into melee range quickly
+			NOSF C 8 A_FaceTarget
+			TNT1 A 0 A_PlaySound("DireVizar/attack")
+			TNT1 A 0 A_SkullAttack
+			NOSF CCCCCCCCCC 1 A_SpawnItemEx("DireVizarSpeedTrail", 0, 0, 0, 0, 0, 0, 0)
+			TNT1 A 0 A_SkullAttack
+			NOSF CCCCCCCCCC 1 A_SpawnItemEx("DireVizarSpeedTrail", 0, 0, 0, 0, 0, 0, 0)
+			TNT1 A 0 A_SkullAttack
+			NOSF CCCCCCCCCC 1 A_SpawnItemEx("DireVizarSpeedTrail", 0, 0, 0, 0, 0, 0, 0)
+			TNT1 A 0 A_SkullAttack
+			NOSF CCCCCCCCCC 1 A_SpawnItemEx("DireVizarSpeedTrail", 0, 0, 0, 0, 0, 0, 0)
+			TNT1 A 0 A_SkullAttack
+			NOSF CCCCCCCCCC 1 A_SpawnItemEx("DireVizarSpeedTrail", 0, 0, 0, 0, 0, 0, 0)
+			TNT1 A 0 A_SkullAttack
+			NOSF CCCCCCCCCC 1 A_SpawnItemEx("DireVizarSpeedTrail", 0, 0, 0, 0, 0, 0, 0)
+			TNT1 A 0 A_Stop
+			GoTo See
+		Heal:
+			NOSF D 4 Bright //A_FaceTarget
+			GoTo See
+		Pain:
+			NOSF K 3
+			NOSF K 3 A_Pain
+			TNT1 A 0 a_playsound ("monsters/bighurt",0)
+			Goto See
+		Death:
+			TNT1 A 0 a_spawnitemex ("ArchvileModItemDropper",0,0,35)
+			NOSF L 6
+			NOSF M 6 A_Scream
+			NOSF NO 6
+			NOSF P 6 A_NoBlocking
+			NOSF QR 6
+			TNT1 A 0 A_SetFloorClip
+			NOSF SSSSSSSSSSSSSSSSSSSS 6 A_SpawnItemEx("DireVizarPuff", random(1,10), random(1,10), random(4, 6), 0, 0, 1)
+			NOSF S 0 
+			NOSF S -1
+			Stop
+		XDeath:
+			TNT1 A 0 a_spawnitemex ("ArchvileModItemDropper",0,0,35)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+			TNT1 A 0 A_Scream
+			TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			XMED A 5 A_Stop
+			XMED B 5 A_XScream
+			XMED C 5 A_BossDeath  
+			XMED D 5 A_NoBlocking
+			XMED E 5
+			TNT1 A 0
+			XMED E -1
+			Stop
+		Ice:
+			NOSF T 5 A_FreezeDeath
+			NOSF T 1 A_FreezeDeathChunks
+			Wait
+  }
+}
+
+ACTOR HeartStealBlast
+	{
+	damage (15)
+	RenderStyle Add
+	DamageType "MonsterBeatEmUp"
+	Alpha 1
+	+NOBLOCKMAP 
+	+NOGRAVITY
+	states
+	{
+		Spawn:
+			AON1 ABCD 2 Bright A_StartFire
+			AON1 ABCD 2 Bright A_Fire(12)
+			AON1 ABCD 2 Bright A_FireCrackle
+			AON1 ABCD 2 Bright A_Fire(12)
+			AON1 ABCD 2 Bright A_FireCrackle
+			AON1 ABCD 2 Bright A_Fire(12)
+			Stop
+	}
+}
+
+//his projectile; based off the Disciple's projectile from Heretic
+Actor DireVizarShot
+	{
+	Radius 10
+	Height 6
+	Speed 15
+	FastSpeed 20
+	Damage (3)
+	DamageType "MonsterBeatEmUp"
+	Projectile
+	-ACTIVATEIMPACT
+	-ACTIVATEPCROSS
+	RenderStyle Add
+	Decal "WizardScorch"
+	DeathSound "DireVizar/shothit"
+	States
+	{
+		Spawn:
+			NOSB AA 1 BRIGHT A_Weave(2, 2, 2, 1)
+			TNT1 A 0 BRIGHT A_SpawnProjectile("DireVizarShotTrail", 0, 0, 0)
+			NOSB AA 1 BRIGHT A_Weave(2, 2, 2, 1)
+			TNT1 A 0 BRIGHT A_SpawnProjectile("DireVizarShotTrail", 0, 0, 0)
+			NOSB AA 1 BRIGHT A_Weave(2, 2, 2, 1)
+			TNT1 A 0 BRIGHT A_SpawnProjectile("DireVizarShotTrail", 0, 0, 0)
+			NOSB BB 1 BRIGHT A_Weave(2, 2, 2, 1)
+			TNT1 A 0 BRIGHT A_SpawnProjectile("DireVizarShotTrail", 0, 0, 0)
+			NOSB BB 1 BRIGHT A_Weave(2, 2, 2, 1)
+			TNT1 A 0 BRIGHT A_SpawnProjectile("DireVizarShotTrail", 0, 0, 0)
+			NOSB BB 1 BRIGHT A_Weave(2, 2, 2, 1)
+			TNT1 A 0 BRIGHT A_SpawnProjectile("DireVizarShotTrail", 0, 0, 0)
+			Loop
+		Death:
+			NOSB CDEFG 5 BRIGHT
+			Stop
+  }
+}
+
+//trail effect for his projectile
+Actor DireVizarShotTrail
+{   
+	Radius 0
+	Height 1
+	PROJECTILE
+	RenderStyle Add
+	Alpha 0.9
+	States
+	{
+		Spawn:
+			TNT1 A 2 Bright
+			NOSB C 1 Bright
+			NOSB DEEEEEEE 1 Bright A_FadeOut(0.1)
+			Stop 
+   }
+}
+
+//special homing projectile
+//it occasionally jumps to a non-homing state to induce variance in its flight path, so they don't wind up overlapping as often
+Actor DireVizarBatShot
+{
+	Radius 10
+	Height 6
+	Speed 10
+	FastSpeed 20
+	Damage (3)
+	DamageType "MonsterBeatEmUp"
+	Projectile
+	+SEEKERMISSILE
+	+BLOODSPLATTER
+	+FLOATBOB
+	+RANDOMIZE
+	-ACTIVATEIMPACT
+	-ACTIVATEPCROSS
+	RenderStyle Translucent
+	Alpha 0.9
+	Decal "BatDecal"
+	SeeSound "DireVizar/bats"
+	DeathSound "DireVizar/bathit"
+	States
+	{
+		Spawn:
+			NBAT ABCBABCB 3 Bright
+			TNT1 A 0 A_Jump(128, "HomingFlight")//has a chance to go straight to its homing state instead of regular state
+		RegularFlight: //this state is entered occasionally in order to induce some variance in the bats' flight path
+			NBAT ABCB 3 Bright
+		HomingFlight:
+			TNT1 A 0 A_Jump(128, 2)//has a 50% chance to NOT play its "idle" sound
+			TNT1 A 0 A_PlaySound("DireVizar/bats")
+			NBAT ABCB 3 Bright A_SeekerMissile(10, 20, SMF_PRECISE)
+			TNT1 A 0 A_Jump(128, "RegularFlight")//has a chance to jump to its non-homing state temporarily
+			Loop
+		Death:
+			TNT1 A 0 A_ChangeFlag("FLOATBOB", false)
+			TNT1 A 0 A_SpawnItemEx("blood", 0, 0, 0, random(3,5), random(0,2), random(1,3), random(140,220))
+			TNT1 A 0 A_SpawnItemEx("blood", 0, 0, 0, random(3,5), random(0,2), random(1,3), random(140,220))
+			TNT1 A 0 A_SpawnItemEx("blood", 0, 0, 0, random(3,5), random(0,2), random(1,3), random(140,220))
+			NBAT AAAAAAAA 3 A_FadeTo(0.1, 0.1, true)
+			Stop
+		XDeath:
+			TNT1 A 0 A_ChangeFlag("FLOATBOB", false)
+			NBAT AAAAAAAA 3 A_FadeTo(0.1, 0.1, true)
+			Stop
+	}
+}
+
+//alternate version, with a horizontal weave thrown in
+Actor DireVizarBatShot2 : DireVizarBatShot
+{
+	States
+	{
+		RegularFlight:
+			NBAT ABCB 3 Bright A_Weave(2, 0, 2, 0)
+		HomingFlight:
+		TNT1 A 0 A_Jump(128, 2)//has a 50% chance to NOT play its "idle" sound
+		TNT1 A 0 A_PlaySound("DireVizar/bats")
+		NBAT A 3 Bright A_Weave(2, 0, 2, 0)
+		TNT1 A 0 A_SeekerMissile(10, 20, SMF_PRECISE)
+		NBAT B 3 Bright A_Weave(2, 0, 2, 0)
+		TNT1 A 0 A_SeekerMissile(10, 20, SMF_PRECISE)
+		NBAT C 3 Bright A_Weave(2, 0, 2, 0)
+		TNT1 A 0 A_SeekerMissile(10, 20, SMF_PRECISE)
+		NBAT B 3 Bright A_Weave(2, 0, 2, 0)
+		TNT1 A 0 A_SeekerMissile(10, 20, SMF_PRECISE)
+		TNT1 A 0 A_Jump(128, "RegularFlight")//has a chance to jump to its non-homing state temporarily
+		Loop
+	}
+}
+
+//another alternate version; this one removes the floatbob but keeps the weave
+Actor DireVizarBatShot3 : DireVizarBatShot
+{
+	-FLOATBOB
+}
+
+//visual effect when he warps; re-colored Hexen teleport fog
+Actor DireVizarWarp
+{
+	Radius 20
+	Height 30
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+DROPOFF
+	RenderStyle Add
+	Alpha 0.7
+	//Scale 0.75
+	states
+	{
+		Spawn:
+			NOSW ABCDEFGHGFEDC 4 Bright
+		Stop
+	}
+}
+
+//blur effect produced when he does his charge
+Actor DireVizarSpeedTrail
+{   
+	Radius 0
+	Height 1
+	PROJECTILE
+	RenderStyle Translucent
+	Alpha 0.9
+	States
+	{
+		Spawn:
+			TNT1 A 2
+			NOSF C 1
+			NOSF CCCCCCCC 1 A_FadeOut(0.1)
+			Stop 
+	}
+}
+
+//puff effect produced by his corpse
+Actor DireVizarPuff : BulletPuff
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			NPUF A 4 bright
+			NPUF B 4
+		Melee:
+			NPUF CDE 4
+			Stop
+	}
+}

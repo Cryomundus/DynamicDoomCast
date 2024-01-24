@@ -1,0 +1,136 @@
+ACTOR MutantFatso : FatsoModStatesinheritor 
+{
+    Health 650
+    Radius 48
+    Height 64
+    Speed 12
+    PainChance 32
+    ReactionTime 8
+    Mass 2000
+    MONSTER
+	DamageFactor "Scrapper", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	DropItem "MiniAmmoPackDropChecker", 88 
+	DropItem "MiniAmmoPackDropChecker", 88
+	DropItem "MicroMedPackDropChecker", 44, 2
+	species "Fats"
+	-THRUSPECIES
+	+DONTHARMSPECIES
+	+BOSSDEATH
+	Translation "64:79=32:47", "48:63=16:31", "128:151=32:47", "236:239=44:47", "9:15=41:47", "169:191=192:207"
+    +FLOORCLIP
+    +DONTSQUASH
+    +DONTMORPH 
+    +DONTBLAST
+    +NOTELEOTHER
+    +DONTHURTSPECIES
+    SeeSound "incubus/sight"
+    PainSound "incubus/pain"
+    DeathSound "incubus/death"
+    ActiveSound "incubus/active"
+    Obituary "%o was destroyed by an Mutant Fatso"
+    States
+    {
+    Spawn: 
+        INCB AD 10 A_Look 
+        Loop 
+    See: 
+        INCB AAABBB 4 A_Chase 
+        INCB A 0 A_PlaySound("incubus/walk")
+        INCB CCCDDD 4 A_Chase
+        INCB C 0 A_PlaySound("incubus/walk")
+        Loop
+    Missile:
+        INCB E 0 A_Jump(256,"FireBallShot","PhotonShotFireBall","HomingRocket")
+	HomingRocket:
+        INCB E 0 A_PlaySound("incubus/attack1")
+        INCB EEE 8 A_FaceTarget
+        INCB F 8 Bright A_CustomMissile("IncubusHomingRocketShot",35,42,359,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB G 8 Bright A_CustomMissile("IncubusHomingRocketShot",34,-39,1,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB F 8 Bright A_CustomMissile("IncubusHomingRocketShot",35,42,359,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB G 8 Bright A_CustomMissile("IncubusHomingRocketShot",34,-39,1,0)
+        INCB EE 8 A_FaceTarget
+        Goto See
+	PhotonShotFireBall:
+        INCB E 0 A_PlaySound("incubus/attack2")
+        INCB EEE 8 A_FaceTarget
+        INCB H 0 A_CustomMissile("IncubusPhotonShot",72,-12,359,0)
+        INCB H 5 Bright A_CustomMissile("IncubusPhotonShot",72,12,1,0)
+        INCB E 5 A_FaceTarget
+        INCB H 0 A_CustomMissile("IncubusPhotonShot",72,-12,359,0)
+        INCB H 5 Bright A_CustomMissile("IncubusPhotonShot",72,12,1,0)
+        INCB E 5 A_FaceTarget
+        INCB H 0 A_CustomMissile("IncubusPhotonShot",72,-12,359,0)
+        INCB H 5 Bright A_CustomMissile("IncubusPhotonShot",72,12,1,0)
+        INCB EE 8 A_FaceTarget
+		INCB E 0 A_PlaySound("incubus/attack1")
+        INCB EEE 8 A_FaceTarget
+        INCB F 8 Bright A_CustomMissile("IncubusFlameBall",35,42,359,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB G 8 Bright A_CustomMissile("IncubusFlameBall",34,-39,1,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB F 8 Bright A_CustomMissile("IncubusFlameBall",35,42,359,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB G 8 Bright A_CustomMissile("IncubusFlameBall",34,-39,1,0)
+        INCB EE 8 A_FaceTarget
+        Goto See
+	FireBallShot:
+		INCB E 0 A_PlaySound("incubus/attack1")
+        INCB EEE 8 A_FaceTarget
+        INCB F 8 Bright A_CustomMissile("IncubusFlameBall",35,42,359,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB G 8 Bright A_CustomMissile("IncubusFlameBall",34,-39,1,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB F 8 Bright A_CustomMissile("IncubusFlameBall",35,42,359,0)
+        INCB E 4 A_FaceTarget
+        INCB E 4 A_CPosReFire
+        INCB G 8 Bright A_CustomMissile("IncubusFlameBall",34,-39,1,0)
+        INCB EE 8 A_FaceTarget
+        Goto See
+    Pain:
+        INCB D 5
+        INCB C 5 A_Pain
+		TNT1 A 0 a_playsound ("monsters/bighurt",0)
+        Goto See
+    Death:
+		TNT1 A 0 a_spawnitemex ("FatsoModItemDropper",0,0,35)
+        INCB I 12 A_Scream
+        INCB J 12
+        INCB K 8 A_Fall
+        INCB LM 8 
+        INCB N -1 A_BossDeath
+        Stop
+    XDeath:
+		TNT1 A 0 a_spawnitemex ("FatsoModItemDropper",0,0,35)
+		XBIG A 5 A_Stop
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XBIG B 5 
+		XBIG C 5 A_BossDeath 
+		XBIG D 5 A_NoBlocking
+		XBIG E 5
+		XBIG E -1 A_BossDeath
+		Stop
+	Crush:
+		POL5 EEEEE 1 
+		POL5 E -1
+	Stop		
+    Raise:
+        INCB NMLKJI 10
+        Goto See
+    }
+}

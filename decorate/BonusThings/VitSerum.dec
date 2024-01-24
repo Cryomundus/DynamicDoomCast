@@ -1,0 +1,18 @@
+actor VitalitySerum : UpgradeStamina
+{
+  //$Category Powerups
+  //$Title "Vitality Serum"
+  Radius 20
+  Scale 0.9
+  Inventory.Amount 5 //this controls how much health boost you receive
+  Inventory.MaxAmount 100 //this controls how high your health can get
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.PickupMessage "Your body toughens slightly..."
+  States
+  {
+  Spawn:
+    VSRM ABC 6 Bright
+    loop
+  }
+}

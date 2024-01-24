@@ -1,0 +1,229 @@
+// And it turns out this made more bugs yaaaaaaaaay
+
+// DELETE LATER 
+
+/*Key
+
+REGMap07DynDoomArachSpiderSpawner
+BHPMap07DynDoomArachSpiderSpawner
+GDDCMap07DynDoomArachSpiderSpawner
+MOTBMap07DynDoomArachSpiderSpawner
+GLDDCMap07DynDoomArachSpiderSpawner
+
+REGMap07DynDoomArachSpiderRailSpawner
+BHPMap07DynDoomArachSpiderRailSpawner
+GDDCMap07DynDoomArachSpiderRailSpawner
+MOTBMap07DynDoomArachSpiderRailSpawner
+GLDDCMap07DynDoomArachSpiderRailSpawner
+
+REGMap07DynDoomScattertronSpawner
+BHPMap07DynDoomScattertronSpawner
+GDDCMap07DynDoomScattertronSpawner
+MOTBMap07DynDoomScattertronSpawner
+GLDDCMap07DynDoomScattertronSpawner
+
+REGMap07DynDoomScatterRailtronSpawner
+BHPMap07DynDoomScatterRailtronSpawner
+GDDCMap07DynDoomScatterRailtronSpawner
+MOTBMap07DynDoomScatterRailtronSpawner
+GLDDCMap07DynDoomScatterRailtronSpawner
+
+REGMap07DynDoomSkulltronSpawner
+BHPMap07DynDoomSkulltronSpawner
+GDDCMap07DynDoomSkulltronSpawner
+MOTBMap07DynDoomSkulltronSpawner
+GLDDCMap07DynDoomSkulltronSpawner
+
+REGMap07DynDoomSkullSuperRailtronSpawner
+BHPMap07DynDoomSkullSuperRailtronSpawner
+GDDCMap07DynDoomSkullSuperRailtronSpawner
+MOTBMap07DynDoomSkullSuperRailtronSpawner
+GLDDCMap07DynDoomSkullSuperRailtronSpawner
+
+REGMap07DynDoomArachnoTankSpawner
+BHPMap07DynDoomArachnoTankSpawner
+GDDCMap07DynDoomArachnoTankSpawner
+MOTBMap07DynDoomArachnoTankSpawner
+GLDDCMap07DynDoomArachnoTankSpawner
+
+*/
+
+
+actor REGMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ArachSpider"	
+}
+
+actor BHPMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "BHPArachSpider"
+}
+
+actor GDDCMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "GDDCArachSpider"
+}
+
+
+actor MOTBMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "MOTBArachSpider"
+}
+
+actor GLDDCMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	//dropitem ArachSpider"
+}
+
+
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomArachSpiderRailSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ArachSpiderRail"	
+}
+
+actor BHPMap07DynDoomArachSpiderRailSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "BHPArachSpiderRail"
+}
+
+actor GDDCMap07DynDoomArachSpiderRailSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "GDDCArachSpiderRail"
+}
+
+actor MOTBMap07DynDoomArachSpiderRailSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "MOTBArachSpiderRail"
+}
+
+actor GLDDCMap07DynDoomArachSpiderRailSpawner : RandomSpawner replaces Arachnotron
+{
+	//dropitem ArachSpiderRail"
+}
+//----------------------------------------------------------------------------//
+
+actor REGMap07DynDoomScattertronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "Scattertron"
+}
+
+actor BHPMap07DynDoomScattertronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "BHPScattertron"
+}
+
+actor GDDCMap07DynDoomScattertronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "GDDCScattertron"
+}
+
+actor MOTBMap07DynDoomScattertronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "MOTBScattertron"
+}
+
+actor GLDDCMap07DynDoomScattertronSpawner : RandomSpawner replaces Arachnotron
+{
+	////dropitem Scattertron"
+}
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomScatterRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ScatterRailtron"	
+}
+
+actor BHPMap07DynDoomScatterRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "BHPScatterRailtron"
+}
+
+actor GDDCMap07DynDoomScatterRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "GDDCScatterRailtron"
+}
+
+actor MOTBMap07DynDoomScatterRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "MOTBScatterRailtron"
+}
+
+actor GLDDCMap07DynDoomScatterRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	//dropitem ScatterRailtron"
+}
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomSkulltronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "Skulltron"
+}
+
+actor BHPMap07DynDoomSkulltronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "BHPSkulltron"
+}
+
+actor GDDCMap07DynDoomSkulltronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "GDDCSkulltron"
+}
+
+actor MOTBMap07DynDoomSkulltronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "MOTBSkulltron"
+}
+
+actor GLDDCMap07DynDoomSkulltronSpawner : RandomSpawner replaces Arachnotron
+{
+	//dropitem Skulltron"	
+}
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomSkullSuperRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "SkullSuperRailtron"	
+}
+
+actor BHPMap07DynDoomSkullSuperRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "BHPSkullSuperRailtron"
+}
+
+actor GDDCMap07DynDoomSkullSuperRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "GDDCSkullSuperRailtron"
+}
+
+actor MOTBMap07DynDoomSkullSuperRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "MOTBSkullSuperRailtron"
+}
+
+actor GLDDCMap07DynDoomSkullSuperRailtronSpawner : RandomSpawner replaces Arachnotron
+{
+	//dropitem SkullSuperRailtron"
+}
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomArachnoTankSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ArachnoTank"
+}
+
+actor BHPMap07DynDoomArachnoTankSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "BHPArachnoTank"
+}
+
+actor GDDCMap07DynDoomArachnoTankSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "GDDCArachnoTank"
+}
+
+actor MOTBMap07DynDoomArachnoTankSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "MOTBArachnoTank"
+}
+
+actor GLDDCMap07DynDoomArachnoTankSpawner : RandomSpawner replaces Arachnotron
+{
+	//dropitem ArachnoTank"	
+}

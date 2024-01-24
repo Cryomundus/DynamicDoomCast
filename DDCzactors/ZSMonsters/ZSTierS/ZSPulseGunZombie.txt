@@ -1,0 +1,154 @@
+// Zombieman Special Variant
+
+//===========================================================================
+// Pulse Nailgun Zombie
+// Decorate by: zrrion the insect
+//===========================================================================
+ACTOR PulseGunZombie
+{
+	Health 75
+	Radius 16
+	Height 56
+	Speed 8
+	PainChance 100
+	Painchance "Fire", 20
+	Painchance "Terror", 255
+	Mass 100
+	MONSTER 
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	DamageFactor "NoDamage", 0.0
+	DamageFactor "SpeedBooster", 2.0
+	-THRUSPECIES
+	+NOBLOCKMONST
+	+FLOORCLIP
+	+MissileMore
+	+MissileEvenMore
+	SeeSound "PNZombie/See"
+	PainSound "PNZombie/Pain"
+	DeathSound "PNZombie/Die"
+	ActiveSound "PNZombie/Act"
+	Obituary "%o got spiked by a Pulse nailgun zombie."
+	DropItem "ZombiemanItemDropper"
+	DropItem "ZombiemanModItemDropper"
+	DropItem "ZombiemanItemDropper",96//"PBZombiemanStuffChanceDropper",96//"clip", 96
+	DropItem "MagicrodSpawner", 5
+	DropItem "MicroMedPackDropChecker", 128
+	States
+	{
+	Spawn:
+		PNGZ AB 10 A_Look
+		Loop
+	See:
+		PNGZ AABBCCDD 4 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(256,"NailShot","MultiNailShot","SpreadFire","SinglePowershot")
+	NailShot:
+		PNGZ E 10 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PulseNail/fire")
+		PNGZ F 5 Bright A_SpawnProjectile("PulseNail",34,9,0,0)//random(2,-2),random(2,-2))
+		PNGZ E 10 A_FaceTarget
+		Goto See
+	MultiNailShot:
+		PNGZ E 10 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PulseNail/fire")
+		PNGZ F 5 Bright A_SpawnProjectile("PulseNail",34,9,0,0)//random(2,-2),random(2,-2))
+		PNGZ E 6 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PulseNail/fire")
+		PNGZ F 5 Bright A_SpawnProjectile("PulseNail",34,9,0,0)//random(2,-2),random(2,-2))
+		PNGZ E 6 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PulseNail/fire")
+		PNGZ F 5 Bright A_SpawnProjectile("PulseNail",34,9,0,0)//random(2,-2),random(2,-2))
+		PNGZ E 6 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PulseNail/fire")
+		PNGZ F 5 Bright A_SpawnProjectile("PulseNail",34,9,0,0)//random(2,-2),random(2,-2))
+		PNGZ E 10 A_FaceTarget
+	SpreadFire:
+		PNGZ E 10 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PulseNail/fire")
+		TNT1 A 0 A_SpawnProjectile("PulseNail",random(32,36),random(8,10),random(8,-8),random(8,-8))
+		TNT1 A 0 A_SpawnProjectile("PulseNail",random(32,36),random(8,10),random(8,-8),random(8,-8))
+		TNT1 A 0 A_SpawnProjectile("PulseNail",random(32,36),random(8,10),random(8,-8),random(8,-8))
+		PNGZ F 5 Bright A_SpawnProjectile("PulseNail",random(32,36),random(8,10),random(8,-8),random(8,-8))
+		PNGZ E 10 A_FaceTarget
+		Goto See
+	SinglePowershot:
+		PNGZ E 10 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PulseNail/fire")
+		PNGZ F 5 Bright A_SpawnProjectile("PowerShot",34,9,0,0)//random(2,-2),random(2,-2))
+		TNT1 A 0 A_FaceTarget
+		PNGZ E 10 A_FaceTarget
+		Goto See
+	Pain:
+		PNGZ G 3
+		PNGZ G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+	/*
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("ZombiemanModItemDropper",0,0,35)
+		TNT1 A 0 a_spawnitemex ("ZombiemanModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom")
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		PNGZ P 5 A_XScream
+		PNGZ Q 5 A_NoBlocking
+		TNT1 A 0 A_SpawnitemEX ("MiniStimpackSphereDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		TNT1 A 0 A_SpawnitemEX ("MiniAmmoPackDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		TNT1 A 0 A_SpawnitemEX ("MiniArmorSphereDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		TNT1 A 0 A_SpawnitemEX ("MiniMedPackDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		PNGZ RSTU 5 
+		PNGZ V -1
+		Stop
+		*/
+	Death:
+		TNT1 A 3 A_Jump(96,"ReleaseChaos")
+		TNT1 A 0 A_SpawnItemEx ("ZombiemanModItemDropper",0,0,35)
+		PNGZ H 3 A_Scream
+		PNGZ I 3 A_Fall
+		PNGZ J 3 A_Jump(96,"FalseDeath")
+		PNGZ K 3
+		PNGZ L 3
+		PNGZ M 2 
+		PNGZ N 2 //Thing_Raise(0)
+		TNT1 A 0 A_SpawnItemEx("WhispyGhostBomber", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		PNGZ N -1
+		stop
+	ReleaseChaos:
+		TNT1 A 0 A_SpawnItemEx ("ZombiemanModItemDropper",0,0,35)
+		TNT1 A 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		PNGZ H 3 A_Scream
+		PNGZ I 3 A_Fall
+		TNT1 A 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		PNGZ J 3 A_Jump(96,"FalseDeath")
+		PNGZ K 3
+		PNGZ L 3
+		TNT1 A 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		PNGZ M 2 
+		PNGZ N 2 //Thing_Raise(0)
+		TNT1 A 0 A_SpawnItemEx("ArchvileSpawnsWhispyGhostContainer", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		PNGZ N -1
+		stop
+	XDeath:
+		TNT1 A 0 A_SpawnItemEx ("ZombiemanModItemDropper",0,0,35)
+		TNT1 A 0 A_SpawnItemEx ("ZombiemanModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_SpawnItemEx("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_SpawnItemEx("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		PNGZ P 5
+		PNGZ Q 5 A_NoBlocking
+		TNT1 A 0 A_SpawnitemEX ("MiniStimpackSphereDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		TNT1 A 0 A_SpawnitemEX ("MiniAmmoPackDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		TNT1 A 0 A_SpawnitemEX ("MiniArmorSphereDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		TNT1 A 0 A_SpawnitemEX ("MiniMedPackDropChecker",0,0,8,2,0,random(4,10),random(1,360), 32, 0)
+		PNGZ RSTU 5 
+		TNT1 A 0 A_SpawnItemEx("WhispyGhostBomber", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		PNGZ V -1
+		Stop
+	Raise:
+		PNGZ NMLKJIH 10
+		Goto see		
+	}
+}

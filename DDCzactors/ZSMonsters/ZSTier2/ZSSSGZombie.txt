@@ -1,0 +1,457 @@
+ACTOR SSGZombie : ShotgunGuyModStatesinheritor
+{
+	Health 65
+	Radius 20
+	Height 56
+	Scale 0.9
+	Speed 9
+	PainChance 170
+	MONSTER 
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	//Translation "112:127=16:47"
+	-THRUSPECIES
+	+FloorClip
+	//sorry, no early SSGs for you!
+	Dropitem "ShotgunGuyItemDropper" 
+	Dropitem "ShotgunGuyModItemDropper"
+	SEESOUND "SSGUNER/sight"
+	ATTACKSOUND "SSGUNER/SSG"
+	PAINSOUND "grunt/pain"
+	DEATHSOUND "SSGUNER/death"
+	ACTIVESOUND "SSGUNER/idle"
+	OBITUARY "%o was blown open by a Super Shotgunner!"
+	DropItem "Shotgun" //sorry, no early SSGs for you!
+	Decal Bulletchip
+	states
+	{
+	Spawn:
+		GPOS A 10 A_Look
+		Loop
+	See:
+		GPOS AABBCCDD 4 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(750, "LowSpeedShots")
+		TNT1 A 0 A_JumpIfCloser(2500, "MidSpeedShots")
+		TNT1 A 0 A_JumpIfCloser(4500, "HighSpeedShots")
+	LowSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	MidSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	HighSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	Pain:
+		GPOS G 3
+		GPOS G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+	Death:
+		GPOS H 7 
+		GPOS I 7 A_Scream
+		GPOS J 7 A_NoBlocking
+		GPOS K 7
+		GPOS L 7
+		GPOS M 7
+		GPOS N -1
+		Stop
+	XDeath:
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		GPOS O 5
+		GPOS P 5 
+		GPOS Q 5 A_NoBlocking
+		GPOS RS 5 
+		GPOS T -1
+		Stop
+	Crush:
+		POL5 EEEEE 1
+		POL5 E -1
+		stop
+	Raise:
+		GPOS NMLKJIH 5
+		Goto See
+	}
+}
+
+ACTOR SSGZombieAltYellow : SSGZombie 
+{
+	Health 65
+	Radius 20
+	Height 56
+	Scale 0.9
+	Speed 9
+	PainChance 170
+	MONSTER 
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "112:127=160:167"
+	//Translation "112:127=16:47"
+	+FloorClip
+	SEESOUND "SSGUNER/sight"
+	ATTACKSOUND "SSGUNER/SSG"
+	PAINSOUND "grunt/pain"
+	DEATHSOUND "SSGUNER/death"
+	ACTIVESOUND "SSGUNER/idle"
+	OBITUARY "%o was blown open by a Super Shotgunner!"
+	//sorry, no early SSGs for you!
+	Dropitem "ShotgunGuyItemDropper" 
+	Dropitem "ShotgunGuyModItemDropper"
+	DropItem "MicroMedPackDropChecker",128
+	Decal Bulletchip
+	states
+	{
+	Spawn:
+		GPOS A 10 A_Look
+		Loop
+	See:
+		GPOS AABBCCDD 4 A_Chase
+		Loop		
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(750, "LowSpeedShots")
+		TNT1 A 0 A_JumpIfCloser(2500, "MidSpeedChoice")
+		TNT1 A 0 A_JumpIfCloser(4500, "HighSpeedChoice")
+	LowSpeedChoice:
+		TNT1 A 0 A_Jump(256,"LowSpeedShots","LowSpeedShots","LowSpeedTriClusterNade")
+	MidSpeedChoice:
+		TNT1 A 0 A_Jump(256,"MidSpeedShots","MidSpeedShots","MidSpeedTriClusterNade")
+	HighSpeedChoice:
+		TNT1 A 0 A_Jump(256,"HighSpeedShots","HighSpeedShots","HighSpeedTriClusterNade")
+	LowSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	LowSpeedTriClusterNade:
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  -10, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  10, 0, 0)
+		goto See
+	MidSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	MidSpeedTriClusterNade:
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  -10, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  10, 0, 0)
+		goto See
+	HighSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	HighSpeedTriClusterNade:
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  -10, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  10, 0, 0)
+		goto See
+	Pain:
+		GPOS G 3
+		GPOS G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+	
+	}
+}
+
+ACTOR SSGZombieAltGrey : SSGZombie
+{
+	Health 65
+	Radius 20
+	Height 56
+	Scale 0.9
+	Speed 9
+	PainChance 170
+	MONSTER 
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Translation "112:127=80:111"
+	//Translation "112:127=16:47"
+	+FloorClip
+	SEESOUND "SSGUNER/sight"
+	ATTACKSOUND "SSGUNER/SSG"
+	PAINSOUND "grunt/pain"
+	DEATHSOUND "SSGUNER/death"
+	ACTIVESOUND "SSGUNER/idle"
+	OBITUARY "%o was blown open by a Super Shotgunner!"
+	//sorry, no early SSGs for you!
+	Dropitem "ShotgunGuyItemDropper" 
+	Dropitem "ShotgunGuyModItemDropper"
+	DropItem "MicroMedPackDropChecker",128
+	Decal Bulletchip
+	states
+	{
+	Spawn:
+		GPOS A 10 A_Look
+		Loop
+	See:
+		GPOS AABBCCDD 4 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(750, "LowSpeedShots")
+		TNT1 A 0 A_JumpIfCloser(2500, "MidSpeedChoice")
+		TNT1 A 0 A_JumpIfCloser(4500, "HighSpeedChoice")
+	LowSpeedChoice:
+		TNT1 A 0 A_Jump(256,"LowSpeedShots","LowSpeedShots","LowSpeedTriClusterNade")
+	MidSpeedChoice:
+		TNT1 A 0 A_Jump(256,"MidSpeedShots","MidSpeedShots","MidSpeedTriClusterNade")
+	HighSpeedChoice:
+		TNT1 A 0 A_Jump(256,"HighSpeedShots","HighSpeedShots","HighSpeedTriClusterNade")
+	LowSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	LowSpeedTriClusterNade:
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  -10, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  10, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  -30, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyZombGrenadeCluster", 33,  0,  30, 0, 0)
+		goto See
+	MidSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	MidSpeedTriClusterNade:
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  -10, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  10, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  -30, 0, 0)
+		GPOS F 0 A_SpawnProjectile("MidSpeedShottyZombGrenadeCluster", 33,  0,  30, 0, 0)
+		goto See
+	HighSpeedShots:
+		GPOS E 10 A_FaceTarget
+		GPOS F 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  0, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15,  5, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15, -5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50,  5,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50, -5, -3, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10,  7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 33,  10, -7, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15,  15, -3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15, -15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50,  15,  3, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50, -15, -3, 0, 0)
+		GPOS E 8
+		Goto See
+	HighSpeedMultiTriClusterNade:
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  -10, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  10, 0, 0)
+		GPOS E 8 A_FaceTarget
+		GPOS E 0 A_PlaySound("ChromeJustice/Fire",1,0.9)
+		GPOS E 0 A_PlaySound("shotguy/attack",1,0.9)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  0, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  -30, 0, 0)
+		GPOS F 0 A_SpawnProjectile("HighSpeedShottyZombGrenadeCluster", 33,  0,  30, 0, 0)
+		goto See
+	Pain:
+		GPOS G 3
+		GPOS G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+	
+	}
+}

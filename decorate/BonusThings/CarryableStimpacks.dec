@@ -1,0 +1,41 @@
+//more rewards n shit
+//also yay for easy copy past stuff!
+
+ACTOR Ministimpackpiece : CustomInventory
+
+{
+		+INVBAR
+		+INVENTORY.UNTOSSABLE
+		+INVENTORY.UNDROPPABLE
+		Inventory.Amount 1
+		Inventory.MaxAmount 5
+		Inventory.InterHubAmount 5
+		Tag "Mini Stimpack Sphere"
+		Inventory.Icon "Z_SSHR"
+		States
+	{
+		Use:
+		TNT1 A 0 A_TakeInventory("Ministimpackpiece", 1)
+		TNT1 A 0  A_SpawnItemEx("Stimpack", 30, 0, 15)
+		fail
+		}
+}
+
+
+ACTOR Ministimpack : CustomInventory
+{
+	Inventory.Amount 1
+	scale 0.6
+	Inventory.PickupMessage "You got a Mini Stimpack Sphere! Use it to get a Stimpack!"
+	States
+	{
+		Spawn:
+		ZSHR A 1 Bright
+		Loop
+		Pickup:
+		TNT1 A 0 A_GiveInventory ("Ministimpackpiece", 1)
+		stop
+	}
+}
+
+

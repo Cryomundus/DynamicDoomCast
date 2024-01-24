@@ -1,0 +1,4349 @@
+////////////////////////////////////////////////////////////////////////////////
+/*  								
+					$$$$$-----THE ALMIGHTY KEY-----$$$$$
+   If you're looking for a certain projectile, use this to jump straight to the 
+					  respective monster's projectiles
+			 This also doubles as list of all monsters and variants
+			    Current Total: 96 monsters, including variants
+					  
+------------- Zombieman ----------------
+
+ModDropperBasicZombieman / ModDropperBasicZombiemanAltGreen / ModDropperBasicZombiemanAltBlue                          
+TrooperZombieman / ModDropperTrooperZombiemanAltGreen / ModDropperTrooperZombiemanAltRed
+ModDropperEliteZombieman / ModDropperEliteZombiemanAltRed / ModDropperEliteZombiemanAltGreen
+ModDropperPulseGunZombie
+------------- ShotgunGuy ----------------	
+ShotGunner / ModDropperShotGunnerAltGreen / ModDropperShotGunnerAltBlue
+SSGZombie / ModDropperSSGZombieAltYellow / ModDropperSSGZombieAltGrey	
+AutoShotGunner / ModDropperAutoModDropperShotGunnerAltGreen / ModDropperAutoModDropperShotGunnerAltBlue	
+ModDropperBladeGunner
+------------- ChaingunGuy ----------------
+ChainGunner / ModDropperChainGunnerAltGreen / ModDropperChainGunnerAltBlue
+ChaingunnerMajor / ModDropperChaingunnerMajorAltGreen / ModDropperChaingunnerMajorAltSilver
+CyborgCommando / ModDropperCyborgCommandoAltGreen / ModDropperCyborgCommandoAltBlue	
+ModDropperChaosCommando
+------------- DoomImp ----------------
+TheDoomImp / TheDoomImpAltGreen / TheDoomImpAltBlue	
+BonyImp / BonyImpAltBlue / BonyImpAltGreen	
+ImpGunner / ImpGunnerAltRed / ImpGunnerAltBlue	
+SpireImp
+------------- Demon ----------------
+Pinkie / PinkieAltBrown / PinkieAltDarkGreen
+Slasher / SlasherAltRed / SlasherAltBlue
+BullSpider
+Rotfest
+------------- Spectre ----------------
+InvisDemon
+GhostlySlasher
+GhostBullSpider
+GhostRotfest
+------------- Cacodemon ----------------
+Caco / CacoAltGreenBlue / CacoAltBrownDarkGreen	
+Seere / SeereAltRed / SeereAltSilver	
+HelSturm / HelSturmAltRed / HelSturmAltBlue	
+EternalWatcher
+------------- LostSoul ----------------
+LSoul
+Gnaw
+SpiritBlade
+BlackBlot
+------------- PainElemental ----------------
+PainElementalAlt
+TheMaw
+SpiritBandit
+ElderWraith
+------------- HellKnight ----------------
+HellKnightAlt
+KnightGuard
+HellFireKnight
+LostKnight
+------------- Revenant ----------------
+ReveNAHHHHHHHHHH / ReveNREEEEN / ReveNLUEEEE	
+RailRevenant / RailRevenantAltGreenBrown / RailRevenantAltRedBrown	
+ElderRev / ElderRevAltBlue / ElderRevAltRed	
+WarMonger
+------------- Fatso ----------------
+Mancubus
+MutantFatso
+RadiantBeast
+ArtilleryFatso
+------------- Arachnotron ----------------
+ArachSpider / ArachSpiderRail
+Scattertron / ScatterRailtron
+Skulltron / SkullSuperRailtron 
+ArachnoTank
+------------- BaronOfHell ----------------
+BaronOfHellAlt
+BaronGuard
+HellFireBaron
+LostKing
+------------- Archvile ----------------
+MrArch
+BlizzardWizard
+DireVizar
+BloodPriest
+------------- Cyberdemon ----------------
+Cybie / MiniCybie
+Goliath / MiniGoliath
+Juggernaut / MiniJuggernaut
+AncientOne
+------------- SpiderMastermind ----------------
+Spidermind - FlyingSpidermind / MicroSpidermind - MicroFlyingSpiderMind
+Balrog
+Gorgosturm /
+AncientGuardian
+------------- WolfensteinSS ----------------
+N/A -To be included in a add-on for compatibility's sake
+--------------Other-----------------
+Drone
+HadeSphere
+
+--------------------------------------------------------------------------------						
+*/
+////////////////////////////////////////////////////////////////////////////////
+
+
+/*Thanks to Iddqd from the thread here: 
+
+http://forum.zdoom.org/viewtopic.php?f=3&t=53292&hilit=dynamic+enemy+spawner
+
+*/
+
+/*
+
+Note: Change Normalspawner to have only the basic monsters, 1 from each tier
+
+figure out CVARs
+
+So the basic idea is:
+
+DynSpawner:
+RandomSpawns:
+Tier1:
+Tier2:
+Tier3:
+
+TBDynSpawner:
+TBRandomSpawns:
+TBTier1:
+TBTier2:
+TBTier3:
+
+
+YES GOOD LET'S REWRITE A 2,000 LINE PAGE YES
+
+
+	Welp, another one for the books.
+	
+		ACS_NamedExecute executes EXACTLY once per script activation, regardless of the number of actors. 
+			So if one actor spawns, it and it alone gets the script, even if there are 5 actors, it's 
+			only the first one that gets to execute the script. 
+		
+		ACS_NamedExecuteAlways ALWAYS EXECUTES. 
+			ALWAYS.	
+*/
+
+
+
+
+//-------------------- ENEMY SPAWNERS --------------------//
+
+//WHY DID YOU BREAK ARG
+
+Actor ZombieGunnerSpawner replaces ZombieMan
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+
+//To Be Rewritten Later
+
+	Spawn:
+		ZSDO A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+		
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("ModDropperBasicZombieman",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+		Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		//Past me is dumb ignore him.
+	
+		/*
+		
+		Okay look, this is gonna sound stupid as heck, but for some reason
+		unknown to me, having this particular bit mirroring the 1st actor in
+		ZombiemanContainer.dec let's EVERY MONSTER PROPERLY HAVE 
+		THE AMBUSH FLAG. 
+		
+		I don't know why, maybe it's a tic related thing, but hell it works.
+		
+		So unfortunately you're gonna have to deal with a tiny bit of 
+		asymmetry in this otherwise (mostly) symmetrical script.
+		
+		Argh.
+		*/
+	
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 3)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBasicZombieman",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1 
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 3)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBasicZombiemanAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1 
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(12, 3)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBasicZombiemanAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1 
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperPulseGunZombie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1 
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 0 A_Jump(128, 3)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBasicZombieman",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1 
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 3)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBasicZombiemanAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1 
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBasicZombiemanAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1 
+		Stop
+		
+	Tier2:
+		TNT1 A 0 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTrooperZombieman",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTrooperZombiemanAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(64, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTrooperZombiemanAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperPulseGunZombie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTrooperZombieman",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTrooperZombiemanAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperTrooperZombiemanAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop	
+		
+	Tier3:
+		TNT1 A 0 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperEliteZombieman",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperEliteZombiemanAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperEliteZombiemanAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperPulseGunZombie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperEliteZombieman",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperEliteZombiemanAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperEliteZombiemanAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 0 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 0
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperPulseGunZombie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+// END DOOM SPAWN CHOICES
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor ShotGunnerSpawner replaces ShotgunGuy
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		ZSDO A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+		
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("ShotGunner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+		Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperShotGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperShotGunnerAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(12, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperShotGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBladeGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperShotGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperShotGunnerAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperShotGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSSGZombie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSSGZombieAltYellow",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(64, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSSGZombieAltGrey",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBladeGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSSGZombie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSSGZombieAltYellow",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSSGZombieAltGrey",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperAutoShotGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperAutoShotGunnerAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperAutoShotGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBladeGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperAutoShotGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperAutoShotGunnerAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperAutoShotGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBladeGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+
+}
+
+Actor ChainGunnerSpawner replaces ChaingunGuy
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		MINZ A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+		
+	PlayingWithMetroidDreadnought:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("MetroidDreadnoughtSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMetroidDreadnought")
+		
+	DecidingOnAFlavorOfMetroidDreadnought:
+		TNT1 A 1
+		loop
+	/*	
+	PlayingAModForDoom:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+	*/
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("ChainGunner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChainGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChainGunnerAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(12, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChainGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaosCommando",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChainGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChainGunnerAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperChainGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaingunnerMajor",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaingunnerMajorAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(64, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaingunnerMajorAltSilver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaosCommando",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaingunnerMajor",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaingunnerMajorAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaingunnerMajorAltSilver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop	
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCyborgCommando",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCyborgCommandoAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCyborgCommandoAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaosCommando",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCyborgCommando",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCyborgCommandoAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperCyborgCommandoAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperChaosCommando",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor TheDoomImpSpawner replaces DoomImp
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		TROO A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+		
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("TheDoomImp",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, tid)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheDoomImp",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0,5)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheDoomImpAltGreen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0,5)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(12, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheDoomImpAltBlue",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0,5)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpireImp",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0,5)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheDoomImp",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheDoomImpAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheDoomImpAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBonyImp",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBonyImpAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(64, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBonyImpAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpireImp",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBonyImp",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBonyImpAltGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBonyImpAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperImpGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperImpGunnerAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperImpGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpireImp",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperImpGunner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperImpGunnerAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperImpGunnerAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpireImp",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor PinkieSpawner replaces Demon
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		MAUD A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+		
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("Pinkie",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+	
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPinkie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPinkieAltBrown",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(12, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPinkieAltDarkGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(12, 2)
+		TNT1 A 0 A_SpawnItemEx("BullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperRotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPinkie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPinkieAltBrown",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperPinkieAltDarkGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		//Note: Leaving the BullSpiderSpawner because that contains the actual spawns
+		TNT1 A 0 A_SpawnItemEx("BullSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("Rotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("BullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("BullSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("BullSpiderHordeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperRotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("BullSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("BullSpiderHordeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSlasherAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+// END VANILLA DOOM SPAWN CHOICES
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+
+Actor InvisDemonSpawner replaces Spectre
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+RenderStyle Shadow
+States
+{
+	Spawn:
+		MAUD A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+		
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("InvisDemon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperInvisDemon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperInvisDemon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostRotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperInvisDemon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperInvisDemon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostRotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0 
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop	
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostRotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderHordeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostlySlasher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderHordeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGhostRotfest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpiderMiniSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor CacoSpawner replaces Cacodemon
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		HED9 A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("Caco",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCaco",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCacoAltGreenBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCacoAltBrownDarkGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperEternalWatcher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCaco",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCacoAltGreenBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperCacoAltBrownDarkGreen",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSeere",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSeereAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSeereAltSilver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperEternalWatcher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSeere",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSeereAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSeereAltSilver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHelSturm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHelSturmAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHelSturmAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperEternalWatcher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHelSturm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHelSturmAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperHelSturmAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperEternalWatcher",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor LSoulSpawner replaces LostSoul
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		FRGO A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("LSoul",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+	
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperLSoul",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperLSoul",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperLSoul",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlackBlot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperLSoul",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGnaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGnaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGnaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlackBlot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperGnaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBlade",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBlade",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBlade",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlackBlot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBlade",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlackBlot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor PainElementalAltSpawner replaces PainElemental
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		DEFI A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("PainElementalAlt",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPainElementalAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPainElementalAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperPainElementalAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderWraith",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperPainElementalAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheMaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheMaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(64, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheMaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderWraith",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperTheMaw",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBandit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBandit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBandit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderWraith",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpiritBandit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderWraith",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+// END VANILLA DOOM SPAWN CHOICES
+
+//------------------------------------------------------------------------------
+	}
+}
+
+Actor HellKnightAltSpawner replaces HellKnight
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+translation "16:47=64:79"
+States
+{
+	Spawn:
+		CBOS A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("HellKnightAlt",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+	
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 0 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 0 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellKnightAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellKnightAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellKnightAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellKnightAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperKnightGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperKnightGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperKnightGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperKnightGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKnight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor ReveNAHHHHHHHHHHSpawner replaces Revenant
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		GHUL A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 0 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 0 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 0 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 0 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 0 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("ReveNAHHHHHHHHHH",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+	
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 1 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperReveNAHHHHHHHHHH",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperReveNREEEEN",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperReveNLUEEEE",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperWarMonger",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperReveNAHHHHHHHHHH",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperReveNREEEEN",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperReveNLUEEEE",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRailRevenant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRailRevenantAltGreenBrown",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRailRevenantAltRedBrown",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperWarMonger",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRailRevenant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRailRevenantAltGreenBrown",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperRailRevenantAltRedBrown",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop	
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderRev",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderRevAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderRevAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperWarMonger",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderRev",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderRevAltBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperElderRevAltRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperWarMonger",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+
+Actor MancubusSpawner replaces Fatso
+{
+health 0
+//+ISMonster
++NOTDMATCH
++BOSSDEATH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		HECT A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 1 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 1 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 1 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+	/*	
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+		*/
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("Mancubus",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn") //Map07SpecialSpawn
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 1 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		//TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMancubus",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMancubus",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMancubus",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperArtilleryFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperMancubus",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMutantFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMutantFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMutantFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperArtilleryFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperMutantFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRadiantBeast",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRadiantBeast",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperRadiantBeast",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperArtilleryFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperRadiantBeast",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperArtilleryFatso",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor ArachSpiderSpawner replaces Arachnotron
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+//+BOSSDEATH
+States
+{
+	Spawn:
+		RSPI A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 1 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 1 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 1 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("ArachSpider",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"Map07SpecialSpawn") //Map07SpecialSpawn
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"Map07SpecialSpawn")
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"Map07SpecialSpawn")
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"Map07SpecialSpawn")
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"Map07SpecialSpawn")
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"Map07SpecialSpawn")
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 1 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+	
+	Map07SpecialSpawn:
+		TNT1 A 0 A_Print("Attempting Map07 Arachnotron Spawns!")
+		TNT1 A 0 A_SpawnItemEx("Map07Arachnid",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		stop
+	/*
+	Map07CompatSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("SpecialMap07CompatTierCheck",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+		//Will implement other tiers later.
+		Tier1Map07CompatSpawn:
+			TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07NormalSpawmCvar"),"Tier1Map07NormalSpawn")
+			goto EarlyMapSpawn
+			
+			Tier1Map07NormalSpawn:
+				TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07TripleSpawnCvar"),"Tier1Map07TripleSpawn")
+				TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07DualSpawnCvar"),"Tier1Map07DualSpawn")
+				TNT1 A 0 A_SpawnItemEx("ModDropperArachSpider",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+			Tier1Map07DualSpawn:
+				TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07TripleSpawnCvar"),"Tier1Map07TripleSpawn")
+				TNT1 A 0 A_SpawnItemEx("Tier1DualREGMap07DynDoomArachSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+			Tier1Map07TripleSpawn:
+				TNT1 A 0 A_SpawnItemEx("Tier1TripleREGMap07DynDoomArachSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+		Tier2Map07CompatSpawn:
+			TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07NormalSpawmCvar"),"Tier2Map07NormalSpawn")
+			goto EarlyMapSpawn
+			
+			Tier2Map07NormalSpawn:
+				TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07DualSpawnCvar"),"Tier2Map07DualSpawn")
+				TNT1 A 0 A_SpawnItemEx("ModDropperArachSpider",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+			Tier2Map07DualSpawn:
+				TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07TripleSpawnCvar"),"Tier2Map07TripleSpawn")
+				TNT1 A 0 A_SpawnItemEx("Tier2DualREGMap07DynDoomArachSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+			Tier2Map07TripleSpawn:
+				TNT1 A 0 A_SpawnItemEx("Tier2TripleREGMap07DynDoomArachSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+		Tier3Map07CompatSpawn:
+			TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07NormalSpawmCvar"),"Tier3Map07NormalSpawn")
+			goto EarlyMapSpawn
+			
+			Tier3Map07NormalSpawn:
+				TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07DualSpawnCvar"),"Tier3Map07DualSpawn")
+				TNT1 A 0 A_SpawnItemEx("ModDropperArachSpider",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+			Tier3Map07DualSpawn:
+				TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07TripleSpawnCvar"),"Tier3Map07TripleSpawn")
+				TNT1 A 0 A_SpawnItemEx("Tier3DualREGMap07DynDoomArachSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+			Tier3Map07TripleSpawn:
+				TNT1 A 0 A_SpawnItemEx("Tier3TripleREGMap07DynDoomArachSpiderSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				stop
+		TierSMap07CompatSpawn:
+				TNT1 A 0 A_SpawnItemEx("ModDropperArachnoTank",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+				Stop
+		*/	
+		
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+	//Insert CheckMap07CompatCvar here
+	// If true, goto Map
+		TNT1 A 0 A_JumpIf(GetCvar("ToggleDDCMap07CompatCvar"),"Map07CompatSpawn")
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachSpider",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachSpider",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachSpiderRail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachnoTank",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachSpider",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachSpider",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachSpiderRail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperScattertron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperScattertron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperScatterRailtron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachnoTank",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperScattertron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperScattertron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperScatterRailtron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSkulltron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSkulltron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSkullSuperRailtron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachnoTank",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSkulltron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSkulltron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSkullSuperRailtron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperArachnoTank",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+
+Actor BaronOfHellAltSpawner replaces BaronOfHell
+{
+health 0
+//+ISMonster
++BOSSDEATH
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		CBOS A 0
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 1 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 1 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 1 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("BaronOfHellAlt",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 1 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronOfHellAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronOfHellAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronOfHellAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKing",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronOfHellAlt",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKing",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBaronGuard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireBaron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireBaron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireBaron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKing",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperHellFireBaron",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperLostKing",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+Actor MrArchSpawner replaces Archvile
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		DIAB A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 1 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 1 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 1 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("MrArch",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 1 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMrArch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMrArch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperMrArch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBloodPriest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperMrArch",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlizzardWizard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlizzardWizard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlizzardWizard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBloodPriest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBlizzardWizard",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperDireVizar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperDireVizar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperDireVizar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBloodPriest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperDireVizar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperBloodPriest",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+
+Actor CybieSpawner replaces Cyberdemon
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		ANNI A 0 
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 1 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 1 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 1 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("Cybie",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+		
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 1 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCybie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCybie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCybie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperCybie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientOne",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier: //yes there is no special monster, shhh
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperCybie",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGoliath",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGoliath",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGoliath",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGoliath",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientOne",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperGoliath",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperJuggernaut",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperJuggernaut",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperJuggernaut",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperJuggernaut",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientOne",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperJuggernaut",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientOne",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}
+
+/*
+
+To do: Replace with the option of the having either the normal spidermastermind 
+or the usual flying ones.
+
+*/
+Actor SpidermindSpawner replaces SpiderMastermind
+{
+health 0
+//+ISMonster
++NOTDMATCH
+-shootable
++nointeraction
+States
+{
+	Spawn:
+		BFGD A 0
+		
+	ForceSpidermindLandSpawns:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseOnlySpawnSpidermindLand",0)
+		TNT1 A 1
+		
+	ForcingSMMLSpawn:
+		TNT1 A 0 A_SpawnItemEx("SpidermindLand",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	ContinueSpawn:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN") //A_print("Attempting Spawn")
+		TNT1 A 1 ACS_NamedExecuteAlways("StartSpawn",0)		
+		TNT1 A 1 //A_Print("If you're seeing this, you've got to set your choice of spawns in Options")
+		TNT1 A 1 A_Jump(256,"Deciding")
+		
+	Deciding:
+		TNT1 A 1
+		loop
+		
+	ChoosingYourDoomSpawns:
+		TNT1 A 0 ////A_Log("I R ZOMBIE I NOT SPAWN")
+		TNT1 A 0 ACS_NamedExecuteAlways("ChoosingYourDoomMonsterSpawns",0)// <---!USE THIS FOR THE SPAWNERS DUMMY!------
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfVanilla")
+		
+	DecidingOnAFlavorOfVanilla:
+		TNT1 A 1
+		loop
+		
+	PlayingWithWhatModCheck:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("IamChoosingAModCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfMod")
+		
+	DecidingOnAFlavorOfMod:
+		TNT1 A 1
+		loop
+		
+	PlayingWithBuffedHP:
+		TNT1 A 0 //A_Log("Checking BHP Cvars...")
+		TNT1 A 1 ACS_NamedExecuteAlways("BuffedHPSpawnsCheck",0)
+		TNT1 A 1 A_Jump(256,"DecidingOnAFlavorOfBuffedHP")
+		
+	DecidingOnAFlavorOfBuffedHP:
+		TNT1 A 1
+		loop
+	
+	BadSpawner:
+		//The "SHIT SOMETHING BROKE GO HERE" state
+		//Basically if you start seeing Zombiemen in places they shouldn't be, you're here
+		TNT1 A 0 A_SpawnItemEx("Spidermind",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG | SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A 0 //A_Log("If you're seeing this, ya dun fucked up")		 
+		Stop
+	
+	VanillaDoomDynSpawner:
+		//TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+	
+		
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) == 1, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 2, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 3, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 4, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 5, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 6, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 7, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 8, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 9, 		"EarlyMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 10,		"EarlyMapSpawn")
+	
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 11, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 12, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 13, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 14, 	"EarlyOrMidSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 15, 	"EarlyOrMidSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 16, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 17, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 18, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 19, 	"MidMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 20, 	"MidMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 21, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 22, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 23, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 24, 	"MidOrEndSpawns")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 25, 	"MidOrEndSpawns")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 26, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 27, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 28, 	"EndMapSpawn")
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) == 29, 	"EndMapSpawn")
+		
+		TNT1 A 0 A_JumpIf(CallACS("GetMapNumber", 0) >= 30, 	"RandomSpawns")
+		Goto BadSpawner
+			
+	RandomSpawner:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"RandomSpawns")  //No special cases needed, anything after map01 gets this spawn
+		Goto BadSpawner
+		
+	Tier1Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier1") 
+		Goto BadSpawner
+		
+	Tier2Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier2")
+		Goto BadSpawner
+		
+	Tier3Spawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"Tier3")
+		Goto BadSpawner
+	
+	TierSSpawns:
+		TNT1 A 1 A_JumpIf(CallACS("GetMapNumber", 0) >= 1, 		"TierS")
+		Goto BadSpawner
+		
+	EarlyOrMidSpawns:
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn", "MidMapSpawn")
+		
+	MidOrEndSpawns:
+		TNT1 A 1 A_Jump(256,"MidMapSpawn", "EndMapSpawn")
+		
+	RandomSpawns: // ehhh it's psuedo random I think Kinda maybe sorta
+		TNT1 A 1 A_Jump(256,"EarlyMapSpawn","EarlyMapSpawn","MidMapSpawn","MidMapSpawn","EndMapSpawn")
+		
+	EarlyMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+		Goto BadSpawner
+		
+	MidMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+		
+	EndMapSpawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	Goto BadSpawner
+	
+	ForceSpidermindLandSpawns:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseOnlySpawnSpidermindLand",0)
+		TNT1 A 1
+		
+	
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpidermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+	Tier1:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier1",0)
+		TNT1 A 1
+	ContinueTier1:
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpidermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpidermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpidermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpidermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientGuardian",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier1NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperSpidermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		
+		Stop
+		
+	Tier2:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier2",0)
+		TNT1 A 1
+	ContinueTier2:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBalrog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBalrog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBalrog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperBalrog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientGuardian",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier2NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperBalrog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		
+	Tier3:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTier3",0)
+		TNT1 A 1
+	ContinueTier3:
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGorgosturm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGorgosturm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGorgosturm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 1 A_Jump(128, 2)
+		TNT1 A 0 A_SpawnItemEx("ModDropperGorgosturm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientGuardian",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnRegularTier3NoSTier:
+		TNT1 AAA 0
+		TNT1 A 0 A_SpawnItemEx("ModDropperGorgosturm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	
+	TierS:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSTierSpawnCheckTierS",0)
+		TNT1 A 1
+	ContinueTierS:
+		TNT1 A 0 A_SpawnItemEx("ModDropperAncientGuardian",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+	SpawnBarrels:
+		TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		Stop
+
+//------------------------------------------------------------------------------
+
+	}
+}	

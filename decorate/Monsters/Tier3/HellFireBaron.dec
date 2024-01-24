@@ -1,0 +1,204 @@
+Actor HellFireBaron 
+{ 
+  Health 1200
+  Scale 1.1
+  Radius 24 
+  Height 64 
+  Mass 1000 
+  Speed 8 
+  PainChance 90
+  Bloodcolor Green
+  Monster
+  DamageFactor "Blessed", 3.0
+  Damagefactor "MonsterBeatEmUp", 7.4
+  Obituary "The HellFireKnight obliterated %o's body!"
+  HitObituary "The HellFireKnight shredded %o!"
+  species HellRoyal
+  -THRUSPECIES
+  +DONTHARMSPECIES
+  +FloorClip
+  +MissileMore
+  +DontHurtSpecies
+  SeeSound "monster/ar2sit" 
+  PainSound "baron/pain" 
+  DeathSound "monster/ar2dth"
+  MeleeSound "baron/melee"
+  DropItem "MediumMedPackDropChecker", 88, 2
+  MinMissileChance 56
+  States 
+  { 
+  Spawn: 
+    BOS4 AB 10 A_Look 
+    Loop 
+  See:
+  	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    BOS4 AABB 3 A_chase
+	BOS4 B 0  A_SpawnItem("HoofStep",0,0,0,0)
+	BOS4 CCDD 3 A_Chase 
+	BOS4 D 0  A_SpawnItem("HoofStep",0,0,0,0)
+    Loop 
+  Missile:
+	BOS4 E 0 A_jump(128,"Right")
+    BOS4 E 5 Bright A_FaceTarget 
+	BOS4 EF 5 Bright
+    BOS4 G 3 Bright A_CustomMissile("HellFireComet",28,0,0,0)
+    BOS4 H 3 Bright
+	Goto See
+  Right:
+    BOS4 I 5 Bright A_FaceTarget 
+	BOS4 IJ 5 Bright
+    BOS4 K 3 Bright A_CustomMissile("HellFireComet",28,0,0,0)
+    BOS4 L 3 Bright
+	Goto See
+  Melee:
+	BOS4 E 0 A_jump(128,"Righthand")
+    BOS4 EF 8 Bright A_FaceTarget 
+    BOS4 G 3 Bright A_CustomMeleeAttack(Random(3,11), "Baron/melee","agaures/swing")
+    BOS4 H 3 Bright
+    Goto See
+  Righthand:
+    BOS4 IJ 8 Bright A_FaceTarget 
+    BOS4 K 3 Bright A_CustomMeleeAttack(Random(3,11), "Baron/melee","agaures/swing")
+    BOS4 L 3 Bright
+    Goto See
+ Pain: 
+    BOS4 Q 2 
+    BOS4 Q 2 A_Pain 
+	TNT1 A 0 a_playsound ("monsters/bighurt",0)
+    Goto See 
+  Death: 
+	TNT1 A 0 a_spawnitemex ("BaronOfHellModItemDropper",0,0,35)
+	 BOS4 R 6 Bright 
+    BOS4 S 6 Bright A_Scream 
+    BOS4 T 6 Bright 
+    BOS4 U 6 Bright A_NoBlocking 
+    BOS4 VW 6 Bright 
+    BOS4 X 6 Bright A_CustomMissile("ArchonSoul",86,0,0,2,90)
+	BOS4 X 0 Bright 
+    BOS4 YZ 6 Bright A_KillMaster
+    BOS4 [ 6 Bright A_Fall 
+    Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("BaronOfHellModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XMED A 5 A_Stop
+		XMED B 5  
+		XMED C 5
+		XMED D 5 A_NoBlocking
+		XMED E 5
+		XMED E -1
+		Stop
+  Crush:
+	POL5 EEEEE 1
+	POL5 E -1
+	Stop		
+  Raise:
+	BOS4 "[ZYXWVUTSR" 20 BRIGHT A_CustomMissile("ReverseArchonSoul",86,0,0,2,90)
+	GOTO SEE
+  } 
+}
+
+Actor ReverseArchonSoul
+{   
+  Radius 1
+  Height 1
+  Speed 3
+  Projectile
+  RenderStyle Add
+  Alpha 0.80
+  States
+  {
+  Spawn:
+    BFX1 DCBA 6 Bright
+    Stop 
+  }
+}
+
+Actor ArchonSoul
+{   
+  Radius 1
+  Height 1
+  Speed 3
+  Projectile
+  RenderStyle Add
+  Alpha 0.80
+  States
+  {
+  Spawn:
+    BFX1 ABCD 6 Bright
+    Stop 
+  }
+}
+
+/*
+Actor HellFireComet
+{
+  Radius 8
+  Height 12
+  Speed 15
+  Damage (random(12,23))
+  Scale 0.6
+  SpawnID 251
+  Projectile
+  +ThruGhost
+  +Strifedamage
+  SeeSound "weapons/firbfi"
+  DeathSound "weapons/hellex"
+  DontHurtShooter
+  States
+  {
+  Spawn: 
+    HRCB AAAABBBBCCCC 1 Bright A_SpawnItemEx("HellFireCometTrail",0,0,0,0,0,0,0,128)
+    Loop
+  Death:
+    HRCB J 0 Bright A_SetTranslucent (0.67,1)
+    HRCB J 3 Bright
+    HRCB K 3 Bright A_Explode(15,128,0)
+    HRCB LMN 3 Bright
+    Stop
+  }
+}
+
+Actor ArchonSoul
+{   
+  Radius 1
+  Height 1
+  Speed 3
+  Projectile
+  RenderStyle Add
+  Alpha 0.80
+  States
+  {
+  Spawn:
+    BFX1 ABCD 6 Bright
+    Stop 
+  }
+}
+
+Actor HellFireCometTrail
+{   
+  Radius 3
+  Height 3
+  Scale 0.5
+  Speed 0
+  Projectile
+  RenderStyle Add
+  Alpha 0.67
+   +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    TNT1 A 3 Bright
+    HRCB DEFGHI 3 Bright
+    Stop 
+  }
+}
+/*
+Actor GhostlyLion : HellFireBaron replaces StealthHellKnight
+{
+   RenderStyle Add
+   Alpha 0.5
+}

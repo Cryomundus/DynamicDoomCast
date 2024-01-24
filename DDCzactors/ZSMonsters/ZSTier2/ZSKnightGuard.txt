@@ -1,0 +1,113 @@
+Actor KnightGuard : HellKnightModStatesinheritor
+{
+    Health 550
+    Radius 24
+    Height 64
+    Speed 14
+	Scale 1.2
+    PainChance 50
+    Mass 500
+    MONSTER 
+	DamageFactor "Blessed", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Species HellRoyal
+	-THRUSPECIES
+	+DONTHARMSPECIES
+    +FLOORCLIP
+    SeeSound "hellguard/sight"
+    PainSound "knight/pain"
+    DeathSound "hellguard/death"
+    ActiveSound "hellguard/idle"
+    Obituary "%o was fried by a Knight Guard."
+    MeleeDamage 8
+    States
+    {
+    Spawn:
+        HLGD AB 10 A_Look
+        Loop
+    See:
+        HLGD AABBCCDD 3 A_Chase
+        Loop
+    Missile:
+        HLGD E 8 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, -4, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, 4, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, 0, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD E 4 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, -4, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, 4, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, 0, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD E 4 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, -4, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, 4, 1)
+        HLGD E 8 A_FaceTarget
+        HLGD F 4 Bright A_SpawnProjectile("HellGuardBall", 28, -8, 0, 1)
+        Goto See
+    Pain:
+        HLGD G 2
+        HLGD G 2 A_Pain
+		TNT1 A 0 a_playsound ("monsters/bighurt",0)
+        Goto See
+    Death:
+		TNT1 A 0 a_spawnitemex ("HellknightModItemDropper",0,0,35)
+        HLGD H 6
+        HLGD I 6 A_Scream
+        HLGD J 6
+        HLGD K 6 A_Fall
+        HLGD LM 6
+        HLGD N -1
+        Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("HellknightModItemDropper",0,0,35)
+		XMED A 5 A_Stop
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XMED B 5  
+		XMED C 5
+		XMED D 5 A_NoBlocking
+		XMED E 5
+		TNT1 A 0
+		XMED E -1
+		Stop
+	Crush:
+		POL5 EEEEE 1
+		POL5 E -1
+		Stop		
+    Raise:
+        HLGD ONMLKJI 8
+        Goto See
+    }
+}
+
+actor HellGuardBall
+{
+    Radius 13
+    Height 8
+    Speed 20
+    Damage (6)
+	DamageType "MonsterBeatEmUp"
+    PROJECTILE
+    RENDERSTYLE ADD
+    ALPHA 0.67
+    SeeSound "hellguard/shot"
+    DeathSound "hellguard/shothit"
+    Decal PlasmaScorchLower
+    States
+    {
+    Spawn:
+        HGFB ABCD 2 Bright
+        Loop
+    Death:
+        HGFB EFGH 4 Bright
+        Stop
+    }
+}

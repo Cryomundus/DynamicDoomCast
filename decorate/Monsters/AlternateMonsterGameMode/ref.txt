@@ -1,0 +1,990 @@
+
+ACTOR  TTDDCBasicZombieman : BasicZombieman
+{
+health 60
+	
+}
+
+ACTOR  TTDDCBasicZombiemanAltGreen : BasicZombiemanAltGreen
+{
+health 70
+}
+
+ACTOR  TTDDCBasicZombiemanAltBlue : BasicZombiemanAltBlue
+{
+health 80
+}
+
+//Tier 2 
+ACTOR TTDDCTrooperZombieman : TrooperZombieman
+{
+Health 85
+}
+
+ACTOR TTDDCTrooperZombiemanAltGreen : TrooperZombiemanAltGreen
+{
+Health 95
+}
+
+ACTOR TTDDCTrooperZombiemanAltRed : TrooperZombiemanAltRed
+{
+Health 105
+}
+
+//Tier 3
+Actor TTDDCEliteZombieman : EliteZombieman //: Rebel 238
+{
+Health 95
+}
+Actor TTDDCEliteZombiemanAltRed : EliteZombiemanAltRed //: Rebel 238
+{
+Health 105
+}
+Actor TTDDCEliteZombiemanAltGreen : EliteZombiemanAltGreen //: Rebel 238
+{
+Health 115
+}
+
+//Tier S
+Actor TTDDCPulseGunZombie : PulseGunZombie 
+{
+Health 125
+}
+
+//ShotGunner
+//Tier 1
+Actor TTDDCShotGunner : ShotGunner
+{
+health 95
+}
+
+Actor TTDDCShotGunnerAltGreen : ShotGunnerAltGreen
+{
+health 105
+}
+
+Actor TTDDCShotGunnerAltBlue : ShotGunnerAltBlue
+{
+health 115
+}
+
+//Tier 2
+ACTOR TTDDCSSGZombie : SSGZombie
+{
+Health 115
+}
+
+ACTOR TTDDCSSGZombieAltYellow : SSGZombieAltYellow
+{
+Health 125
+}
+ACTOR TTDDCSSGZombieAltGrey : SSGZombieAltGrey
+{
+Health 135
+}
+
+//Tier3
+ACTOR TTDDCAutoShotGunner : AutoShotGunner
+{
+Health 150
+}
+
+ACTOR TTDDCAutoShotGunnerAltGreen : AutoShotGunnerAltGreen
+{
+Health 160
+}
+ACTOR TTDDCAutoShotGunnerAltBlue : AutoShotGunnerAltBlue
+{
+Health 170
+}
+//TierS
+ACTOR TTDDCBladeGunner : BladeGunner
+{
+Health 180
+}
+
+//ChainGunner
+//Tier 1
+ACTOR TTDDCChainGunner : ChainGunner
+{
+Health 125
+}
+
+ACTOR TTDDCChainGunnerAltBlue : ChainGunnerAltBlue
+{
+Health 135
+}
+
+ACTOR TTDDCChainGunnerAltGreen : ChainGunnerAltGreen
+{
+Health 145
+}
+//Tier 2
+
+Actor TTDDCChaingunnerMajor : ChaingunnerMajor
+{
+Health 185
+}
+
+Actor TTDDCChaingunnerMajorAltGreen : ChaingunnerMajorAltGreen
+{
+Health 195
+}
+
+Actor TTDDCChaingunnerMajorAltSilver : ChaingunnerMajorAltSilver
+{
+Health 205
+}
+
+//Tier 3
+Actor TTDDCCyborgCommando : CyborgCommando
+{
+Health 200
+}
+Actor TTDDCCyborgCommandoAltGreen : CyborgCommandoAltGreen
+{
+Health 210
+}
+Actor TTDDCCyborgCommandoAltBlue : CyborgCommandoAltBlue
+{
+Health 220
+}
+//TierS
+ACTOR TTDDCChaosCommando : ChaosCommando
+{
+Health 230
+}
+
+//TheDoomImp
+//Tier 1
+ACTOR TTDDCTheDoomImp : TheDoomImp
+{
+Health 135
+}
+
+ACTOR TTDDCTheDoomImpAltGreen : TheDoomImpAltGreen
+{
+Health 145
+}
+
+ACTOR TTDDCTheDoomImpAltBlue : TheDoomImpAltBlue
+{
+Health 155
+}
+
+//Tier 2 
+actor TTDDCBonyImp : BonyImp
+{
+Health 190
+}
+actor TTDDCBonyImpAltBlue : BonyImpAltBlue 
+{
+Health 210
+}
+actor TTDDCBonyImpAltGreen : BonyImpAltGreen
+{
+Health 220
+}
+
+//Tier 3
+Actor TTDDCImpGunner : ImpGunner
+{
+Health 225
+}
+Actor TTDDCImpGunnerAltRed : ImpGunnerAltRed
+{
+Health 235
+}
+Actor TTDDCImpGunnerAltBlue: ImpGunnerAltBlue
+{
+Health 245
+}
+//TierS
+ACTOR TTDDCSpireImp : SpireImp
+{
+Health 255
+}
+
+
+
+//Pinkie
+//Tier 1
+ACTOR TTDDCPinkie : Pinkie
+{
+Health 250
+}
+
+ACTOR TTDDCPinkieAltBrown : PinkieAltBrown
+{
+Health 260
+}
+
+ACTOR TTDDCPinkieAltDarkGreen : PinkieAltDarkGreen
+{
+Health 270
+}
+//Tier 2
+actor TTDDCSlasher : Slasher
+{
+Health 300
+}
+
+actor TTDDCSlasherAltRed : SlasherAltRed
+{
+Health 310
+}
+
+actor TTDDCSlasherAltBlue : SlasherAltBlue
+{
+Health 320
+}
+//Tier 3
+Actor TTDDCBullSpiderMiniSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor TTDDCBullSpiderSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor TTDDCBullSpiderHordeSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SIXTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SIXTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SEVENTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SEVENTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"EIGHTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	EIGHTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+
+Actor TTDDCGhostBullSpiderMiniSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor TTDDCGhostBullSpiderSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor TTDDCGhostBullSpiderHordeSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SIXTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SIXTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SEVENTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SEVENTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"EIGHTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	EIGHTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor TTDDCBullSpider : BullSpider
+{
+Health 175
+}
+//TierS
+ACTOR TTDDCRotfest : Rotfest
+{
+Health 600
+}
+
+
+
+//InvisDemon
+//Tier 1
+ACTOR TTDDCInvisDemon : InvisDemon
+{
+Health 250
+}
+
+//Tier 2
+actor TTDDCGhostlySlasher : GhostlySlasher
+{
+Health 300
+}
+
+//Tier 3
+Actor TTDDCGhostBullSpider : GhostBullSpider
+{
+Health 175
+}
+
+//TierS
+ACTOR TTDDCGhostRotfest : GhostRotfest
+{
+Health 600
+}
+
+//Caco
+//Tier 1
+ACTOR TTDDCCaco : Caco
+{
+Health 500
+}
+
+ACTOR TTDDCCacoAltGreenBlue : CacoAltGreenBlue
+{
+Health 525
+}
+
+ACTOR TTDDCCacoAltBrownDarkGreen : CacoAltBrownDarkGreen
+{
+Health 550
+}
+//Tier 2
+ACTOR TTDDCSeere : Seere
+{
+Health 800
+}
+ACTOR TTDDCSeereAltRed : SeereAltRed
+{
+Health 825
+}
+ACTOR TTDDCSeereAltSilver : SeereAltSilver
+{
+Health 850
+}
+
+//Tier 3
+Actor TTDDCHelSturm : HelSturm 
+{
+Health 950
+}
+Actor TTDDCHelSturmAltRed : HelSturmAltRed 
+{
+Health 975
+}
+Actor TTDDCHelSturmAltBlue : HelSturmAltBlue 
+{
+Health 1000
+}
+
+//TierS
+ACTOR TTDDCEternalWatcher : EternalWatcher
+{
+Health 1100
+}
+
+
+//HellKnightAlt
+//Tier 1
+ACTOR TTDDCHellKnightAlt : HellKnightAlt
+{
+Health 600
+}
+//Tier 2
+ACTOR TTDDCKnightGuard : KnightGuard
+{
+Health 750
+}
+//Tier 3
+ACTOR TTDDCHellFireKnight : HellFireKnight
+{
+Health 800
+}
+
+//TierS
+ACTOR TTDDCLostKnight : LostKnight
+{
+Health 900
+}
+
+//Baron
+//Tier 1
+ACTOR TTDDCBaronOfHellAlt : BaronOfHellAlt
+{
+Health 1200
+}
+//Tier 2
+ACTOR TTDDCBaronGuard : BaronGuard
+{
+Health 1350
+}
+//Tier 3
+ACTOR TTDDCHellFireBaron : HellFireBaron
+{
+Health 1500
+}
+//TierS
+ACTOR TTDDCLostKing : LostKing
+{
+Health 1750
+}
+
+//pain elemental
+//Tier 1
+ACTOR TTDDCPainElementalAlt : PainElementalAlt
+{
+Health 750
+	STATES
+	{
+	Missile:
+		PAIN D 5 A_FaceTarget
+		PAIN E 5 A_FaceTarget
+		PAIN F 4 BRIGHT A_FaceTarget
+		PAIN F 1 BRIGHT A_PainAttack("TTDDCLSoul")
+		Goto See
+	}
+}
+//Tier 2
+ACTOR TTDDCTheMaw : TheMaw
+{
+	Health 850
+	STATES
+	{
+	SpawnAGnaw:
+		GREL D 0 A_PlaySound("grell/attack")
+		GREL D 4 A_FaceTarget
+		GREL E 4 Bright A_FaceTarget    
+		GREL F 4 Bright A_PainAttack("TTDDCGnaw")//, 32, 0, 0)
+		Goto See
+	SpawnGnaws:
+		//TNT1 A 0 A_Jump(128,"SpawnGnaws")
+		GREL D 0 A_PlaySound("grell/attack")
+		GREL D 4 A_FaceTarget
+		GREL E 4 Bright A_FaceTarget    
+		GREL F 4 Bright A_DualPainAttack("TTDDCGnaw")//, 32, 0, 0)
+		Goto See
+	}
+}
+//Tier 3
+ACTOR TTDDCSpiritBandit : SpiritBandit
+{
+Health 950
+	STATES
+	{
+	SingleBlade:
+		FARG E 6 A_FaceTarget
+		FARG F 6
+		FARG G 6 A_PainAttack("TTDDCSpiritBlade")
+		Goto See
+	DualBlade:
+		FARG E 6 A_FaceTarget
+		FARG F 6
+		FARG G 6 A_DualPainAttack("TTDDCSpiritBlade")
+		Goto See
+	}
+
+}
+//TierS
+ACTOR TTDDCElderWraith : ElderWraith
+{
+Health 1050
+	STATES
+	{
+	SpawnABlackBlot:
+		ERWH B 0 A_PlaySound("Blot/Death",CHAN_AUTO, 0.5) 
+		ERWH B 4 A_FaceTarget
+		ERWH C 4 Bright A_FaceTarget    
+		ERWH C 4 Bright A_PainAttack("TTDDCBlackBlot")
+		Goto See
+	SpawnBlackBlots:
+		ERWH B 0 A_PlaySound("Blot/Death",CHAN_AUTO, 0.5) 
+		ERWH B 4 A_FaceTarget
+		ERWH C 4 Bright A_FaceTarget    
+		ERWH C 4 Bright A_DualPainAttack("TTDDCBlackBlot")
+		Goto See
+	}
+}
+
+//Lost soul
+//Tier 1
+ACTOR TTDDCLSoul : LSoul
+{
+ Health 110
+}
+//Tier 2
+ACTOR TTDDCGnaw : Gnaw
+{
+ Health 120
+}
+
+//Tier 3
+ACTOR TTDDCSpiritBlade : SpiritBlade
+{
+ Health 130
+}
+//TierS
+ACTOR TTDDCBlackBlot : BlackBlot
+{
+	Health 45
+	States
+	{
+	Death:
+    TNT1 A 1 A_Stop
+	TNT1 A 0 A_SpawnItemEx ("TTDDCYetmoreBlackBlots", -2, random (0, -8), random (-4, 4), 0, random (-2, 2), random (-2, 2), 0, 160)
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-2, 2), random (-2, 2), 0, 160)
+    TNT1 A 1 A_ScreamAndUnblock
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-3, 3), random (-3, 3), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-4, 4), random (-4, 4), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-5, 5), random (-5, 5), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-6, 6), random (-6, 6), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-7, 7), random (-7, 7), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-8, 8), random (-8, 8), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-9, 9), random (-9, 9), 0, 160)
+    stop
+	}
+}
+ACTOR TTDDCBlackBlotLast : BlackBlotLast
+{
+Health 45
+}
+
+Actor TTDDCYetmoreBlackBlots
+{
+	States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 0 A_Jump (80,"TwoBlackBlots","NOPE")
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCBlackBlotLast",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		Stop
+	TwoBlackBlots:
+		TNT1 A 0 A_Jump (128,"ThreeBlackBlots","NOPE")
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBlackBlot",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCBlackBlotLast",12,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop 
+	ThreeBlackBlots:
+		TNT1 A 0 A_Jump (128,"NOPE")
+		TNT1 A 0 Bright A_Spawnitemex("TTDDCBlackBlot",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCBlackBlotLast",12,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCBlackBlotLast",-12,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop 
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+//Mancubus
+//Tier 1
+ACTOR TTDDCMancubus : Mancubus
+{
+Health 900
+}
+//Tier 2
+ACTOR TTDDCMutantFatso : MutantFatso
+{
+Health 1100
+}
+//Tier 3
+ACTOR TTDDCRadiantBeast : RadiantBeast
+{
+Health 1300
+}
+//TierS
+ACTOR TTDDCArtilleryFatso : ArtilleryFatso
+{
+Health 1500
+}
+
+//Revenant
+//Tier 1
+ACTOR TTDDCReveNAHHHHHHHHHH : ReveNAHHHHHHHHHH
+{
+Health 450
+}
+
+ACTOR TTDDCReveNREEEEN : ReveNREEEEN
+{
+Health 550
+}
+
+ACTOR TTDDCReveNLUEEEE : ReveNLUEEEE
+{
+Health 650
+}
+//Tier 2
+ACTOR TTDDCRailRevenant : RailRevenant
+{
+Health 475
+}
+ACTOR TTDDCRailRevenantAltGreenBrown : RailRevenantAltGreenBrown
+{
+Health 485
+}
+ACTOR TTDDCRailRevenantAltRedBrown : RailRevenantAltRedBrown
+{
+Health 495
+}
+//Tier 3
+ACTOR TTDDCElderRev : ElderRev 
+{
+Health 400
+}
+ACTOR TTDDCElderRevAltBlue : ElderRevAltBlue
+{
+Health 650
+}
+ACTOR TTDDCElderRevAltRed : ElderRevAltRed
+{
+Health 750
+}
+//TierS
+ACTOR TTDDCWarMonger : WarMonger
+{
+Health 850
+}
+
+//Arachnotron
+//Tier 1
+ACTOR TTDDCArachSpider : ArachSpider
+{
+Health 650
+}
+ACTOR TTDDCArachSpiderRail : ArachSpiderRail
+{
+Health 1150
+}
+//Tier 2
+ACTOR TTDDCScattertron : Scattertron
+{
+Health 850
+}
+ACTOR TTDDCScatterRailtron : ScatterRailtron
+{
+Health 1350
+}
+//Tier 3
+ACTOR TTDDCSkulltron : Skulltron
+{
+Health 1050
+}
+ACTOR TTDDCSkullSuperRailtron : SkullSuperRailtron
+{
+Health 1550
+}
+//TierS
+ACTOR TTDDCArachnoTank : ArachnoTank
+{
+Health 1250
+}
+
+//Archvile
+//Tier 1
+Actor TTDDCMrArch : MrArch
+{
+Health 1250
+}
+//Tier 2
+Actor TTDDCBlizzardWizard : BlizzardWizard
+{
+Health 1750
+}
+//Tier 3
+Actor TTDDCDireVizar : DireVizar
+{
+Health 2250
+}
+//TierS
+ACTOR TTDDCBloodPriest : BloodPriest
+{
+Health 2750
+	States
+	{
+	Pain:
+		TNT1 A 0 A_JumpIfHealthLower(2250, "IFEELNOPAIN")
+		THOR Q 10 A_Pain
+		Goto See
+	IFEELNOPAIN:
+		THOR Q 2 A_changeflag(NOPAIN,true)
+		Goto See
+	}
+}
+
+//----------------------------------
+Actor TTDDCBossBrain : BossBrain
+{
+Health 1500
+}
+//----------------------------------
+
+//Spider MasterMind
+//Tier 1
+Actor TTDDCSpidermind : Spidermind
+{
+Health 3500
+States
+    {
+	Death:
+		SPID J 10 A_Scream
+		SPID J 10 A_NoBlocking
+		SPID K 5 
+		SPID K 5 
+		SPID L 5
+		SPID L 5 A_BossDeath  //A_SpawnItem
+		TNT1 A 1 Bright A_Spawnitemex("TTDDCFlyingSpiderMind",5,-10,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		SPID M 5 A_Fadeout(0.9)
+		SPID M 5 A_Fadeout(0.8)
+		SPID N 5 A_Fadeout(0.7)
+		SPID O 5 A_Fadeout(0.6)
+		SPID P 5 A_Fadeout(0.5)
+		SPID Q 5 A_Fadeout(0.4)
+		SPID R 5 A_Fadeout(0.3)
+		SPID R 5 A_Fadeout(0.2)
+		SPID S 10 A_Fadeout(0.1) 
+		SPID S 10 A_Fadeout(0)
+		SPID S -1 
+		stop   
+	}
+
+}
+
+ACTOR TTDDCFlyingSpiderMind : FlyingSpiderMind
+{
+Health 3500
+}
+
+Actor TTDDCSpidermindLand : SpidermindLand
+{
+Health 7000
+}
+
+//Tier 2
+Actor TTDDCBalrog : Balrog
+{
+Health 7500
+}
+//Tier 3
+Actor TTDDCGorgosturm : Gorgosturm
+{
+Health 8500
+}
+//TierS
+ACTOR TTDDCAncientGuardian : AncientGuardian
+{
+Health 9500
+}
+
+//CyberDemon
+//Tier 1
+actor TTDDCCybie : Cybie
+{
+	health 7500
+}
+
+//Tier 2
+Actor TTDDCGoliath : Goliath
+{
+Health 8500
+}
+
+//Tier 3
+Actor TTDDCJuggernaut : Juggernaut
+{
+Health 9500
+}
+//Tier S
+Actor TTDDCAncientOne : AncientOne
+{
+Health 11000
+}
+
+//Wolfenstein SS
+Actor TTDDCCommandoSS : WolfensteinSS
+{
+Health 250
+}
+
+
+
+
+

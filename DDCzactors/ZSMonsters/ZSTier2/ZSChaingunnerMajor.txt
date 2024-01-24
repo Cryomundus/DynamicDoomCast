@@ -1,0 +1,399 @@
+Actor ChaingunnerMajor : ChainGunner 
+{
+	Health 100
+	Painchance 40
+	Mass 200
+	Obituary "%o was perforated by the chaingun major."
+	Decal Bulletchip
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Dropitem "ChainGunGuyItemDropper"
+	Dropitem "ChaingunGuyModItemDropper"
+	-THRUSPECIES
+	States
+	{
+		Spawn:
+			CPS2 AB 10 A_Look
+			Loop
+		See:
+			CPS2 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_Jump(256, "FullAuto", "Burstshot", "Lineofshots","HomingRefire")
+	FullAuto:
+		CPS2 E 5 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  22, 0, 0)
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		CPS2 E 7 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		CPS2 E 6 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  -22, 0, 0)
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  -7, 0, 0)
+		CPS2 E 5 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		CPS2 E 4 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		CPS2 E 3 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		CPS2 E 4 bright A_FaceTarget //return point should here, roughly
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  22, 0, 0)
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  -22, 0, 0)
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  -7, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		CPS2 F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+		Goto FullAuto+19	
+	HomingRefire:
+		//TNT1 A 0 A_Jump(110, "Burstshot", "Lineofshots","HomingRefire")
+		CPS2 E 10 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 4 bright A_SpawnProjectile("CHZomBullet",30,15,(random(-15, 15)))
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Lineofshots:
+		CPS2 E 3 Bright A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 2
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Burstshot:
+		CPS2 E 10 A_FaceTarget
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,2)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,5)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-2)
+		CPS2 FE 1 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-7)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-5)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,7)
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Pain:
+		CPS2 G 3
+		CPS2 G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+	Death:
+		CPS2 H 5 
+		CPS2 I 5 A_Scream
+		CPS2 J 5 A_Fall
+		CPS2 KLMNO 5 
+		CPS2 P -1 A_BossDeath
+		Stop
+	XDeath:
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		CPS2 Q 5 
+		CPS2 R 5 A_XScream
+		CPS2 S 5 A_Fall
+		CPS2 TUVW 5 
+		CPS2 X -1
+		Stop
+	Crush:
+		POL5 EEEEE 1 
+		POL5 E -1
+		stop
+		
+	Raise:
+		CPS2 P 5
+		CPS2 ONMLKJIH 5
+		Goto See
+  }
+}
+
+
+Actor ChaingunnerMajorAltGreen : ChaingunnerMajor 
+{
+	Health 100
+	Painchance 40
+	Mass 200
+	Obituary "%o was perforated by the chaingun major."
+	translation "179:191=112:127", "16:47=112:127", "176:176=117:117", "167:167=123:123"
+	Decal Bulletchip
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Dropitem "ChainGunGuyItemDropper"
+	Dropitem "ChaingunGuyModItemDropper"
+  	DropItem "MicroMedPackDropChecker",128
+	DropItem "MicroMedPackDropChecker",128
+  States
+  {
+	Spawn:
+		CPS2 AB 10 A_Look
+		Loop
+	See:
+		CPS2 AABBCCDD 3 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(256, "FullAuto", "Burstshot", "Lineofshots","HomingRefire")
+	FullAuto:
+		CPS2 E 5 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		CPS2 E 7 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		CPS2 E 6 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0, -7, 0, 0)
+		CPS2 E 5 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		CPS2 E 4 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		CPS2 E 3 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		CPS2 E 4 bright A_FaceTarget //return point should here, roughly
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0, -7, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		CPS2 F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+		Goto FullAuto+19
+	HomingRefire:
+		//TNT1 A 0 A_Jump(110, "Burstshot", "Lineofshots","HomingRefire")
+		CPS2 E 10 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 4 bright A_SpawnProjectile("CHZomBullet",30,15,(random(-15, 15)))
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Lineofshots:
+		CPS2 E 3 Bright A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 2
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		goto Missile
+	Burstshot:
+		CPS2 E 10 A_FaceTarget
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,2)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,5)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-2)
+		CPS2 FE 1 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-7)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-5)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,7)
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Pain:
+		CPS2 G 3
+		CPS2 G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+  }
+}
+
+Actor ChaingunnerMajorAltSilver : ChainGunner 
+{
+	Health 100
+	Painchance 40
+	Mass 200
+	Obituary "%o was perforated by the chaingun major."
+	translation "179:191=80:111", "16:47=80:111", "176:176=96:96", "167:167=159:159"
+	Decal Bulletchip
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Dropitem "ChainGunGuyItemDropper"
+	Dropitem "ChaingunGuyModItemDropper"
+	DropItem "MicroMedPackDropChecker",128
+	DropItem "MicroMedPackDropChecker",128
+	DropItem "MicroMedPackDropChecker",128
+  States
+  {
+	Spawn:
+		CPS2 AB 10 A_Look
+		Loop
+	See:
+		CPS2 AABBCCDD 3 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(256, "FullAuto", "Burstshot", "Lineofshots","HomingRefire")
+	FullAuto:
+		CPS2 E 5 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		CPS2 E 7 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		CPS2 E 6 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0, -7, 0, 0)
+		CPS2 E 5 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		CPS2 E 4 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		CPS2 E 3 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		CPS2 E 4 bright A_FaceTarget //return point should here, roughly
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  7, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0,  0, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 33,  0, -7, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		CPS2 E 2 bright A_FaceTarget
+		CPS2 F 0 bright A_PlaySound("Zom/Shot",1,0.8)
+		CPS2 F 0 bright A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		CPS2 F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+		Goto FullAuto+19
+	HomingRefire:
+		CPS2 E 10 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 4 bright A_SpawnProjectile("CHZomBullet",30,15,(random(-15, 15)))
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Lineofshots:
+		CPS2 E 3 Bright A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 0 A_FaceTarget
+		CPS2 E 0 A_PlaySound("Zom/Shot",1,0.8) 
+		CPS2 FE 3 Bright A_SpawnProjectile("CZomBullet",32,0,(random(-15, 15)),0,0)
+		CPS2 E 2
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Burstshot:
+		CPS2 E 10 A_FaceTarget
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,2)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,5)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-2)
+		CPS2 FE 1 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-7)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,-5)
+		CPS2 EF 0 A_PlaySound("Zom/Shot",1,0.8) 
+		TNT1 A 0 A_SpawnProjectile("CZomBullet",32,0,7)
+		CPS2 F 0 A_SentinelRefire
+		TNT1 A 0 A_Jump(180, "FullAuto")
+		Goto Missile
+	Pain:
+		CPS2 G 3
+		CPS2 G 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+  }
+}

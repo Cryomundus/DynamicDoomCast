@@ -1,0 +1,78 @@
+//more rewards n shit
+//also yay for easy copy past stuff!
+
+ACTOR AmmopackPiece : CustomInventory
+
+{
+		+INVBAR
+		+INVENTORY.UNTOSSABLE
+		+INVENTORY.UNDROPPABLE
+		scale 0.7
+		Inventory.Amount 1
+		Inventory.MaxAmount 5
+		Inventory.InterHubAmount 5
+		Tag "Mini Ammo Pack"
+		Inventory.Icon "Z_BLTA"
+		States
+	{
+		Use:
+		TNT1 A 0 A_TakeInventory("AmmopackPiece", 1)
+		TNT1 A 0  A_SpawnItemEx("RandomAmmoPickupsandSuch", 40, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("RandomAmmoPickupsandSuch", 40, 20, 15)
+		TNT1 A 0  A_SpawnItemEx("RandomAmmoPickupsandSuch", 40, -20, 15)
+		TNT1 A 0  A_SpawnItemEx("RandomAmmoPickupsandSuch", 40, 20, 15)
+		TNT1 A 0  A_SpawnItemEx("RandomAmmoPickupsandSuch", 40, 0, 15)
+		fail
+		}
+}
+
+
+ACTOR MiniAmmoPack : CustomInventory //HealthBackpack : CustomInventory
+{
+	//+INVBAR
+	Inventory.Amount 1
+	//Inventory.MaxAmount 100
+	//Inventory.InterHubAmount 100
+	Inventory.PickupMessage "You got a Mini Ammo Pack! Use it to get some random amounts of ammo."
+	//Tag "Health Pack"
+	//Inventory.Icon "I_MBPK"
+	States
+	{
+		Spawn:
+		ABLT A -1
+		Stop
+		Pickup:
+		TNT1 A 0 A_GiveInventory ("AmmopackPiece", 1)
+		stop
+	}
+}
+
+
+Actor RandomAmmoPickupsandSuch : RandomSpawner
+{
+	DropItem "clip" 
+	DropItem "shell"
+	DropItem "clip" 96
+	DropItem "shell" 66
+	DropItem "rocketammo" 36
+	DropItem "cell" 16
+
+}
+
+//-----------------------------------------------
+/*
+Actor MiniAmmoPackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMiniAmmoSpawnCheck",0)
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniAmmoPack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

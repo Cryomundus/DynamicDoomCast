@@ -1,0 +1,43 @@
+/*
+
+Currently, this will just denote all major changes
+
+-Project started: 5-6-2015, little more than 2 years.
+
+-Finally figured out how the hell Project Brutality's Dynamic spawner script 
+worked, and began working on my own version, with initial help by Iddqd for the
+very basic version of the script, which has since been expanded and refined. 
+
+-Converted Blue Shadow's medbackpack into a more modular version so it was 
+easier to dole out smaller amounts and easily redefine them
+
+-Picked out all monsters for all 4 tiers
+
+-Added some bonus items
+
+-Added toggles for various tiers, random, and dynamic spawn choices.
+
+-Added toggles to disable spawning of bonus items
+
+-FINALLY fixed the goddamn map07 line specials in regards to how mancubi and 
+arachnotrons are spawned
+
+-Fixed Baron spawns for e1m8
+
+-Added ability to remove inventory items
+
+-added ability to spawn only S-Tier enemies
+
+-(will eventually) add support for E1M8, E2M8, E3M8, and MAP07 
+
+-FIGURED OUT MOD SUPPORT!
+
+-Implemented some minor zscript stuff, mainly Mikk's Universal Headshots and
+Lud's Monster Stats Editor from Custom doom
+
+-Fixed, then found an exception, fixed again, found yet more exceptions, and 
+repeated that till like 2018, and now made Mikk's Universal Headshots work 
+properly with revenants. If Zdoom had just 1 alternative to the +GHOST and 
++THRUGHOST flags this would've been absurdly easy.
+
+ 

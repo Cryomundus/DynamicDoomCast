@@ -1,0 +1,981 @@
+/*
+KEY
+
+ZombiemanModItemDropper
+ShotgunGuyModItemDropper
+ChaingunGuyModItemDropper
+ImpModItemDropper
+DemonModItemDropper
+SpectreModItemDropper
+CacodemonModItemDropper
+LostSoulModItemDropper
+BaronOfHellModItemDropper
+HellknightModItemDropper
+ArchvileModItemDropper
+ArachnotronModItemDropper
+FatsoModItemDropper
+PainElementalModItemDropper
+RevenantModItemDropper
+
+SetACyberDemonModItemDropper
+SetBCyberDemonModItemDropper
+SetCCyberDemonModItemDropper
+SetDCyberDemonModItemDropper
+
+SetASpiderMasterMindModItemDropper
+SetBSpiderMasterMindModItemDropper
+SetCSpiderMasterMindModItemDropper
+SetDSpiderMasterMindModItemDropper
+
+WolfensteinSSModItemDropper
+*/
+
+//1
+Actor ZombiemanModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh5rate128", 30, 0, 15)
+			"####" "#" 0 A_JumpIfInTargetInventory("Mana",0,2)
+			"####" "#" 0 A_DropItem("MinorManaPod",-1,54)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("Clip1Rate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("RifleDropRate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("RifleDropRate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("GrenadeAmmorate15", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("BlueCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_SpawnItemEx("BallisticAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PISAD", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(25,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:	
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//2
+Actor ShotgunGuyModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh10rate128", 30, 0, 15)
+		BrutalDoomSet:
+			//TNT1 A 0 A_SpawnItemEx("ShotgunSpawnerDroped", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("GrenadeAmmorate15", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("BlueCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(200,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PISAD", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("ExplosiveAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_Jump(125,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PISAD", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(75,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:	
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//3
+Actor ChaingunGuyModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Dosh5rate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh10rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh25", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("DropedChaingunSpawner", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 AAA 0 A_SpawnItemEx("BlueCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PICAD", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("BallisticAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("BallisticAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+		SpawnNothing:
+			TNT1 A -1
+			Stop
+	
+	}
+}
+
+//4
+Actor ImpModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh5rate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh10rate96", 30, 0, 15)
+		BrutalDoomSet:
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 AAA 0 A_SpawnItemEx("BlueCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PISAD", 30, 0, 15)
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//5
+Actor DemonModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh5rate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh10rate96", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("DemonStrengthRuneRate2", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("RedCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+//6
+
+Actor SpectreModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh5rate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh10rate96", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("DemonStrengthRuneRate2", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("SuperBlurSphereRate12", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("RedCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//7
+Actor CacodemonModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Amber", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("BerserkerRate5", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("SilverCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//8
+Actor LostSoulModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate128", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh1rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh5rate64", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Dosh5rate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("SkullfireBringer", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			//TNT1 A 0 A_SpawnItemEx("BlueCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//9
+Actor BaronOfHellModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Emerald", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("DemonStrengthRuneRate3", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("GoldCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PIPND", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PIPND", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//10
+Actor HellknightModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Ruby", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("DemonStrengthRuneRate3", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 AA 0 A_SpawnItemEx("SilverCoin", 0, 0,8,-7,Random(-3,3),11,0)
+			TNT1 A 0 A_SpawnItemEx("RedCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("ExplosiveAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("ExplosiveAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//11
+Actor ArchvileModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Sapphire", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("AmplifierGiverRate18", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("TomeSpawnerRate4", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("BerserkerRate5", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("GoldCoin", 0, 0,8,-7,Random(-3,3),11,0)
+			TNT1 AA 0 A_SpawnItemEx("SilverCoin", 0, 0,8,-7,Random(-3,3),11,0)
+			TNT1 A 0 A_SpawnItemEx("RedCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//12
+Actor ArachnotronModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Amber", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Rubyrate192", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("BerserkerRate5", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("GoldCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(200,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PIFND", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//13
+Actor FatsoModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("AmberRate192", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("Rubyrate128", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("FatFlameCannonRate128", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 AA 0 A_SpawnItemEx("SilverCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(200,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		SpaceHunter:
+			TNT1 AAAAAAAA 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//14
+Actor PainElementalModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Emerald", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("DemonStrengthRuneRate5", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("SilverCoin", 0, 0,8,-7,Random(-3,3),11,0)
+			TNT1 A 0 A_SpawnItemEx("RedCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(75,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//15
+Actor RevenantModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("Ruby", 30, 0, 15)
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("DemonStrengthRuneRate5", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("RevCannonRate128", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("SilverCoin", 0, 0,8,-7,Random(-3,3),11,0)
+			TNT1 A 0 A_SpawnItemEx("RedCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_SpawnItemEx("PIPND", 30, 0, 15)
+		SpaceHunter:
+			TNT1 AAA 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//16
+Actor SetACyberDemonModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("TreasureChestDrop", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("Diamond", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_SpawnItemEx("HealthBonusPinata", 30, 0, 15)
+		SpaceHunter:
+			TNT1 A 0 A_SpawnItemEx("droppeditemspawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor SetBCyberDemonModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor SetCCyberDemonModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+Actor SetDCyberDemonModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//17
+Actor SetASpiderMasterMindModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Diamond",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		GuncasterSet:
+			TNT1 A 0 A_SpawnItemEx("TreasureChestDrop", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("BlueCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_SpawnItemEx("HealthBonusPinata", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor SetBSpiderMasterMindModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor SetCSpiderMasterMindModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+Actor SetDSpiderMasterMindModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//18
+Actor WolfensteinSSModItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModDropSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	MetroidDreadnoughtDrops:
+		TNT1 A 0 ACS_ExecuteAlways(594,0,31)
+		TNT1 A -1
+		Stop
+	ListOfModDrops:
+		BrutalDoomSet:
+			TNT1 A 0 A_SpawnItemEx("MP40", 30, 0, 15)
+		TreasureTech:
+			TNT1 A 0 A_SpawnItemEx("BlueCoin", 0, 0,8,-7,Random(-3,3),11,0)
+		ProjectIroncladSet:
+			TNT1 A 0 A_Jump(150,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("PISAD", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("BallisticAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_Jump(100,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("ExplosiveAmmoDrop", 30, 0, 15)
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+			TNT1 A 0 A_Jump(50,2) 
+			TNT1 A 0 A_Jump(256,"EndDrops")
+			TNT1 A 0 A_SpawnItemEx("HealthBonusSpawner", 30, 0, 15)
+		EndDrops:
+			TNT1 A -1
+			Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

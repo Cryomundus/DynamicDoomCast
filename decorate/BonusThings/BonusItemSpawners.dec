@@ -1,0 +1,334 @@
+/*
+Item Dropper Key
+
+BigMedPackDropChecker
+MediumMedPackDropChecker
+MiniMedPackDropChecker
+MicroMedPackDropChecker
+
+MiniHealthSphereDropChecker
+
+MiniArmorSphereDropChecker
+
+MiniAmmoPackDropChecker
+
+BossBonusBackpackDropChecker
+
+MiniMedikitSphereDropChecker
+MiniStimpackSphereDropChecker
+MiniGreenArmorSphereDropChecker
+MiniBlueArmorSphereDropChecker
+
+*/
+//------------------------------------------------------------------------------
+// Healthpack SpawnChecks
+
+Actor HSHBSpawnSuccess
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_Log("HitBox Spawned Successfully! :D")
+		stop
+	}
+}
+
+Actor HSHBSpawnFail
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_Log("HitBox Failed to Spawn. :C")
+		stop
+	}
+}
+
+Actor BigMedPackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMedpackSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("BigMedPack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor MediumMedPackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMedpackSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MediumMedPack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+Actor MiniMedPackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMedpackSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniMedPack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor MicroMedPackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMedpackSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MicroMedPack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniHealthSphereDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMiniHealthSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniHealthSphere", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniArmorSphereDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMiniArmorSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniArmorSphere", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniAmmoPackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMiniAmmoSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniAmmoPack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniSpecAmmoPackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseSpecMiniAmmoSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniSpecAmmoPack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor BossBonusBackpackDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseBonusBackpackSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("Backpack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniMedikitSphereDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMedikitSphereSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("Minimedikit", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniStimpackSphereDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseStimpackSphereSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("Ministimpack", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniGreenArmorSphereDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseGreenArmorSphereSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniGreenArmor", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+//-----------------------------------------------
+
+Actor MiniBlueArmorSphereDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseBlueArmorSphereSpawnCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniBlueArmor", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

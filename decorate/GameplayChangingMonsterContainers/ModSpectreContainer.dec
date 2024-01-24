@@ -1,0 +1,155 @@
+/*
+ModDropper
+
+ModDropperInvisDemon
+
+ModDropperGhostlySlasher
+
+ModDropperGhostBullSpider
+
+ModDropperGhostRotfest
+
+*/
+Actor ModDropperInvisDemon
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("InvisDemon", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPInvisDemon", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCInvisDemon", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBInvisDemon", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperGhostlySlasher
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("GhostlySlasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPGhostlySlasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCGhostlySlasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBGhostlySlasher", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperGhostBullSpider
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("GhostBullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPGhostBullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCGhostBullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBGhostBullSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperGhostRotfest
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("GhostRotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPGhostRotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCGhostRotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBGhostRotfest", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

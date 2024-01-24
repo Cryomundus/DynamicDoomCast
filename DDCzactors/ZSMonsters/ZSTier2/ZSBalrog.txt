@@ -1,0 +1,922 @@
+ACTOR Balrog
+
+{
+	Obituary "%o was incinerated by the Balrog." 
+	health 4250
+	radius 34
+	height 76
+	mass 99999
+	speed 15
+	scale 2
+	painchance 45
+	Threshold 10
+	MONSTER
+	damagefactor "FireSpecial", 0
+	DamageFactor "Heroic", 3.0
+	Damagefactor "MonsterBeatEmUp", 10.4
+	bloodcolor "red"
+	seesound "Balrog/See"
+	activesound "Balrog/Active"
+	painsound "Balrog/Pain"
+	deathsound "Balrog/Death"
+	DropItem "MiniAmmoPackDropChecker" 
+	DropItem "MiniAmmoPackDropChecker"
+	DropItem "MiniHealthSphereDropChecker"
+	DropItem "MiniArmorSphereDropChecker"
+	DropItem "BossBonusBackpackDropChecker"
+	DropItem "BigMedPackDropChecker" 
+	Species "Balrog"
+	-THRUSPECIES
+	+BOSS
+	+FLOAT
+	+FLOATBOB
+	+DROPOFF
+	+DONTFALL
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		SERP A 1 A_Look
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1A",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2A",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3A",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4A",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5A",-50,0,5,0,0,0,0,0,0)
+		loop
+	See:
+		TNT1 A 0 A_ChangeFlag("shootable",1)
+		TNT1 A 0 A_Jump(50,"Fastly")
+		SERP A 1 A_Chase
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1B",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2B",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3B",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4B",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5B",-50,0,5,0,0,0,0,0,0)
+		SERP A 1 A_Chase
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1B",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2B",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3B",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4B",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5B",-50,0,5,0,0,0,0,0,0)
+		Goto TrueSee
+	Fastly:
+		SERP A 0 A_Jump(50, "See")
+		SERP A 1 A_Chase
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1B",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2B",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3B",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4B",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5B",-50,0,5,0,0,0,0,0,0)
+		SERP A 1 A_Chase
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1B",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2B",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3B",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4B",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5B",-50,0,5,0,0,0,0,0,0)
+		SERP A 1 A_FastChase
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1B",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2B",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3B",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4B",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5B",-50,0,5,0,0,0,0,0,0)
+		SERP A 1 A_FastChase
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1B",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2B",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3B",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4B",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5B",-50,0,5,0,0,0,0,0,0)
+		SERP A 1 A_FastChase
+		SERP A 0 A_SpawnItemEx("SpikedbodyI1B",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI2B",-20,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI3B",-30,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI4B",-40,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("SpikedbodyI5B",-50,0,5,0,0,0,0,0,0)
+		SERP A 1 A_FastChase
+		Loop
+	TrueSee:
+		SERP A 0 A_Weave(0, 2, 0, random(1,5))
+		SERP A 1 A_Chase
+		SERP A 0 A_Weave(0, 2, 0, random(1,5))
+		SERP A 1 A_Chase
+		SERP A 0 A_SpawnItemEx("SpikedbodyN",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_Weave(0, 2, 0, random(1,5))
+		SERP A 1 A_Chase
+		SERP A 0 A_Weave(0, 2, 0, random(1,5))
+		SERP A 1 A_Chase
+		SERP A 0 A_SpawnItemEx("SpikedbodyF",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_Weave(0, 2, 0, random(1,5))
+		SERP A 1 A_Chase
+		SERP A 0 A_Weave(0, 2, 0, random(1,5))
+		SERP A 1 A_Chase
+		SERP A 0 A_SpawnItemEx("SpikedbodyN",-10,0,5,0,0,0,0,0,0)
+		SERP A 0 A_SpawnItemEx("Firedrip",0,0,-5,0,0,0,0,0,0)
+		loop
+	Missile:
+			SERP A 0 A_Jump(256, "MiniFlameShotRepeater", "Dragonball", "FireballSpread","MultiFlameShotandFireBallRepeater")
+	Dragonball:	   
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+ 			SERP AB 10 bright A_facetarget
+			SERP B 0 A_SpawnProjectile("PowerShot", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("PowerShot", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("PowerShot", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("PowerShot", 15,  65, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("PowerShot", 15, -65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("PowerShot", 50,  65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("PowerShot", 50, -65, -3, 0, 0)
+			goto See
+	MiniFlameShotRepeater:
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -3, 0, 0)
+			SERP A 1 Bright
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT  A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  20, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -23, 0, 0)
+			SERP B 1 Bright
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT  A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  65, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -65, -3, 0, 0)
+			SERP B 1 Bright
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -3, 0, 0)
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT  A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  20, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -23, 0, 0)
+			SERP AB 4 bright A_Cposrefire	 	   	 	   
+			goto MiniFlameShotRepeater+1
+	FireballSpread:	   
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 10 bright A_facetarget
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 15,  65, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 15, -65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 50,  65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 50, -65, -3, 0, 0)
+			goto See
+	MultiFlameShotandFireBallRepeater:
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -3, 0, 0)
+			SERP A 1 Bright
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT  A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  20, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -23, 0, 0)
+			SERP B 1 Bright
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT  A_facetarget
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 15,  65, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 15, -65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 50,  65,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("BouncyHellGrenadeEmber", 50, -65, -3, 0, 0)
+			SERP A 1 Bright
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  0, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -7, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  3, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -3, 0, 0)
+			SERP A 0 A_PlaySound("BalrogFire/Flame")
+			SERP AB 5 BRIGHT  A_facetarget
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0,  20, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 33,  0, -27, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15,  5, -23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 15, -5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50,  5,  23, 0, 0)
+			SERP B 0 A_SpawnProjectile("magicblast", 50, -5, -23, 0, 0)
+			SERP AB 4 bright A_Cposrefire	 	   	 	   
+			goto MultiFlameShotandFireBallRepeater+1
+    	Pain:
+    		SERP B 1 A_Pain
+			TNT1 A 0 a_playsound ("monsters/bosshurt",0)
+			SERP A 0 A_SpawnItemEx("SpikedbodyN",-10,0,5,0,0,0,0,0,0)
+    		Goto TrueSee
+        Death:
+			TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+			TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
+			TNT1 A 0 A_Spawnitemex("SetASpiderMasterMindModItemDropper",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			goto ContinueDeath
+		DeathSuperMissile:
+			TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
+			TNT1 A 0 A_SpawnItemEx("SetBSpiderMasterMindModItemDropper",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			goto ContinueDeath
+		DeathPowerBomb:
+			TNT1 A 0 A_SpawnItemEx("SetCSpiderMasterMindModItemDropper",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+			goto ContinueDeath
+		DeathBoth:
+			TNT1 A 0 A_SpawnItemEx("SetDSpiderMasterMindModItemDropper",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+			goto ContinueDeath
+		ContinueDeath:
+			TNT1 A 0 A_ChangeFlag("shootable",0)
+			SERP B 0 A_PlaySound("Balrog/Pain")
+			SERP B 3 Bright
+			
+			SERP B 0 A_PlaySound("Balrog/Death")			
+			SERP B 0 A_SpawnItemEx("Head1", 0, 0, 20, random(-5,5), random(-5,5), random(-5,5), Random(0, 360), 0)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			SERP B 3 Bright
+			SERP B 0 A_SpawnItemEx("Head2", 0, 0, 20, random(-5,5), random(-5,5), random(-5,5), Random(0, 360), 0)		
+			SERP B 0 A_SpawnItemEx("Head3", 0, 0, 20, random(-5,5), random(-5,5), random(-5,5), Random(0, 360), 0)
+			SERP B 3 Bright
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			SERP B 0 A_SpawnItemEx("Head4", 0, 0, 20, random(-5,5), random(-5,5), random(-5,5), Random(0, 360), 0)
+        	SERP B 3 Bright
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnProjectile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+			TNT1 A 0 A_BossDeath 
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_SetFloorClip
+			Stop
+	}
+}
+// Head
+
+actor Head1
+{
+    PROJECTILE
+    -NOGRAVITY
+    -NOBLOCKMAP
+    -NOTELEPORT
+    +RANDOMIZE
+    Radius 2
+    Speed 10
+	Scale 1.5
+    States
+    {
+    Spawn:
+        FSAD A 0 A_SetGravity (0.5)
+        FSAD A 0 ThrustThingZ (0,random(15,30), 0, 1)
+        goto See 
+    See:
+        FSAD A 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_CheckFloor ("Death")
+        loop
+    Death:
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+    Stop
+    }
+}
+
+actor Head2
+{
+    PROJECTILE
+    -NOGRAVITY
+    -NOBLOCKMAP
+    -NOTELEPORT
+    +RANDOMIZE
+    Radius 2
+    Speed 10
+	Scale 1.5
+    States
+    {
+    Spawn:
+        FSAD B 0 A_SetGravity (0.5)
+        FSAD B 0 ThrustThingZ (0,random(15,30), 0, 1)
+        goto See 
+    See:
+        FSAD B 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_CheckFloor ("Death")
+        loop
+    Death:
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+    Stop
+    }
+}
+
+actor Head3
+{
+    PROJECTILE
+    -NOGRAVITY
+    -NOBLOCKMAP
+    -NOTELEPORT
+    +RANDOMIZE
+    Radius 2
+    Speed 10
+	Scale 1.5
+    States
+    {
+    Spawn:
+        FSAD C 0 A_SetGravity (0.5)
+        FSAD C 0 ThrustThingZ (0,random(15,30), 0, 1)
+        goto See 
+    See:
+        FSAD C 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_CheckFloor ("Death")
+        loop
+    Death:
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+    Stop
+    }
+}
+
+actor Head4
+{
+    PROJECTILE
+    -NOGRAVITY
+    -NOBLOCKMAP
+    -NOTELEPORT
+    +RANDOMIZE
+    Radius 2
+    Speed 10
+	Scale 1.5
+    States
+    {
+    Spawn:
+        FSAD D 0 A_SetGravity (0.5)
+        FSAD D 0 ThrustThingZ (0,random(15,30), 0, 1)
+        goto See 
+    See:
+        FSAD D 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_CheckFloor ("Death")
+        loop
+    Death:
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+	Stop
+    }
+}
+
+
+////BareBodyI1A is for when it is not chasing.
+Actor BareBodyI1A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    BBOD A 1
+    Goto Death
+  Death:
+	BBOD A 1
+	Stop
+  }
+}
+
+Actor BareBodyI2A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    BBOD A 1
+    Goto Death
+  Death:
+	BBOD A 1
+	Stop
+  }
+}
+
+Actor BareBodyI3A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    BBOD A 1
+    Goto Death
+  Death:
+	BBOD A 1
+	Stop
+  }
+}
+
+////BareBodyI1B is for when the monster enters See after spotting the enemy
+Actor BareBodyI1B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    BBOD A 50
+    Goto Death
+  Death:
+	BBOD A 0
+	Stop
+  }
+}
+
+Actor BareBodyI2B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    BBOD A 49
+    Goto Death
+  Death:
+	BBOD A 0
+	Stop
+  }
+}
+
+Actor BareBodyI3B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    BBOD A 48
+    Goto Death
+  Death:
+	BBOD A 0
+	Stop
+  }
+}
+
+
+////BareBody is used for the tail when chasing the enemy
+Actor BareBody
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    BBOD A 50
+    Goto Death
+  Death:
+	BBOD A 0 A_SpawnItemEx("Flames", random(-6,6), random(-6,6), 10, (0.1)*random(-6,6),(0.1)*random(-6,6),(0.1)*random(-6,6),0)
+    BBOD A 0 A_SpawnItemEx("Flames", random(-6,6), random(-6,6), 10, (0.1)*random(-6,6),(0.1)*random(-6,6),(0.1)*random(-6,6),0)
+	BBOD A 0 A_SpawnItemEx("Flames", random(-6,6), random(-6,6), 10, (0.1)*random(-6,6),(0.1)*random(-6,6),(0.1)*random(-6,6),0)
+	BBOD A 0 A_SpawnItemEx("Flames", random(-6,6), random(-6,6), 10, (0.1)*random(-6,6),(0.1)*random(-6,6),(0.1)*random(-6,6),0)
+	BBOD A 0 A_SpawnItemEx("Flames", random(-6,6), random(-6,6), 10, (0.1)*random(-6,6),(0.1)*random(-6,6),(0.1)*random(-6,6),0)
+	Stop
+
+  }
+}
+
+////SpikeBodyI1A is for when it is not chasing.
+Actor SpikedBodyI1A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 1
+	Goto Death
+  Death:
+	SBOD A 1
+	Stop
+  }
+}
+
+Actor SpikedBodyI2A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 1
+	Goto Death
+  Death:
+	SBOD A 1
+	Stop
+  }
+}
+
+Actor SpikedBodyI3A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 1
+	Goto Death
+  Death:
+	SBOD A 1
+	Stop
+  }
+}
+
+Actor SpikedBodyI4A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 1
+	Goto Death
+  Death:
+	SBOD A 1
+	Stop
+  }
+}
+
+Actor SpikedBodyI5A
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 1
+	Goto Death
+  Death:
+	SBOD A 1
+	Stop
+  }
+}
+
+
+////SpikeBodyI1B
+Actor SpikedBodyI1B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 100
+	Goto Death
+  Death:
+	SBOD A 0
+	Stop
+  }
+}
+
+Actor SpikedBodyI2B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 99
+	Goto Death
+  Death:
+	SBOD A 0
+	Stop
+  }
+}
+
+Actor SpikedBodyI3B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 98
+	Goto Death
+  Death:
+	SBOD A 0
+	Stop
+  }
+}
+
+Actor SpikedBodyI4B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 97
+	Goto Death
+  Death:
+	SBOD A 0
+	Stop
+  }
+}
+
+Actor SpikedBodyI5B
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 96
+	Goto Death
+  Death:
+	SBOD A 0
+	Stop
+  }
+}
+
+////SpikeBodyN is used for the tail when chasing the enemy
+Actor SpikedBodyN
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    SBOD A 100
+	Goto Death
+  Death:
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+    SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+    SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+  Stop
+  }
+}
+
+Actor SpikedBodyF
+
+{
+  Scale 1.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+	TNT1 A 0 A_SpawnItemEx("Firedrip",0,0,-5,0,0,0,0,0,0)
+    SBOD A 30
+	TNT1 A 0 A_SpawnItemEx("Firedrip",0,0,-5,0,0,0,0,0,0)
+	SBOD A 30
+	TNT1 A 0 A_SpawnItemEx("Firedrip",0,0,-5,0,0,0,0,0,0)
+	SBOD A 30
+	TNT1 A 0 A_SpawnItemEx("Firedrip",0,0,-5,0,0,0,0,0,0)
+	SBOD A 10
+	Goto Death
+  Death:
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+    SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+    SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+	SBOD A 0 A_SpawnItemEx("Flames", random(-8,8), random(-8,8), 10, (0.1)*random(-8,8),(0.1)*random(-8,8),(0.1)*random(-8,8),0)
+  Stop
+  }
+}
+
+actor Firespawner
+{
+  Damage 0
+  Speed 5
+  Radius 3
+  Height 3
+  RenderStyle Add
+  Alpha 0
+  Projectile
+  +BLOODLESSIMPACT
+  +NODAMAGETHRUST
+  //+Ripper
+  states
+  {
+  Spawn:
+    FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-10,10), random(-10,10), random(-10,10), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+    FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-10,10), random(-10,10), random(-10,10), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+    FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-10,10), random(-10,10), random(-10,10), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+    FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-10,10), random(-10,10), random(-10,10), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+    FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-10,10), random(-10,10), random(-10,10), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+  Death:
+	TNT1 A 1
+    Stop
+  }
+}
+
+actor Firespawner2
+{
+  Damage 0
+  Speed 10
+  Radius 3
+  Height 3
+  RenderStyle Add
+  Alpha 0
+  Projectile
+  +BLOODLESSIMPACT
+  +NODAMAGETHRUST
+  //+Ripper
+  states
+  {
+  Spawn:
+    FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+	FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+	FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+	FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+	FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+	FSFI AAAAAAAAAA 1 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+  Death:
+	TNT1 A 1
+    Stop
+  }
+}
+
+actor Flames
+{
+  Speed 0
+  Radius 2
+  Height 2
+  RenderStyle Add
+  Damagetype "FireSpecial"
+  Alpha 0.25
+  Scale 0.5
+  Gravity 0.25
+  Projectile
+  +BLOODLESSIMPACT
+  +NODAMAGETHRUST
+  //+Ripper
+  states
+  {
+  Spawn:
+    FSFI AAAAA 1 Bright
+	TNT1 A 0 //A_Explode (random(0,1), 1, 0)
+	FSFI AAAAA 1 Bright
+	TNT1 A 0 //A_Explode (random(0,1), 1, 0)
+	FSFI AAAAA 1 Bright
+	TNT1 A 0 //A_Explode (random(0,1), 1, 0)
+	FSFI AAAAA 1 Bright
+	TNT1 A 0 //A_Explode (random(0,1), 1, 0)
+    goto Death
+  Death:
+	FSFI AAABBBCCCDDDEEEFFF 1 A_Fadeout
+	TNT1 A 1
+    Stop
+  }
+}
+
+actor Firedrip
+{
+	Speed 5
+	Radius 2
+	Height 2
+	Scale 0.5
+	RenderStyle Add
+	Alpha 0.75
+	damagetype "FireSpecial"
+	Projectile
+	Species "Balrog"
+	+DONTHURTSPECIES
+	-NOGRAVITY
+	+RIPPER
+	+BLOODLESSIMPACT
+	states
+	{
+	Spawn:
+		FDRI AABBCCDD 2 Bright A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_CheckFloor ("Death")
+		loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		TNT1 A 0 A_SpawnItemEx("Flames", random(-3,3), random(-3,3), random(-3,3), (0.1)*random(-3,3),(0.1)*random(-3,3),(0.1)*random(-3,3),0)
+		Stop
+  }
+}

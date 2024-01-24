@@ -1,0 +1,312 @@
+/*
+ModDropper
+
+ModDropperArachSpider
+ModDropperArachSpiderRail
+
+ModDropperScattertron
+ModDropperScatterRailtron
+
+ModDropperSkulltron
+ModDropperSkullSuperRailtron
+
+ModDropperArachnoTank
+
+*/
+
+actor Tier1DualREGMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ModDropperArachSpider"	
+	dropitem "ModDropperArachSpiderRail"	
+}
+
+actor Tier1TripleREGMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ModDropperArachSpider"	
+	dropitem "ModDropperArachSpiderRail"	
+	dropitem "ModDropperArachnoTank"	
+}
+
+//----------------
+
+actor Tier2DualREGMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ModDropperScattertron"	
+	dropitem "ModDropperScatterRailtron"	
+}
+
+actor Tier2TripleREGMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ModDropperScattertron"	
+	dropitem "ModDropperScatterRailtron"	
+	dropitem "ModDropperArachnoTank"	
+}
+
+//---------------------
+
+actor Tier3DualREGMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ModDropperSkulltron"	
+	dropitem "ModDropperSkullSuperRailtron"	
+}
+
+actor Tier3TripleREGMap07DynDoomArachSpiderSpawner : RandomSpawner replaces Arachnotron
+{
+	dropitem "ModDropperSkulltron"	
+	dropitem "ModDropperSkullSuperRailtron"	
+	dropitem "ModDropperArachnoTank"	
+}
+
+//----------------
+
+Actor ModDropperArachSpider
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("ArachSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPArachSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCArachSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBArachSpider", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperArachSpiderRail
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("ArachSpiderRail", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPArachSpiderRail", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCArachSpiderRail", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBArachSpiderRail", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperScattertron
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("Scattertron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPScattertron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCScattertron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBScattertron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperScatterRailtron
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("ScatterRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPScatterRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCScatterRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBScatterRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperSkulltron
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("Skulltron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPSkulltron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCSkulltron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBSkulltron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperSkullSuperRailtron
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("SkullSuperRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPSkullSuperRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCSkullSuperRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBSkullSuperRailtron", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperArachnoTank
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("ArachnoTank", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPArachnoTank", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCArachnoTank", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBArachnoTank", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

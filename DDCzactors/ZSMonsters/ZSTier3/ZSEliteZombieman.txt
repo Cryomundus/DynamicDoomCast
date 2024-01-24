@@ -1,0 +1,465 @@
+Actor EliteZombieman : BasicZombieman 
+{
+	Health 65
+	PainChance 140
+	Gibhealth 15
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Speed 10
+	DropItem "ZombiemanItemDropper"
+	DropItem "ZombiemanModItemDropper"
+    DropItem "ZombiemanItemDropper",64
+	Obituary "%o was riddled by an Elite Zombieman."
+	-THRUSPECIES
+	States
+	{
+		Spawn:
+			RAVW A 1 A_Look
+			loop
+		See:
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			loop
+		Strafing:
+			RAVW AAAABBBBCCCCDDDDAAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 1 A_FastChase
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			loop
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(750, "LowSpeedChoice")
+			TNT1 A 0 A_JumpIfCloser(2500, "MidSpeedChoice")
+			TNT1 A 0 A_JumpIfCloser(4500, "HighSpeedChoice")
+		LowSpeedChoice:
+			POSS E 0 A_Jump(256,"LowSpeedStandardShotForceRight","LowSpeedStandardShotForceLeft")
+		MidSpeedChoice:
+			POSS E 0 A_Jump(256,"MidSpeedStandardShotForceRight","MidSpeedStandardShotForceLeft")
+		HighSpeedChoice:
+			POSS E 0 A_Jump(256,"HighSpeedStandardShotForceRight","HighSpeedStandardShotForceLeft")
+		LowSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		LowSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			Goto See
+		MidSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		MidSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		HighSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			Goto See
+		HighSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		Pain:
+			RAVW G 3 A_Pain
+			TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+			Goto See
+		Death:
+			RAVW H 5 A_Scream
+			RAVW I 5 A_NoBlocking
+			RAVW JKL 4 
+			RAVW M -1
+			Stop
+		XDeath:
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+			TNT1 A 0 A_Scream
+			TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			RAVW N 3  
+			RAVW N 0 A_NoBlocking
+			RAVW OPQRST 3
+			RAVW U -1
+			Stop
+		Crush:
+			POL5 EEEEE 1 
+			POL5 E -1
+			Stop	
+	}
+}
+
+Actor EliteZombiemanAltRed : EliteZombieman 
+{
+	Health 65
+	PainChance 140
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "96:111=36:47", "5:7=47:40"
+	Speed 10
+	DropItem "ZombiemanItemDropper"
+	DropItem "ZombiemanModItemDropper"
+    DropItem "ZombiemanItemDropper",64
+	DropItem "MiniMedPackDropChecker",128
+	Obituary "%o was riddled by an Elite Zombieman."
+	States
+	{
+		Spawn:
+			RAVW A 1 A_Look
+			loop
+		See:
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			//RAVW A 0 A_Jump(20, "Strafing")
+			loop
+		Strafing:
+			RAVW AAAABBBBCCCCDDDDAAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 1 A_FastChase
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(750, "LowSpeedChoice")
+			TNT1 A 0 A_JumpIfCloser(2500, "MidSpeedChoice")
+			TNT1 A 0 A_JumpIfCloser(4500, "HighSpeedChoice")
+		LowSpeedChoice:
+			POSS E 0 A_Jump(256,"LowSpeedStandardShotForceRight","LowSpeedStandardShotForceLeft")
+		MidSpeedChoice:
+			POSS E 0 A_Jump(256,"MidSpeedStandardShotForceRight","MidSpeedStandardShotForceLeft")
+		HighSpeedChoice:
+			POSS E 0 A_Jump(256,"HighSpeedStandardShotForceRight","HighSpeedStandardShotForceLeft")
+			
+		LowSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		LowSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		MidSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		MidSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			Goto See
+		HighSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase
+			Goto See
+		HighSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		Pain:
+			RAVW G 3 A_Pain
+			TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+			Goto See
+	}
+}
+
+Actor EliteZombiemanAltGreen : EliteZombieman 
+{
+	Health 65
+	PainChance 140
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "96:111=121:127", "5:7=127:123"
+	Speed 10
+	DropItem "ZombiemanItemDropper"
+	DropItem "ZombiemanModItemDropper"
+    DropItem "ZombiemanItemDropper",64
+	Obituary "%o was riddled by an Elite Zombieman."
+	States
+	{
+		Spawn:
+			RAVW A 1 A_Look
+			loop
+		See:
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			loop
+		Strafing:
+			RAVW AAAABBBBCCCCDDDDAAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 1 A_FastChase
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			RAVW AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase
+			loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(750, "LowSpeedChoice")
+			TNT1 A 0 A_JumpIfCloser(2500, "MidSpeedChoice")
+			TNT1 A 0 A_JumpIfCloser(4500, "HighSpeedChoice")
+		LowSpeedChoice:
+			POSS E 0 A_Jump(256,"LowSpeedStandardShotForceRight","LowSpeedStandardShotForceLeft")
+		MidSpeedChoice:
+			POSS E 0 A_Jump(256,"MidSpeedStandardShotForceRight","MidSpeedStandardShotForceLeft")
+		HighSpeedChoice:
+			POSS E 0 A_Jump(256,"HighSpeedStandardShotForceRight","HighSpeedStandardShotForceLeft")
+			
+		LowSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		LowSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("LowSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		MidSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		MidSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("MidSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		HighSpeedStandardShotForceRight:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+			//The first line will thrust in the direction the actor is facing. 
+			//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase
+			Goto See
+		HighSpeedStandardShotForceLeft:
+			RAVW E 5 A_Facetarget
+			RAVW E 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 1 A_PlaySound("Zom/Shot",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("HighSpeedZomBullet",32,0,(random(-10, 10)))
+			RAVW F 0 A_PlaySound("Weapons/NailBomb",1,0.8) 
+			TNT1 A 0 A_SpawnProjectile("ZombGrenade",32,0,(random(-10, 10)))
+			RAVW E 3 A_Chase//A_Stop
+			Goto See
+		Pain:
+			RAVW G 3 A_Pain
+			TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+			Goto See
+	}
+}

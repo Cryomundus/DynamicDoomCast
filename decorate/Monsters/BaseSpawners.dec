@@ -1,0 +1,167 @@
+//this is a test line
+
+//I think I'm missing something, but I'm not sure what.
+
+//check tier 2 for a missing monster
+/*
+////////////////////////////////////////////////////////////////////////////////
+	Actor SSSpawner : RandomSpawner replaces WolfensteinSS
+	{
+		dropitem CommandoSS
+	}
+			
+////////////////////////////////////////////////////////////////////////////////
+	actor zombSpawner : RandomSpawner replaces ZombieMan
+		{
+			dropitem BasicZombieman
+			dropitem TrooperZombieman
+			dropitem EliteZombieman
+			dropitem PulseGunZombie
+			
+		}
+
+////////////////////////////////////////////////////////////////////////////////
+	actor impSpawner : RandomSpawner replaces doomimp
+		{
+			dropitem BasicDoomImp
+			dropitem BonyImp
+			dropitem ImpGunner
+		}
+		
+////////////////////////////////////////////////////////////////////////////////
+	actor ShotguySpawner : RandomSpawner replaces ShotgunGuy
+		{
+		
+			dropitem ShotGunner
+			dropitem SSGZombie
+			dropitem AutoShotGunner
+		
+		}
+		
+////////////////////////////////////////////////////////////////////////////////
+	actor ChainGunnerSpawner : RandomSpawner replaces ChaingunGuy
+		{
+			dropitem ChainGunner
+			dropitem CyborgCommando
+			dropitem ChaingunnerMajor
+		}	
+		
+////////////////////////////////////////////////////////////////////////////////
+	actor DemonSpawner : RandomSpawner replaces Demon	
+		{
+		
+			dropitem Pinkie
+			dropitem DarkMauler
+			dropitem BullSpiderSpawner
+			
+
+		}
+
+////////////////////////////////////////////////////////////////////////////////
+	actor SpectreSpawner : RandomSpawner replaces Spectre	
+		{
+		
+			dropitem Spectre2
+			dropitem GhostlyDarkMauler
+			dropitem GhostBullSpider
+
+		}
+		
+////////////////////////////////////////////////////////////////////////////////
+	Actor CacoSpawner : RandomSpawner replaces Cacodemon
+	{
+		dropitem Caco
+		dropitem HelSturm
+		dropitem Seere
+	}
+	
+////////////////////////////////////////////////////////////////////////////////
+	Actor HKSpawner : RandomSpawner replaces HellKnight
+	{
+		dropitem HellKnight2
+		dropitem KnightGuard
+		dropitem HellFireKnight
+	}
+////////////////////////////////////////////////////////////////////////////////
+	Actor BOHSpawner : RandomSpawner replaces BaronOfHell
+	{
+		dropitem BaronOfHell2
+		dropitem BaronGuard
+		dropitem HellFireBaron
+	}
+////////////////////////////////////////////////////////////////////////////////
+	actor RevSpawner : RandomSpawner replaces Revenant
+		{
+	
+			dropitem ReveNAHHHHHHHHHH
+			dropitem BeamRevenant
+			dropitem ElderRev
+		
+		}
+		
+////////////////////////////////////////////////////////////////////////////////
+	Actor MancubusSpawner : RandomSpawner replaces Fatso
+	{
+		dropitem Mancubus
+		dropitem MutantFatso
+		dropitem RadiantBeast
+	}
+	
+////////////////////////////////////////////////////////////////////////////////
+	actor ArachnotronSpawner : RandomSpawner replaces Arachnotron
+		{
+
+			dropitem Arachnotron2
+			dropitem Scattertron
+			dropitem Skulltron
+			
+		}
+		
+////////////////////////////////////////////////////////////////////////////////
+	actor PESpawner : RandomSpawner replaces PainElemental
+		{
+			dropitem PainElemental2
+			dropitem TheMaw
+			dropitem SpiritBandit
+		}
+////////////////////////////////////////////////////////////////////////////////
+	
+	actor LostSpawner : RandomSpawner replaces LostSoul
+	{
+			dropitem LSoul
+			dropitem Gnaw
+			dropitem SpiritBlade
+	}
+
+////////////////////////////////////////////////////////////////////////////////
+
+	actor ArchieSpawner : RandomSpawner replaces Archvile
+		{
+			dropitem Archie
+			dropitem BlizzardWizard
+			dropitem DireVizar
+		}
+		
+////////////////////////////////////////////////////////////////////////////////		
+	
+	Actor CyberSpawner : RandomSpawner replaces Cyberdemon 
+		{
+			dropitem Cybie
+			dropitem GateKeeper
+			dropitem Juggernaut
+			dropitem AncientOne
+		}
+
+////////////////////////////////////////////////////////////////////////////////
+	
+	Actor MasterMindSpawner : RandomSpawner replaces SpiderMastermind  
+		{
+			dropitem Spidermind
+			dropitem AracnorbQueen
+			dropitem Gorgosturm
+		}
+	
+
+//insert Mancubus and other such spawners here
+
+

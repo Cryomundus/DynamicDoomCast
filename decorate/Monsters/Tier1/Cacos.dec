@@ -1,0 +1,250 @@
+//this is a test line
+
+//#include decorate/Decoratives.dec
+
+
+///////////////////////
+//    Cacodemon      //
+///////////////////////
+
+ACTOR Caco : CacodemonModStatesinheritor
+{
+	Game Doom
+	SpawnID 19
+	Health 400
+	Radius 31
+	Height 56
+	Mass 400
+	Speed 16
+	PainChance 128
+	PainChance "HED9", 255
+	DamageFactor "HED9", 2
+	Monster
+	DamageFactor "Antiair", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	species "Caco"
+	translation "80:111=168:191"
+	-THRUSPECIES
+	+NOBLOCKMONST
+	+DONTHARMSPECIES
+	+FLOAT 
+	+NOGRAVITY
+	SeeSound "caco/sight"
+	PainSound "caco/pain"
+	DeathSound "caco/death"
+	ActiveSound "caco/active"
+	Obituary "$OB_CACO"
+	HitObituary "$OB_CACOHIT"
+	bloodcolor "12 2 F0"
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		 TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		HED9 AA 10 A_Look
+		Loop
+	See:
+		HED9 A 3 A_Chase
+		Loop
+	Missile:
+		HED9 B 5 A_FaceTarget
+		HED9 C 5 A_FaceTarget
+		HED9 D 5 Bright A_CustomMissile("RedCacoBall",24,0,0,0,0)
+		Goto See
+	Pain:
+		HED9 E 0 
+		HED9 E 3 
+		HED9 E 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		HED9 F 6
+		Goto See
+	Death:
+		TNT1 A 0 a_spawnitemex ("CacodemonModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom")
+		HED9 F 0 
+		HED9 G 8 
+		HED9 H 8 A_Scream
+		HED9 I 8
+		HED9 J 8 
+		HED9 K 8 A_NoBlocking
+		HED9 L -1 A_SetFloorClip
+		Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("CacodemonModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XAIR A 5 A_Stop
+		XAIR B 5 A_XScream
+		XAIR C 5 A_BossDeath  
+		XAIR D 5 A_NoBlocking
+		XAIR E 5
+		TNT1 A 0 
+		Stop
+	Crush:
+		POL5 EEEEE 1 
+		POL5 E -1
+		Stop		
+	Raise:
+		HED9 L 8 A_UnSetFloorClip
+		HED9 KJIHG 8
+		Goto See
+	}
+}
+
+
+ACTOR CacoAltGreenBlue : Caco
+{
+	Game Doom
+	SpawnID 19
+	Health 400
+	Radius 31
+	Height 56
+	Mass 400
+	Speed 18
+	PainChance 128
+	Monster
+	PainChance "HED9", 255
+	DamageFactor "HED9", 2
+	DamageFactor "Antiair", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "80:111=112:127"
+	species "Caco"
+	+NOBLOCKMONST
+	+DONTHARMSPECIES
+	+MISSILEMORE
+	+FLOAT 
+	+NOGRAVITY
+	SeeSound "caco/sight"
+	PainSound "caco/pain"
+	DeathSound "caco/death"
+	ActiveSound "caco/active"
+	Obituary "$OB_CACO"
+	HitObituary "$OB_CACOHIT"
+	bloodcolor "12 2 F0"
+	DropItem "MicroMedPackDropChecker", 128 
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		 TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		HED9 AA 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_Jump(50,"Fastly")
+		HED9 A 3 A_Chase
+		Loop
+	Fastly:
+		HED9 A 0 A_Jump(50, "See")
+		HED9 A 2 A_Chase
+		HED9 A 4 A_FastChase
+		Loop
+	Missile:
+		TNT1 A 0 A_JUMP(256,"StandardShot","VShotBounce")
+	StandardShot:
+		HED9 B 5 A_FaceTarget
+		HED9 C 5 A_FaceTarget
+		HED9 D 5 Bright A_CustomMissile("RedCacoBall",24,0,0,0,0)
+		Goto See
+	VShotBounce:
+		HED9 B 5 A_FaceTarget
+		HED9 C 5 A_FaceTarget
+		HED9 D 0 Bright A_CustomMissile("GreenCacoBallBounce",24,0,-5,0,0)
+		HED9 D 5 Bright A_CustomMissile("GreenCacoBallBounce",24,0,5,0,0)
+		Goto See
+	Pain:
+		HED9 E 0 
+		HED9 E 3 
+		HED9 E 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		HED9 F 6
+		Goto See
+	}
+}
+
+ACTOR CacoAltBrownDarkGreen : Caco
+{
+	Game Doom
+	SpawnID 19
+	Health 400
+	Radius 31
+	Height 56
+	Mass 400
+	Speed 20
+	PainChance 128
+	Monster
+	PainChance "HED9", 255
+	DamageFactor "HED9", 2
+	DamageFactor "Antiair", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "80:111=64:79", "192:207=112:127"
+	species "Caco"
+	+NOBLOCKMONST
+	+DONTHARMSPECIES
+	+MISSILEMORE
+	+FLOAT 
+	+NOGRAVITY
+	SeeSound "caco/sight"
+	PainSound "caco/pain"
+	DeathSound "caco/death"
+	ActiveSound "caco/active"
+	Obituary "$OB_CACO"
+	HitObituary "$OB_CACOHIT"
+	bloodcolor "12 2 F0"
+	DropItem "MicroMedPackDropChecker", 128 
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		 TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		HED9 AA 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_Jump(50,"Fastly")
+		HED9 A 3 A_Chase
+		Loop
+	Fastly:
+		HED9 A 0 A_Jump(50, "See")
+		HED9 A 2 A_Chase
+		HED9 A 4 A_FastChase
+		Loop
+	Missile:
+		TNT1 A 0 A_JUMP(256,"StandardShot","VShotBounce","TripleBounce")
+	StandardShot:
+		HED9 B 5 A_FaceTarget
+		HED9 C 5 A_FaceTarget
+		HED9 D 5 Bright A_CustomMissile("GreenCacoBallBounce",24,0,0,0,0)
+		Goto See
+	VShotBounce:
+		HED9 B 5 A_FaceTarget
+		HED9 C 5 A_FaceTarget
+		HED9 D 0 Bright A_CustomMissile("GreenCacoBallBounce",24,0,-5,0,0)
+		HED9 D 5 Bright A_CustomMissile("GreenCacoBallBounce",24,0,5,0,0)
+		Goto See
+	TripleBounce:
+		HED9 B 5 A_FaceTarget
+		HED9 C 5 A_FaceTarget
+		HED9 D 0 Bright A_CustomMissile("GreenCacoBallBounce",24,0,-5,0,0)
+		HED9 D 0 Bright A_CustomMissile("GreenCacoBallBounce",24,0,0,0,0)
+		HED9 D 5 Bright A_CustomMissile("GreenCacoBallBounce",24,0,5,0,0)
+		Goto See
+	Pain:
+		HED9 E 0 
+		HED9 E 3 
+		HED9 E 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		HED9 F 6
+		Goto See
+	}
+}

@@ -1,0 +1,125 @@
+actor RadiantBeast : Fatso //Replaces Fatso //replaces Fatso  //replaces Fatso etcetcetc
+{
+	Health 700
+    Speed 4
+    Radius 20
+    Height 60
+    Mass 800
+    PainChance 50
+    BloodColor Green
+	species "Fats"
+	-THRUSPECIES
+	+DONTHARMSPECIES
+	Scale 1.1
+    SeeSound "Rad/See"
+    ActiveSound "Rad/Active"
+    PainSound "Rad/Pain"
+    DeathSound "Rad/Die"
+	DamageFactor "Scrapper", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Obituary "%o was fried by the RadiantBeast!"
+	DropItem "MediumMedPackDropChecker", 88, 2
+	DropItem "MiniArmorSphereDropChecker", 88, 2
+	DropItem "MiniArmorSphereDropChecker", 88, 2
+	DropItem "MiniArmorSphereDropChecker", 88, 2
+	DropItem "PBFlameCannonChanceDropper", 96 
+	MinMissileChance 40
+	Monster
+	DamageFactor "Scrapper", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	+Bossdeath
+    +FloorClip
+    +donthurtspecies
+    States
+    {
+    Spawn:
+		 HBST AB 10 Bright A_Look
+		 Loop                
+    See:
+		 TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+         HBST AABB 3 Bright A_Chase
+		 HBST B 0 Bright  A_SpawnItem("RadBigStep",0,0,0,0)
+		 HBST CCDD 3 Bright A_Chase
+		 HBST D 0 Bright A_SpawnItem("RadBigStep",0,0,0,0)
+         Loop
+    Missile:
+		TNT1 A 0 A_Jump(256, "StandardShot","MimicFatsoShot","SemiRadialShot","RockSpawnerShot")
+ 	StandardShot:
+		 HBST E 0 A_jump(120,"SemiRadialShot")
+	     HBST E 0 A_jump(80,"RockSpawnerShot")
+         HBST E 10 A_FaceTarget
+         HBST E 0 Bright A_CustomMissile ("RadBeastShot",32,20,0)
+         HBST E 0 Bright A_CustomMissile ("RadBeastShot",32,-20,0)
+         HBST E 5 
+         Goto See
+	  MimicFatsoShot:
+		 HBST E 10 A_FaceTarget
+		 HBST E 7 BRIGHT A_FatAttack1("RadBeastShot")
+		 HBST D 3
+		 HBST E 7 BRIGHT A_FatAttack1("RadBeastShot")
+		 HBST D 3
+		 HBST E 7 BRIGHT A_FatAttack1("RadBeastShot")
+		 HBST D 3 
+         Goto See
+	  SemiRadialShot:
+		 HBST E 5 Bright A_facetarget 
+		 HBST F 15 A_PlaySound ("Rad/Roar")
+		 HBST F 0  A_PlaySound ("Rad/Stomp")
+  		 //HBST E 0 A_CustomMissile ("RadBeastShot",32,0,-5)
+		 //HBST E 0 A_CustomMissile ("RadBeastShot",32,0,5)
+		 HBST E 0 A_CustomMissile ("RadBeastShot",32,0,-10)
+		 HBST E 0 A_CustomMissile ("RadBeastShot",32,0,10)
+		 HBST E 0 A_CustomMissile ("RadBeastShot",32,0,-20)
+		 HBST E 0 A_CustomMissile ("RadBeastShot",32,0,20)
+		 HBST E 0 A_CustomMissile ("RadBeastShot",32,0,-30)
+		 HBST E 0 A_CustomMissile ("RadBeastShot",32,0,30)
+		 HBST E 0 A_CustomMissile ("RadBeastShot",32,0,-40)
+		 //HBST E 0 A_CustomMissile ("RadBeastShot",32,0,40)
+		 //HBST E 0 A_CustomMissile ("RadBeastShot",32,0,-50)
+		 HBST E 4 Bright A_CustomMissile ("RadBeastShot",32,0,50)
+          Goto See
+	   RockSpawnerShot:
+		 HBST E 10 Bright A_FaceTarget
+         HBST E 0 A_CustomMissile ("RadfloorRockSpawner",32,20,0)
+         HBST E 5 Bright A_FaceTarget
+         Goto See
+    Pain:
+         HBST F 3 Bright
+         HBST F 3 Bright A_Pain
+		 TNT1 A 0 a_playsound ("monsters/bighurt",0)
+         Goto See
+    Death:
+		TNT1 A 0 a_spawnitemex ("FatsoModItemDropper",0,0,35)
+		HBST G 0 
+        HBST G 6 Bright A_Scream
+        HBST H 5 Bright A_PlaySound ("Rad/Die")
+        HBST I 4 Bright A_NoBlocking
+        HBST JK 3 Bright 
+        HBST LMNO 3 
+	  	HBST P 0 
+        HBST P -1 A_BossDeath
+        Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("FatsoModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XBIG A 5 A_Stop
+		XBIG B 5 A_XScream
+		XBIG C 5 A_BossDeath 
+		XBIG D 5 A_NoBlocking
+		XBIG E 5
+		TNT1 A 0 
+		XBIG E -1
+		Stop
+	Crush:
+		POL5 EEEEE 1 
+		POL5 E -1
+		Stop			
+	RAISE:
+	  HBST PLMNOJKIHG 20
+	  GOTO SEE
+      }
+}	
+	

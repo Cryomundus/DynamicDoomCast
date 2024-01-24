@@ -1,0 +1,365 @@
+//ADDITIONAL aCTORS TO BE ADDED LATER
+
+Actor DynDoomGore_GibChucker
+{ 
+	States 
+	{ 
+		Spawn: 
+			TNT1 A 1 
+			TNT1 A 0 A_Jump(256, "Chuck1","Chuck2","Chuck3","Chuck4","Chuck5","Chuck6","ChuckMulti") 
+		Chuck1:
+			TNT1 A 0 A_Jump(128,"Chuck2")
+			TNT1 A 0 A_spawndebris("DynDoomGoreGenericGut1")
+			stop 
+		Chuck2:
+			TNT1 A 0 A_Jump(128,"Chuck3")
+			TNT1 A 0 A_spawndebris("DynDoomGoreGenericGut2")
+			stop 
+		Chuck3:
+			TNT1 A 0 A_Jump(128,"Chuck4")
+			TNT1 A 0 A_spawndebris("DynDoomGoreGenericGut3")
+			stop 
+		Chuck4:
+			TNT1 A 0 A_Jump(128,"Chuck5")
+			TNT1 A 0 A_spawndebris("DynDoomGoreGenericGut4")
+			stop 
+		Chuck5:
+			TNT1 A 0 A_Jump(128,"Chuck6")
+			TNT1 A 0 A_spawndebris("DynDoomGoreGenericGut5")
+			stop 
+		Chuck6:
+			TNT1 A 0 A_Jump(128,"Chuck1")
+			TNT1 A 0 A_spawndebris("DynDoomGoreGenericGut6")
+			stop 
+   } 
+} 
+
+
+Actor DynDoomGoreGenericGut1
+	{
+	health 1
+	radius 8
+	height 8
+	mass 1
+	Speed 8
+	scale 0.3
+	+CORPSE
+	+NOTELEPORT
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+    +MOVEWITHSECTOR
+	+DONTSPLASH
+	+NOBLOCKMONST
+	-NOBLOCKMAP
+	+GHOST
+	+THRUACTORS
+	+FLOORCLIP
+	+SLIDESONWALLS
+	+FORCEXYBILLBOARD
+	//+NOINTERACTION
+	+ROLLSPRITE
+	+DoomBOUNCE
+	+CANBOUNCEWATER
+	+BOUNCEONACTORS
+    BounceCount 5
+    Bouncefactor 1
+	SeeSound "OrganGore/GUTSPLAT"
+	states
+		{
+		Spawn:
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 1 A_SetRoll((roll + 20))
+			BBLD A 8 A_PlaySound("OrganGore/GUTSPLAT")
+			loop
+		Crash:
+			BBLD A -1
+			stop
+	}
+}
+
+Actor DynDoomGoreGenericGut2
+	{
+	health 1
+	radius 8
+	height 8
+	mass 1
+	Speed 8
+	scale 0.5
+	+CORPSE
+	+NOTELEPORT
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+    +MOVEWITHSECTOR
+	+DONTSPLASH
+	+NOBLOCKMONST
+	-NOBLOCKMAP
+	+GHOST
+	+THRUACTORS
+	+FLOORCLIP
+	+SLIDESONWALLS
+	+FORCEXYBILLBOARD
+	//+NOINTERACTION
+	+ROLLSPRITE
+	+DoomBOUNCE
+	+CANBOUNCEWATER
+	+BOUNCEONACTORS
+    BounceCount 5
+    Bouncefactor 1
+	SeeSound "OrganGore/GUTSPLAT"
+	states
+		{
+		Spawn:
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 1 A_SetRoll((roll + 20))
+			BBLD B 8 A_PlaySound("OrganGore/GUTSPLAT")
+			loop
+		Crash:
+			BBLD B -1
+			stop
+	}
+}
+
+Actor DynDoomGoreGenericGut3
+	{
+	health 1
+	radius 8
+	height 8
+	mass 1
+	Speed 8
+	scale 0.5
+	+CORPSE
+	+NOTELEPORT
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+    +MOVEWITHSECTOR
+	+DONTSPLASH
+	+NOBLOCKMONST
+	-NOBLOCKMAP
+	+GHOST
+	+THRUACTORS
+	+FLOORCLIP
+	+SLIDESONWALLS
+	+FORCEXYBILLBOARD
+	//+NOINTERACTION
+	+ROLLSPRITE
+	+DoomBOUNCE
+	+CANBOUNCEWATER
+	+BOUNCEONACTORS
+    BounceCount 5
+    Bouncefactor 1
+	SeeSound "OrganGore/GUTSPLAT"
+	states
+		{
+		Spawn:
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 1 A_SetRoll((roll + 20))
+			BBLD C 8 A_PlaySound("OrganGore/GUTSPLAT")
+			loop
+		Crash:
+			BBLD C -1
+			stop
+	}
+}
+
+Actor DynDoomGoreGenericGut4
+	{
+	health 1
+	radius 8
+	height 8
+	mass 1
+	Speed 8
+	scale 0.5
+	+CORPSE
+	+NOTELEPORT
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+    +MOVEWITHSECTOR
+	+DONTSPLASH
+	+NOBLOCKMONST
+	-NOBLOCKMAP
+	+GHOST
+	+THRUACTORS
+	+FLOORCLIP
+	+SLIDESONWALLS
+	+FORCEXYBILLBOARD
+	//+NOINTERACTION
+	+ROLLSPRITE
+	+DoomBOUNCE
+	+CANBOUNCEWATER
+	+BOUNCEONACTORS
+    BounceCount 5
+    Bouncefactor 1
+	SeeSound "OrganGore/GUTSPLAT"
+	states
+		{
+		Spawn:
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 1 A_SetRoll((roll + 20))
+			BBLD D 8 A_PlaySound("OrganGore/GUTSPLAT")
+			loop
+		Crash:
+			BBLD D -1
+			stop
+	}
+}
+
+Actor DynDoomGoreGenericGut5
+	{
+	health 1
+	radius 8
+	height 8
+	mass 1
+	Speed 8
+	scale 0.5
+	+CORPSE
+	+NOTELEPORT
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+    +MOVEWITHSECTOR
+	+DONTSPLASH
+	+NOBLOCKMONST
+	-NOBLOCKMAP
+	+GHOST
+	+THRUACTORS
+	+FLOORCLIP
+	+SLIDESONWALLS
+	+FORCEXYBILLBOARD
+	//+NOINTERACTION
+	+ROLLSPRITE
+	+DoomBOUNCE
+	+CANBOUNCEWATER
+	+BOUNCEONACTORS
+    BounceCount 5
+    Bouncefactor 1
+	SeeSound "OrganGore/GUTSPLAT"
+	states
+		{
+		Spawn:
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 1 A_SetRoll((roll + 20))
+			BBLD E 8 A_PlaySound("OrganGore/GUTSPLAT")
+			loop
+		Crash:
+			BBLD E -1
+			stop
+	}
+}
+Actor DynDoomGoreGenericGut6
+	{
+	health 1
+	radius 8
+	height 8
+	mass 1
+	Speed 8
+	scale 0.5
+	+CORPSE
+	+NOTELEPORT
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+    +MOVEWITHSECTOR
+	+DONTSPLASH
+	+NOBLOCKMONST
+	-NOBLOCKMAP
+	+GHOST
+	+THRUACTORS
+	+FLOORCLIP
+	+SLIDESONWALLS
+	+FORCEXYBILLBOARD
+	//+NOINTERACTION
+	+ROLLSPRITE
+	+DoomBOUNCE
+	+CANBOUNCEWATER
+	+BOUNCEONACTORS
+    BounceCount 5
+    Bouncefactor 1
+	SeeSound "OrganGore/GUTSPLAT"
+	states
+		{
+		Spawn:
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 1 A_SetRoll((roll + 20))
+			BBLD F 8 A_PlaySound("OrganGore/GUTSPLAT")
+			loop
+		Crash:
+			BBLD F -1
+			stop
+	}
+}

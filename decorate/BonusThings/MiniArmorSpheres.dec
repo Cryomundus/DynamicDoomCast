@@ -1,0 +1,92 @@
+//more rewards n shit
+//also yay for easy copy past stuff!
+
+ACTOR ArmorSpherePiece : CustomInventory
+
+{
+		+INVBAR
+		+INVENTORY.UNTOSSABLE
+		+INVENTORY.UNDROPPABLE
+		Inventory.Amount 1
+		Inventory.MaxAmount 5
+		Inventory.InterHubAmount 5
+		Tag "Mini Ammo Pack"
+		Inventory.Icon "Z_RSPA0"
+		States
+	{
+		Use:
+		TNT1 A 0 A_TakeInventory("ArmorSpherePiece", 1)
+		TNT1 A 0  A_SpawnItemEx("ASingluarArmorShard", 40, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 30, 20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 30, -20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 30, 30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 40, -30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 40, 40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 40, -40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 50, 50, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 50, 50, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 50, -50, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, 40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, -40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, 30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 50, -30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 50, 20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, -20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarArmorShard", 60, 0, 15)
+		fail
+		}
+}
+
+
+ACTOR MiniArmorSphere : CustomInventory //HealthBackpack : CustomInventory
+{
+	//+INVBAR
+	Inventory.Amount 1
+	scale 0.6
+	//Inventory.MaxAmount 100
+	//Inventory.InterHubAmount 100
+	Inventory.PickupMessage "You got a Mini Ammo Pack! Use it to get some random amounts of ammo."
+	//Tag "Health Pack"
+	//Inventory.Icon "I_MBPK"
+	States
+	{
+		Spawn:
+		ARSP ABCB 10 Bright
+		Loop
+		Pickup:
+		TNT1 A 0 A_GiveInventory ("ArmorSpherePiece", 1)
+		stop
+	}
+}
+
+
+Actor ASingluarArmorShard : RandomSpawner
+{
+	dropitem "ArmorBonus"
+}
+
+Actor AchanceforanotherSingluarArmorShard : RandomSpawner
+{
+	dropitem "ArmorBonus" 128
+}
+
+//-----------------------------------------------
+/*
+Actor MiniArmorSphereDropChecker
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseMiniArmorSpawnCheck",0)
+	SpawnItem:
+		TNT1 A 0 A_SpawnItemEx("MiniArmorSphere", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

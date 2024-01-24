@@ -1,0 +1,41 @@
+//more rewards n shit
+//also yay for easy copy past stuff!
+
+ACTOR Minimedikitpiece : CustomInventory
+
+{
+		+INVBAR
+		+INVENTORY.UNTOSSABLE
+		+INVENTORY.UNDROPPABLE
+		Inventory.Amount 1
+		Inventory.MaxAmount 4
+		Inventory.InterHubAmount 4
+		Tag "Mini Medikit Sphere"
+		Inventory.Icon "Z_MSHR"
+		States
+	{
+		Use:
+		TNT1 A 0 A_TakeInventory("Minimedikitpiece", 1)
+		TNT1 A 0  A_SpawnItemEx("Medikit", 30, 0, 15)
+		fail
+		}
+}
+
+
+ACTOR Minimedikit : CustomInventory
+{
+	Inventory.Amount 1
+	scale 0.6
+	Inventory.PickupMessage "You got a Mini Medikit Sphere! Use it to get a Medikit!"
+	States
+	{
+		Spawn:
+		MSHR A 1 Bright
+		Loop
+		Pickup:
+		TNT1 A 0 A_GiveInventory ("Minimedikitpiece", 1)
+		stop
+	}
+}
+
+

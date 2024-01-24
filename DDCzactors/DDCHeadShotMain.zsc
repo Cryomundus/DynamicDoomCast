@@ -1,0 +1,299 @@
+class DDCnoheadshots : actor
+	{
+	static const Class<Actor> hs_List[] = 
+		{		
+		// Actors listed in this array are excluded from the headshot system. 
+		//Doom Enemies
+		"LostSoul", "Cacodemon", "PainElemental",
+		//"Cyberdemon", "SpiderMastermind",
+		//Heretic Enemies
+		"IronLich", "Chicken", "HereticImp", "HereticImpLeader",
+		"Sorcerer1", "Sorcerer2",
+		"Minotaur",
+		//Hexen Enemies
+		"FireDemon", "Dragon", "ClericBoss", "FighterBoss", "MageBoss",
+		"Heresiarch", "Korax", "Serpent",
+		//Strife Enemies
+		"AlienSpectre1", "AlienSpectre2", "AlienSpectre3", "AlienSpectre4",
+		"AlienSpectre5", "EntityBoss", "EntitySecond", "Loremaster",
+		"Programmer",  "StrifeBishop", "Sentinel", "Crusader", "CeilingTurret", 
+		"Stalker"
+		
+		};	
+	}
+
+class DDCHeadShotHandler : StaticEventHandler			// Event handler to spawn headshot-hitboxes on monsters.
+{				
+    override void WorldThingSpawned(WorldEvent e)	// Spawn hitbox upon monster spawn
+    {
+		CVar DDCUniveraslHSSpawn = CVar.FindCVar('DDCUniheadshothitboxspawn');
+		
+		
+		if(DDCUniveraslHSSpawn)
+		{
+			switch(DDCUniveraslHSSpawn.GetInt())
+			/*
+				Run check for a universalheadshotactor cvar to see if players 
+				want all valid monsters to have hitboxes or individual ones.
+				refer to:		https://zdoom.org/wiki/Switch/Case
+				Also, add species to all monsters so I can use
+				this thing:  	https://zdoom.org/wiki/GetSpecies
+			*/
+			
+			{
+				case 0:
+				{
+					if (e.Thing.bIsMonster)					
+					{	
+						int hs_Check = 0;
+						int hs_size = DDCnoheadshots.hs_list.Size();
+			
+						while(hs_check < hs_size )
+							{ 
+							if
+								
+								(e.Thing is DDCnoheadshots.hs_list[hs_Check]) 
+							{ 
+							return; 
+							} 
+							hs_Check++;
+							}
+							Actor.Spawn("DDCZ_HeadshotHitbox").master = e.Thing;
+							break;
+					}
+				}
+				
+				
+				case 1: 
+				/*
+				
+				
+				*/
+				{ 
+					break;
+				}
+			}
+		}
+    }
+	
+    override void WorldThingRevived(WorldEvent e)	// Spawn hitbox upon monster revive
+    {
+		CVar DDCUniveraslHSSpawn = CVar.FindCVar('DDCUniheadshothitboxspawn');
+		if(DDCUniveraslHSSpawn)
+		{
+			switch(DDCUniveraslHSSpawn.GetInt())
+			{
+				case 0:
+				{
+	
+				if (e.Thing.bIsMonster)
+				{	
+					int hs_Check = 0;
+					int hs_size = DDCnoheadshots.hs_list.Size();
+			
+					while(hs_check < hs_size )
+						{ 
+						if(e.Thing is DDCnoheadshots.hs_list[hs_Check]) { return; } 
+						hs_Check++;
+						}		
+						Actor.Spawn("DDCZ_HeadshotHitbox").master = e.Thing;
+						break;
+					}
+				}
+				case 1: 
+				{ 
+					break;
+				}
+			}
+		}
+    }
+}
+	
+Class DDCZ_HeadshotHitbox : Actor
+	{
+	
+	Default
+		{
+		Health 	0x7FFFFFFF;//1000000;
+		Mass 	0x7FFFFFFF;
+		BloodType "None";
+		Renderstyle "Add";
+		Translation "t_hitbox";
+		species "DDCHeadHitBox";
+		Scale 1.25;
+		radius 32;
+		height 32;
+		-IsMonster;
+		+BOSS;
+		+SHOOTABLE; 
+		+NODAMAGETHRUST; 
+		+NORADIUSDMG; 
+		+NOGRAVITY; 
+		+NEVERTARGET;
+		+DONTHARMSPECIES;
+		+DONTHARMCLASS;
+		+THRUSPECIES;
+		+MTHRUSPECIES;
+		//+ALLOWTHRUFLAGS
+		//+GHOST;
+		//+SPECTRAL;
+		//+THRUACTORS;
+		}
+	
+	int lastHealth;
+	double hsfactor;
+
+	override void BeginPlay() 
+		{
+		self.lastHealth = self.health;
+		super.BeginPlay();
+		}	
+	
+	action void hs_SpawnBlood(int amount)			// function to spawn the correct coloured blood
+		{											// amount is configurable, could be made to spawn more blood 
+		while(amount > 0) 							// based on enemy size or health, damage dealt etc.
+			{
+			if(master)
+				{
+				if(master.bNOBLOOD)
+					{ return; } 
+					master.A_SpawnItemEx("Blood",zofs: master.height * 0.8, xvel: frandom(2.0,3.0),zvel: frandom(4.0,8.0),angle: random(0,359),SXF_USEBLOODCOLOR);
+					amount--;
+				}
+			}
+		}
+	
+	override void Tick()
+		{
+		
+		Super.Tick();
+													// special cvars control behaviour of the hitbox
+		bINVISIBLE = !DDChs_hitbox;					// debug visible hitbox also gives a good reference point on where to shoot
+		hsfactor = DDChs_factor;						// factor of which the damage is multiplied. 
+		
+		if(!master)
+			{ Destroy(); } 
+			
+		if (master)									// sets the hitbox radius to be just a fraction bigger 
+			{					
+			if(radius != master.radius || height != master.height)
+				{ A_SetSize(master.radius+2, master.height/8);  } 
+				
+			A_Warp(AAPTR_MASTER,1,0,master.height - self.height,0,WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION|WARPF_NOCHECKPOSITION);
+			
+			if(master.health < 1)
+				{ Destroy(); } 
+				
+			if(master.health == 0 || master.health < 1)
+				{ Destroy(); } 
+			
+			//excluded monsters
+			if(CheckClass("BlackBlot",				AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("Drone",					AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("LSoul",					AAPTR_MASTER, True))
+				{ Destroy(); }  		
+			if(CheckClass("Gnaw",					AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("SpiritBlade",			AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("Trite",					AAPTR_MASTER, True))
+				{ Destroy(); }  
+				
+			//Ketchup stuff
+			if(CheckClass("BrutalBloodSplat",				AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("BootSmearerRed",					AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("BootSmearerBlue",				AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("BootSmearerGreen",				AAPTR_MASTER, True))
+				{ Destroy(); }  
+			if(CheckClass("BlueSawBlood",					AAPTR_MASTER, True))
+				{ Destroy(); }  
+						
+			// Begin check for Legendoom stuff
+			if(CheckClass("LDWeaponPickup",			AAPTR_MASTER, True))
+				{ Destroy(); }  
+			
+			if(CheckClass("LDChainsawPickup",		AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			if(CheckClass("LDFistsPickup", 			AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			if(CheckClass("LDPistolPickup", 		AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			if(CheckClass("LDShotgunPickup", 		AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			if(CheckClass("LDSuperShotgunPickup", 	AAPTR_MASTER, True))
+				{ Destroy(); }  
+			
+			if(CheckClass("LDChaingunPickup",		AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			if(CheckClass("LDRocketLauncherPickup", AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			if(CheckClass("LDPlasmaRiflePickup", 	AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			if(CheckClass("LDBFG9000Pickup", 		AAPTR_MASTER, True))
+				{ Destroy(); } 
+			
+			// End Check for Legendoom stuff
+			if(self.health < self.lastHealth)
+				{ 
+				hs_SpawnBlood(10);
+				A_DamageMaster((self.lastHealth - self.Health)*hsfactor,"default"); self.lasthealth = self.health;
+				}
+			}
+		}
+	
+	States
+		{
+		Spawn:
+			AMRK A 1;
+			loop;
+		Death:
+			TNT1 A 1;
+			stop;
+		}
+	}
+	
+//------------------------------------------------------------------------------
+
+class DDCStatChangerGiver : Actor
+{
+	Default
+	{
+		+NOINTERACTION
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1;
+			TNT1 A 0 A_RadiusGive("DDCMonsterStatEditor", 16384, RGF_MONSTERS | RGF_NOSIGHT);
+			stop;
+	}
+}
+
+class DDCMonsterStatEditor : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{
+				if (GetCVAR("DDCMonsterHPStat") > 0)
+					A_SetHealth(health * GetCVAR("DDCMonsterHPStat"));
+				if (GetCVAR("DDCMonsterSPeedStat") > 0)
+					A_SetSpeed(speed * GetCVAR("DDCMonsterSpeedStat"));
+			}
+			stop;
+	}
+}

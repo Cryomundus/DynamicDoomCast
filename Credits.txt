@@ -1,0 +1,565 @@
+/*
+
+Hi! This thing has gone through so many changes and edits and 
+rewrites and recreations and-
+
+oh my god I never made a changelog. (as in, when I made this thing 5 years ago)
+
+Wooo boy how time flies.
+
+Well, Let's just say that I've been tumbling this thing around in my head 
+and working on and off on it for about, er, 5 years? It's currently in a state 
+of WIP, but I'm at least gonna make sure it's monsters are fun to fight 
+against and are still something of a challenge. 
+
+One of the primary focuses of this particular monster mod is that 
+the projectiles are all relatively low damage, but are very frequent. It 
+was primarily down to avoid one-shotting people, as it's rather discouraging to 
+lose massive amounts of health because you accidentally strafed into a errant,
+random fireball/rocket/comet/nuke. 
+
+This is designed more along the lines of continious play, with few 
+saves, as nothing is all that dangerous. I mean, standing still is probably bad 
+for your health, but perfectly doable. 
+
+This mod should support most popular monster agnostic mods. I've added compat 
+for a few mods myself, notably Guncaster, MetroidDreadnought, TrailBlazer,
+LegenDoom, Brutal Doom, and ProjectIronClad. 
+
+Below this wall of text is the credits. I'm pretty sure I gave credit for 
+basically everything, but if something is uncredited, please let me know, 
+as it was not intentional.
+
+*/
+
+//Note: This page is incredibly WIP and if I have the wrong credits, please
+//do tell me and I'll put in the proper ones.
+//There is a very high possibility I've forgotten someone, as I can only work on
+//this on a somewhat bi-weekly basis, so I tend to forget stuff 
+//due to being tired. Please do tell me if I forgot someone so I can add them
+//to this list
+
+//REMINDER
+
+//ADD THE REST OF THE CREDITS YE GIT
+
+//QuarterMedPack and MiniMedPack
+Submitted: Blue Shadow
+Decorate: Blue Shadow
+Sprites: Rogue Entertainment
+Sprite Edit: Blue Shadow
+
+//BigMedPack
+Submitted: TheMightyHeracross
+Decorate: TheMightyHeracross
+ACS: Blue Shadow
+Sounds: id Software
+Sprites: id Software
+Sprite Edit: BloodyAcid
+Idea Base: Medical Bag/Medkit from Blood/Duke3d/Shadow Warrior
+
+
+
+//from the RebelPack, monster is the SSNazi Replacement
+Submitted: TheMightyHeracross
+Decorate: TheMightyHeracross
+Sounds: NAM
+Sprites: Rougue, id, Collin Portratz, RBCSkins
+Sprite Edit: zirron the insect, TheMightyHeracross, Xim
+GLDEFS: lights.pk3
+Idea Base: Strife needs more rebels.
+
+
+//for future reference, new flamedroplets are from Demon's Crest,
+//specifically, the Flame Lord fight. Hey, it had neat flame sprites.
+
+//minitrite is by...someone. Dunno who yet 
+//cyberdemon roar and stomps from BD
+
+//Now called Bullspider
+Decorate: Ghastly_dragon
+Sprites: Monolith, Id Software
+Sprite Edit: Captain Toenail
+Sounds: Id Software
+Idea Base: Trite from Doom 3
+
+////////////////////////////////////////////////////////////////////////////////
+//							ALTDEATHS CREDITS                                 //
+////////////////////////////////////////////////////////////////////////////////
+
+//arachnotron altdeath
+Sprites: Blox
+
+//Baron of Hell Altdeaths
+Sprites: Vader (Lord of Heresy death) //alt1
+Sprites: Vader (Hell Warrior death), ItsNatureToDie //alt2
+Sprites: Eriance //gibdeath
+
+//demon altdeaths
+Sprites: Neoworm (Blood Demon death) //altdeath
+Sprites: Eriance//gibdeath
+
+//Hellknight altdeaths
+Sprites: Vader (Lord of Heresy death), Blox (better color matching)//alt1
+Sprites: Vader (Hell Warrior death), ItsNatureToDie //alt2
+Sprites: Eriance//gibdeath
+
+//Imp altdeaths
+Sprites: Vader (Dark Imp [Void] death), ItsNatureToDie (editing)//alt1
+Sprites: Vader (Dark Imp [Skulltag] death), Kinsie (recolor), ItsNatureToDie (improvements)//alt2
+
+Sprites: osjclatchford (main work), Blox (editing and cleaning up)//alt3
+
+//Mancubus altdeaths
+Sprites: Eriance (Corupulent death), Blox (Edited for Mancubus)//alt1
+//2nd altdeath is from BD, exact author unknown
+
+//revenant altdeath
+//shattered rev altdeath author unknown
+
+//shotgunner altdeaths
+Sprites: Kinsie (animation), Phi108 (improvements), Minigunner (improvements)//alt1
+Sprites: osjclatchford, Rogue Entertainment (Strife player death), Vader (elements from the Chaingun Corporal Death)//alt2
+
+//zombieman altdeath
+Sprites: ItsNatureToDie, Minigunner (improvements)//alt1
+
+//slasher altdeaths are by unknown authors, but I'd hazard a guess at them being from BD
+
+//TheMaw - // Grell -- by NMN (w/DECORATE by Xaser)
+Name: Grell
+Difficulty: Easy
+Connections: None
+Summon: Grell
+Melee: No
+Distance: Poison projectile. Slows player for 3 seconds.
+Type: Demon
+Added States: No
+ACS: No
+
+
+//Goliath (was Moloch)
+Submitted: ProjectAngel
+Decorate: ProjectAngel
+GLDefs: ProjectAngel, Sandypaper (Brightmaps)
+Sounds: id Software, Raven Software, Eriance, ProjectAngel
+Sprites: 3d Realms, Raven Software, Rogue Entertainment, Eriance, LilWhiteMouse
+Sprite Edit: Clebardman
+Idea Base: Duke Nukem 3D Cycloid Emperor
+
+//the Powershot (the large orange-ish projectile used by the Juggernaut)
+//is actually a frankensprite made from the ground projectiles Moloch fires off when stunned
+//so credit the above and Cryomundus if you decide to use it
+
+
+//AncientOne
+Submitted: Virtue
+Decorate: Virtue
+Sounds: Shadowcaster, heretic, hexen, and Eriance I think
+Sprites: Shadowcaster
+Sprite Edit: Virtue, added attack rotations
+Idea Base: Cool monster
+
+Description: 
+A skeletal mage from ancient times. Zardaz has a mastery over fire-based magic and can summon many attacks with it. Watch out for his earth-shattering
+Earthquake attack, up close it can devastate any fool to cross his path.
+
+//Juggernaut
+Decorate: Vader
+GLDEFs: Dreadopp, Sandypaper (Brightmaps)
+Sounds: Id Software, Blizzard Entertainment, Vader
+Sprites: Vader, Eriance (cannon base)
+
+//ArachnorbQueen
+Submitted: Yuraofthehairfan
+Decorate: Yuraofthehairfan, MagicWazard
+GLDEFs: Dreadopp, MagicWazard, Graf Zahl
+Sounds: (edits), id Software, 3DRealms (Electro Gun sound), Monolith Producties
+Sprites: id Software, 3DRealms (Electro Gun sprite), Jimmy, Beaublen (Thamuz BFG Projectile), Jimmy91
+Idea Base: Duke Nukem 3D Octabrain, Jimmy91's Aracnorb
+
+//KnightGuard
+Submitted: Tormentor667
+Decorate: Espi
+GLDEFs: Ghastly Dragon, MagicWazard (brightmaps)
+Sounds: Id Software, Raven Software
+Sprites: Id Software, Raven Software
+Sprite Edit: Espi
+
+//SpiritBandit
+Submitted: Captain Toenail
+Decorate: Captain Toenail
+Sounds: Raven
+Sprites: Raven
+Sprite Edit: Captain Toenail
+
+//SpiritBlade
+Submitted: CodenniumRed
+Decorate: CodenniumRed
+Sounds: Raven
+Sprites: Neoworm
+
+//Vitality Serum
+Submitted: MagicWazard
+Decorate: MagicWazard
+GLDefs: MagicWazard
+Sprites: MagicWazard
+Idea Base: Quake II's Super-adrenaline, Strife's Stamina upgrade
+
+//Life Orb / MiniHealthVialSphere
+Submitted: scalliano
+Decorate: scalliano
+GLDefs: scalliano
+Sounds: None
+Sprites: id Software, HacX
+Sprite Edit: scalliano
+Idea Base: Soul Sphere, Armor Sphere
+
+//ArmorSphere / MiniArmorSphere
+
+Submitted: Ghastly_dragon
+Decorate: Ghastly_dragon
+GLDefs: Ghastly_dragon
+Sounds: None
+Sprites: Id Software
+Sprite Edit: Lucario
+
+//Ammobelt / MiniAmmoPack
+
+Submitted: Ghastly_dragon
+Decorate: Ghastly_dragon
+Sprites: ID Software
+Sprite Edit: Ghastly_dragon
+Idea Base: Quake 2's Bandolier
+
+//Note: There's probably at least 1 thing I'm forgetting. If I remember, it'll go right below this sentence. If not, yell at me to put it in and I shall.
+
+//Thanks to Iddqd for the base dynamic spawner and the acs script from here: http://forum.zdoom.org/viewtopic.php?f=3&t=53292&hilit=dynamic+enemy+spawner
+//Dynamic spawner script heavily modified by Crymundus (seriously the damn thing is gonna up at like 3500 lines)
+//Btw, for whoever's looking here, if for some reason you really like my dynamic spawner script, feel free to grab it, just give credit to Cryomundus and Iddqd
+
+//Drone
+
+Submitted: Shadesmaster(formerly known as CodenniumRed), Cryomundus
+Decorate: Shadesmaster, Cryomundus
+GLDefs: Dreadopp
+Sounds: Railbot,
+Sprites: Shadesmaster, Raven (modified from Ettin pauldrons, would you believe it!), 
+Sprite Edit: Shadesmaster, Dreadopp (projectile), Cryomundus (rotations)
+Idea Base: A slightly demonic machine with rending capabilities
+
+
+//BloodPriest (Formerly Thor)
+Submitted: Pyroscourge
+Decorate: Pyroscourge, MagicWazard
+GLDefs: Dreadopp
+Sounds: id Software, Monolith, Rogue Entertainment, Raven Software
+Sprites: Raven Software, Rogue Entertainment
+Sprite Edit: Pyroscourge, MagicWazard
+Sounds: Raven Software
+
+//ArachnoTank
+//(primarily built from the ZombiePlasmaTank)
+Submitted: Xim
+Decorate: Xim, Enjay(Heavily modified by Cryomundus)
+GLDEFs: Dreadopp
+Sounds: Id Software, 3DRealms
+Sprites: Id Software, 3DRealms
+Sprite Edit: Xim, Enjay
+Idea Base: Pig Tank from Duke Nukem 3D
+
+Actual ArachnoTank Sprites: Master of Disasters and HellcatX (minor additional fixes by Cryomundus)
+
+//Rotfest
+
+Sprite: Uboa
+Decorate: Cyromundus
+Sounds: Various from the R667 submission, Cheogh (actual sounds credited to Monolith Productions)
+
+//SpireImp
+Sprite: Zedek The Plague Doctor, Uboa, and Cryomundus (added an extra set of attack frames for a somewhat less janky animation)
+Decorate: Cryomundus
+Sounds: Re-used the imp sounds, so ID
+
+//BlackBlot
+Submitted: Captain Toenail
+Decorate: Captain Toenail 
+Sounds: Raven
+Sprites: Raven, Id Software
+Sprite Edit: Captain Toenail
+
+//ElderWraith
+
+Raven Spirit
+
+Edited by Gothic (additional edits by cryomundus)
+
+Sounds: Ghost moans from: http://opengameart.org/content/ghost-monster-voice-moaning-growling
+-Edited by Cryomundus
+-Credit to qubodup
+
+http://forum.zdoom.org/viewtopic.php?p=885519#p885519
+
+Originally from Last Rites
+
+Originally ripped Diodeus
+
+http://forum.zdoom.org/viewtopic.php?p=714774#p714774
+
+//EternalWatcher
+Submitted: Tormentor667
+Decorate: Eriance
+GLDEFs: Ghastly Dragon, Sandypaper (Brightmaps)
+Sounds: Raven Software
+Sprites: Raven Software, id Software
+Sprite Edit: Eriance
+Idea Base: Heretic Iron Lich
+
+//LostKnight and LostKing
+Submitted: Dr. Doctor
+Decorate: Dr. Doctor
+Sounds: Shadowman (Acclaim Entertainment)
+Sprites: Id Software, Looking Glass Studios (fireballs)
+Sprite Edit: Dr. Doctor
+
+//BladeGunner 
+Submitted: scalliano
+Decorate: scalliano, Mechadon
+GLDefs: Ghastly_dragon, Sandypaper (brightmaps)
+Sounds: Unknown, Mechadon
+Sprites: Id Software, Ghastly_dragon, Eriance
+Sprite Edit: scalliano
+Idea Base: Karasawa from Armored Core
+
+//ChaosCommando
+Credits:
+Submitted: scalliano
+Decorate: scalliano, Eriance
+Sounds: Eriance, Raven Software, 3d Realms
+GLDEFs: Keksdose
+Sprites: Id Software, Eriance, 3D Realms
+Sprite Edit: ItsNatureToDie, neoworm, Captain Toenail, Xim, Ghastly_dragon, scalliano
+Idea Base: Pyro Cannon from UTnT & Stronghold
+
+//ArtilleryFatso
+Submitted: Ozymandias81
+Decorate: DeVloek, Ozymandias81
+GLDefs: Ozymandias81
+Sounds: 3DRealms, FreeRadical Design, Eriance
+Sprites: yuraofthehairfan, zrrion the insect, Eriance
+Sprite Edit: Ozymandias81
+Idea Base: An hellish simple variant Volacubi-like monster for Doom
+
+//AncientGuardian
+Sounds: Raven Software, ZDoom WRW
+Idea Base: Hexen Heresiarch, Hellstorm Dark Avatar
+Decorate: Eriance
+GLDefs: Ghastly_dragon
+Sprites: Eriance
+Sprite Edit: None
+Idea Base: Doom 3 Helltime Hunter
+
+// Balrog
+
+Name: Fire Serpents
+Difficulty: Easy - Medium
+Summon: FireSerpent, FlameSerpent
+Melee: No
+Distance: Projectile
+Type: Demon
+
+Submitted: Doomedarchviledemon
+Decorate: Doomedarchviledemon
+Sprites: Exhumed / Powerslave, Raven Software
+Sprite Edits: Doomedarchviledemon
+Sounds: Doom 3, Hexen, Freesounds
+Idea Base: The dragon enemy from Gex: Enter the Gecko
+
+//Slasher
+
+Submitted: Ghastly_dragon
+Decorate: Ghastly_dragon
+Sprites: Vader
+Sprite Edit: Captain Toenail
+Sounds: Id Software
+Idea Base: Doom 3's Wraith
+
+//Minimedikitsphere and ministimpacksphere
+edited by Cryomundus
+sprites: Id Software and Jaeden
+
+//GreenArmorsphere and BlueArmorsphere
+edited by Cryomundus
+sprites: Id Software, Midway, CaptainToenail (Sphere base), Blue Shadow (Armor graphic)
+
+
+/*  
+This is a list of authors whose sounds I
+think used, but I've sadly forgotten what for, 
+as I wound up modifying the sounds themselves
+and combining them into different forms. 
+*/
+
+// Btw go check out http://opengameart.org/ theres a TON of neat stuff there
+// I mean if its still up if this thing is still floating around somehow.
+// You never know, I could be referencing a site that's long since gone down.
+
+Sound Creators whose stuff I may/may not have used:
+VividReality
+jalastram
+qubodup
+Little Robot Sound Factory
+Michel Baradari
+
+The vast majority of those sounds where modified by Cryomundus
+
+//============================================================================\\
+
+The actual sprites themselves are from(Note: These are all based on personal 
+research, and they are also slightly modified from their base sprites)
+
+
+-BLOOD: One Unit Whole Blood
+-Shadow Warrior Classic
+
+-I cannot for the life of me identify where the intestines come from
+
+The "exploding blood cloud" spriteset I believe is actually the Cyberdemon's 
+death animation with the hooves edited out. Also, they're combined with the 
+crushed corpse sprites from nashgore. Which is by Nash, btw. 
+From KetchupV5 by Sgt_Mark_IV
+
+//============================================================================\\
+
+Additional Gore Sprites are also from 
+
+-Rise of The Triad (ripped from Ultimate Simplicity by Agent Spork)
+-BLOOD: One Unit Whole Blood
+-Shadow Warrior Classic
+
+-Additional gibs courtesy of Blox
+
+//============================================================================\\
+
+Various explosion sounds from Shadow Warrior
+
+//Gore Sounds
+From freesound.org
+-Aegersum
+-deleted_user_3277771
+-mattiagreyfox
+-Rock Savage
+-FoolBoyMedia
+
+From opengameart.org (used mainly for the xdeath gore sounds)
+
+-Independent.nu
+-Little Robot Sound Factory
+
+From soundbible.com (used for the guts splat sounds)
+
+-Mike Koenig
+
+From Youtube (used mainly for the xdeath gore sounds)
+
+-DC Stock Footage - ripped from the "Sound Effects - Blood, Gore, Carnage, and Tearing Flesh" video
+
+Other zdoom forum folks I should credit:
+-Yholl
+-Beed28
+-The Zombie Killer
+
+
+Various mod items credit to:
+Guncaster
+MetroidDreadnought
+Demonsteele
+
+Universal Headshots - Mikk-
+Source: https://forum.zdoom.org/viewtopic.php?f=105&t=57487
+
+Lud's CustomDoom Ver 1.8.2 
+source: https://forum.zdoom.org/viewtopic.php?t=51446
+The Monster HP and Speed Editor code portion 
+of CustomDoom ported with permission
+
+------------------------------------------------------------------
+ Annihilator
+Sprites: Id Software, Raven Software, Wolfendoom
+Sprite Edit: Eriance
+
+Cracko Demon 
+Sprites: Id Software
+Sprite Edit: Icytux
+
+Cyber Baron
+Sprites: Id Software
+Sprite Edit: Ben2k9
+
+Defiler 
+Sprites: Id Software
+Sprite Edit: Dreadopp
+
+BFGSpiderMastermind
+Sprite Edit: Gerolf
+Idea Base: Doom Spider Mastermind, Eriance Demolisher
+
+Diabolist
+Sprites: Id Software, Raven Software
+Sprite Edit: Eriance
+
+Doom RPG Ghoul
+Sprites: id Software, Raven Software, IMX
+Sprite Edit: IMX, MagicWazard, DBJ87
+
+Forgotten One 
+Sprites: ID Software
+Sprite Edit: Captain Toenail
+
+Hectebus 
+Sprites: Id Software, Midway
+Sprite Edit: AgentSpork
+
+Machinegun Zombieman 
+Sprites: Id software
+Sprite Edit: Skelegant, David G.
+
+Mauler Demon 
+Sprites: Id Software
+Sprite Edit: Eriance
+
+Minigunner 
+Sprites: id Software, Skulltag
+Sprite Edit: ItsNatureToDie
+
+Rail Arachnotron
+Sprites: Id Software
+Sprite Edit: Tormentor667, Captain Toenail
+
+SawedOff Zombie
+Sprites: id Software
+Sprite Edit: Xim
+
+
+Due to how MASSIVELY USEFUL the HealthOnDemandMedkit I decided to make it usable
+whenever via a keybind. The inspiration for this was the 
+Weapon_HandGrenade_StandAlone.PK3, and below are the following credits for said
+pk3;
+//Weapon: Hand Grenade
+//Original By: Froon
+//BD Version By: Saegiru
+//Sprites By: Pa1nki113r
+
+If you want this list to be updated, please let me know!
+
+
+
+
+
+
+
+
+
+
+
+

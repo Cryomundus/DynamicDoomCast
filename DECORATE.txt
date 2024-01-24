@@ -1,0 +1,200 @@
+/*
+The #includes file. Something I've always find to be nice and neat.
+*/
+
+//Inheritence State Bases
+//#include decorate/Monsters/CustomModInheritanceBase/ZombiemanModinheritance.dec
+#include decorate/Monsters/CustomModInheritanceBase/ShotgunGuyModinheritance.dec
+#include decorate/Monsters/CustomModInheritanceBase/ChaingunGuyModinheritance.dec
+#include decorate/Monsters/CustomModInheritanceBase/ImpModinheritance.dec
+#include decorate/Monsters/CustomModInheritanceBase/DemonModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/CacodemonModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/HellknightModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/FatsoModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/ArachnotronModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/BaronofHellModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/LostSoulModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/PainElementalModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/RevenantModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/ArchvileModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/SpiderMastermindModInheritence.dec
+#include decorate/Monsters/CustomModInheritanceBase/CyberdemonModInheritence.dec
+
+
+
+//The monsters
+//Tier 1
+//#include decorate/Monsters/Tier1/Zombiemen.dec
+#include decorate/Monsters/Tier1/Shotgunguys.dec
+#include decorate/Monsters/Tier1/Commando.dec
+#include decorate/Monsters/Tier1/Imps.dec
+#include decorate/Monsters/Tier1/Pinkies.dec
+#include decorate/Monsters/Tier1/Spectre.dec
+#include decorate/Monsters/Tier1/Cacos.dec
+#include decorate/Monsters/Tier1/Hellknight.dec
+#include decorate/Monsters/Tier1/Barons.dec
+#include decorate/Monsters/Tier1/Elementals.dec
+#include decorate/Monsters/Tier1/LostSouls.dec
+#include decorate/Monsters/Tier1/Mancubus.dec
+#include decorate/Monsters/Tier1/Revenant.dec
+#include decorate/Monsters/Tier1/ArachSpiders.dec
+#include decorate/Monsters/Tier1/Archviles.dec
+#include decorate/Monsters/Tier1/BossBrain.dec
+#include decorate/Monsters/Tier1/SpiderMastermind.dec
+#include decorate/Monsters/Tier1/Cyberdemons.dec
+
+//Tier 2
+#include decorate/Monsters/Tier2/TrooperZombieman.dec
+#include decorate/Monsters/Tier2/SSGZombie.dec
+#include decorate/Monsters/Tier2/Seere.dec
+#include decorate/Monsters/Tier2/Gnaw.dec
+#include decorate/Monsters/Tier2/TheMaw.dec
+#include decorate/Monsters/Tier2/BonyImp.dec
+#include decorate/Monsters/Tier2/SlasherDemon.dec
+#include decorate/Monsters/Tier2/MutantFatso.dec
+#include decorate/Monsters/Tier2/BeamRevenant.dec
+#include decorate/Monsters/Tier2/KnightGuard.dec
+#include decorate/Monsters/Tier2/BaronGuard.dec
+#include decorate/Monsters/Tier2/Scattertron.dec
+#include decorate/Monsters/Tier2/ChainGunnerMajor.dec
+#include decorate/Monsters/Tier2/BlizzardWizard.dec
+#include decorate/Monsters/Tier2/Goliath.dec
+//#include decorate/Monsters/Tier2/AracnorbQueen.dec
+#include decorate/Monsters/Tier2/Balrog.dec
+//Tier 3
+#include decorate/Monsters/Tier3/Bullspider.dec
+#include decorate/Monsters/Tier3/ImpGunner.dec
+#include decorate/Monsters/Tier3/CyborgCommando.dec
+#include decorate/Monsters/Tier3/EliteZombieman.dec
+#include decorate/Monsters/Tier3/AutoShotGunner.dec
+#include decorate/Monsters/Tier3/RadiantBeast.dec
+#include decorate/Monsters/Tier3/HellFireKnight.dec
+#include decorate/Monsters/Tier3/HellFireBaron.dec
+#include decorate/Monsters/Tier3/ElderRev.dec
+#include decorate/Monsters/Tier3/Skulltron.dec
+#include decorate/Monsters/Tier3/SpiritBandit.dec
+#include decorate/Monsters/Tier3/SpiritBlade.dec
+#include decorate/Monsters/Tier3/HelSturm.dec
+#include decorate/Monsters/Tier3/DireVizar.dec
+#include decorate/Monsters/Tier3/Juggernaut.dec
+#include decorate/Monsters/Tier3/Gorgosturm.dec
+//TierS
+#include decorate/Monsters/TierS/PulseGunZombie.dec
+#include decorate/Monsters/TierS/BladeGunner.dec
+#include decorate/Monsters/TierS/ChaosCommando.dec
+#include decorate/Monsters/TierS/SpireImp.dec
+#include decorate/Monsters/TierS/Rotfest.dec
+#include decorate/Monsters/TierS/EternalWatcher.dec
+#include decorate/Monsters/TierS/LostKnight.dec
+#include decorate/Monsters/TierS/BlackBlot.dec
+#include decorate/Monsters/TierS/ElderWraith.dec
+#include decorate/Monsters/TierS/WarMonger.dec
+#include decorate/Monsters/TierS/ArtilleryFatso.dec
+#include decorate/Monsters/TierS/ArachnoTank.dec
+#include decorate/Monsters/TierS/LostKing.dec
+#include decorate/Monsters/TierS/BloodPriest.dec
+#include decorate/Monsters/TierS/AncientOne.dec
+#include decorate/Monsters/TierS/AncientGuardian.dec
+#include decorate/Monsters/TierS/Drone.dec
+
+//Map07 
+#include decorate/Monsters/Map07ArachAndFatso/Map07Arachnotron.dec
+
+//Bonusitems
+#include decorate/BonusThings/PossessedWeaponsContainer.dec
+#include decorate/BonusThings/CarryableHealthItems.dec
+#include decorate/BonusThings/MiniAmmoPacks.dec
+#include decorate/BonusThings/MiniSpecAmmoPacks.dec
+#include decorate/BonusThings/MiniArmorSpheres.dec
+#include decorate/BonusThings/MiniHealthSpheres.dec
+#include decorate/BonusThings/CarryableMedpacks.dec
+#include decorate/BonusThings/CarryableStimpacks.dec
+#include decorate/BonusThings/CarryableGreenArmor.dec
+#include decorate/BonusThings/CarryableBlueArmor.dec
+#include decorate/BonusThings/VitSerum.dec
+#include decorate/BonusThings/BonusItemSpawners.dec
+
+//Dummy Mod Items
+#include decorate/DummyModItems/MetroidDreadnoughtdummyitems.dec
+#include decorate/DummyModItems/GuncasterDummyItemDropperImitator.dec
+#include decorate/DummyModItems/Guncasterdummyitems.dec
+
+#include decorate/DummyModItems/BrutalDoomDummyItemDropperImitator.dec
+#include decorate/DummyModItems/BrutalDoomDummyItems.dec
+
+#include decorate/DummyModItems/ProjIroncladDummyitems.dec
+
+#include decorate/DummyModItems/TreasureTectDummyItems.dec
+
+#include decorate/DummyModItems/DummyModItemDropper.dec
+#include decorate/DummyModItems/OtherDummyItems.dec
+
+//Map07 Boss Monster Containers
+#include decorate/GameplayChangingMonsterContainers/SpecialBossMonsterContainers/MancubusContainer.dec
+#include decorate/GameplayChangingMonsterContainers/SpecialBossMonsterContainers/ArachnotronContainer.dec
+
+//The Actual Spawners
+
+#include decorate/GameplayChangingMonsterContainers/ModZombiemanContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModShotgunGuyContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModImpContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModDemonContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModSpectreContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModChainGunGuyContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModCacodemonContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModHellknightContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModMancubusContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModRevenantContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModPainElementalContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModLostSoulContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModArachnotronContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModBaronOfHellContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModArchvileContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModCyberdemonContainer.dec
+#include decorate/GameplayChangingMonsterContainers/ModSpiderMastermindContainer.dec
+
+//The Variants
+#include decorate/Monsters/AlternateMonsterGameMode/TankyMonsters/BHPMonsterSpawners.dec
+
+#include decorate/Monsters/AlternateMonsterGameMode/Ghostland/GhostlandDDCMonsters.dec
+#include decorate/Monsters/AlternateMonsterGameMode/Ghostland/GhostSpawnDDCMonsters.dec
+
+#include decorate/Monsters/AlternateMonsterGameMode/MarchOfTheBurdened/MOTBVHP.dec
+#include decorate/Monsters/AlternateMonsterGameMode/MarchOfTheBurdened/BounceFogMOTB.dec
+#include decorate/Monsters/AlternateMonsterGameMode/MarchOfTheBurdened/MarchOfTheBurdened.dec
+
+//Might be included later
+//#include decorate/Monsters/AlternateMonsterGameMode/GibLand/GibLandDDCMonsters.dec
+
+
+//---------------------- OLD STUFF, TO BE DELETED LATER ------------------------
+
+//Spawner ideas that will be implemented later
+//is extremely tedious to implement now which is why it's gonna be later.
+//#include decorate/Monsters/DDCModMonsterSpawner/DDCModMonsterSpawner.dec
+//#include decorate/Monsters/DDCModMonsterSpawner/DDCMetroidDreadNoughtMonsters.dec
+
+//old, defunct spawner ideas
+//#include decorate/Monsters/BaseSpawners.dec
+//#include decorate/Monsters/TBMonsterSpawners.dec
+//#include decorate/Monsters/MDNMonsterSpawners.dec
+
+//--------------------------- END OF OLD STUFF ---------------------------------
+//The Bullets
+#include decorate/Monsters/MonsterBullets.dec
+
+//The Explosions (and explosion tossers)
+#include decorate/Monsters/Explosions.dec
+
+//Monster Stat Changer
+#include decorate/DDCStatChangerStuff.dec
+
+//footsteps, for atmosphere and easier identification
+//gonna replace the sfx for these, but these'll do for now
+#include decorate/Footstuff.txt
+#include decorate/GoreActors.dec
+
+//The Dynamic Spawn thingy!
+#include decorate/DynamicSpawner.txt 
+
+//#include decorate/Monsters/SSNaziReplacements.dec

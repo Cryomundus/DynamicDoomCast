@@ -1,0 +1,11 @@
+// test
+
+alias DDCUsingAMedKit			"use HealthBackPackPiece"
+alias DDCUseMiniHealthSpheres	"use MiniHealthSpherePiece"
+alias DDCUseArmorSpherePiece	"use ArmorSpherePiece"
+alias DDCUseAmmopackPiece		"use AmmopackPiece"
+alias DDCUseSpecAmmoPackPiece	"use SpecAmmoPackPiece"
+alias DDCUseMinimedikitpiece	"use Minimedikitpiece"
+alias DDCUseMinistimpackpiece	"use Ministimpackpiece"
+alias DDCUseMiniGreenArmorpiece	"use MiniGreenArmorpiece"
+alias DDCUseMiniBlueArmorpiece	"use MiniBlueArmorpiece"

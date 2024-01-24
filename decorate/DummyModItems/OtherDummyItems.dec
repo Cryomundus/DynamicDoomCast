@@ -1,0 +1,94 @@
+//ketchup stuff
+Actor BrutalBloodSplat
+{
+	+nointeraction
+}
+Actor BootSmearerRed
+{
+	+nointeraction
+}
+Actor BootSmearerBlue
+{
+	+nointeraction
+}
+Actor BootSmearerGreen
+{
+	+nointeraction
+}
+Actor BlueSawBlood
+{
+	+nointeraction
+}
+
+//Legendoom stuff
+Actor LDWeaponPickup
+{
+	+nointeraction
+}
+Actor LDChainsawPickup
+{
+	+nointeraction
+}
+Actor LDFistsPickup
+{
+	+nointeraction
+}
+Actor LDPistolPickup
+{
+	+nointeraction
+}
+Actor LDShotgunPickup
+{
+	+nointeraction
+}
+Actor LDSuperShotgunPickup
+{
+	+nointeraction
+}
+Actor LDChaingunPickup
+{
+	+nointeraction
+}
+Actor LDRocketLauncherPickup
+{
+	+nointeraction
+}
+Actor LDPlasmaRiflePickup
+{
+	+nointeraction
+}
+Actor LDBFG9000Pickup
+{
+	+nointeraction
+}
+
+Actor droppeditemspawner
+{
+	+nointeraction
+}
+
+Actor MagicrodSpawner
+{
+	+nointeraction
+}
+
+Actor ArgChaingun
+{
+	+nointeraction
+}
+
+Actor PBHellishMissileLauncherChanceDropper
+{
+	+nointeraction
+}		
+
+Actor PBFlameCannonChanceDropper
+{
+	+nointeraction
+}
+
+Actor PBHellgunChanceDropper
+{
+	+nointeraction
+}
+

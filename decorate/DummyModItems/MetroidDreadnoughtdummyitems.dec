@@ -1,0 +1,179 @@
+/* 
+fake actor, does nothing and interacts with nothing
+
+It is here simply to reduce the number of errors Gzdoom spits out
+
+It is automatically replaced by the mod's respective items due to not 
+having any states whatsoever, so it's presumably 100% compatible with
+any mods added here
+
+Not entirely sure if +nointeraction does weird things but since this is for
+pickups, and it seems to still let you, well, pickup the pickups, it seems fine
+
+It's mostly to tell the engine to ignore it's existence and let nothing 
+interact with it. It should hopefully be low-no impact on gameplay. 
+
+Maybe. Doom is a weird engine tbh.
+*/
+
+Actor IceBeamChilled : CustomInventory
+{
+	+nointeraction
+}
+
+Actor SuperMissileAcquired : CustomInventory
+{
+	+nointeraction
+}
+
+Actor PowerBombAcquired : CustomInventory
+{
+	+nointeraction
+}
+
+Actor MissileAmmo
+{
+	+nointeraction
+}
+
+Actor PowerBombAmmo
+{
+	+nointeraction
+}
+
+Actor SuperMissileAmmo
+{
+	+nointeraction
+}
+
+Actor PowerBombTankPickup
+{
+	+nointeraction
+}
+
+Actor EnemyDropSpawner
+{
+	+nointeraction
+}
+
+
+Actor EnemyDropSpawnerB
+{
+	+nointeraction
+}
+
+
+Actor EnemyDropSpawnerC
+{
+	+nointeraction
+}
+
+Actor EnemyDropSpawnerD
+{
+	+nointeraction
+}
+
+Actor IceChunk2
+{
+	+nointeraction
+}
+
+Actor IceTrailFlicker
+{
+	+nointeraction
+}
+
+Actor IceTrailFlicker3
+{
+	+nointeraction
+}
+
+Actor BlankPuff
+{
+	+nointeraction
+}
+
+Actor FrozenDummy
+{
+	+nointeraction
+}
+
+Actor ZombieguyFrozen
+{
+	+nointeraction
+}
+
+Actor ShotguyFrozen
+{
+	+nointeraction
+}
+
+Actor ChainguyFrozen
+{
+	+nointeraction
+}
+
+Actor ImpguyFrozen
+{
+	+nointeraction
+}
+
+Actor DemonguyFrozen
+{
+	+nointeraction
+}
+
+Actor CacoguyFrozen
+{
+	+nointeraction
+}
+
+Actor LostguyFrozen
+{
+	+nointeraction
+}
+
+Actor BaronguyFrozen
+{
+	+nointeraction
+}
+
+Actor SpiderguyFrozen
+{
+	+nointeraction
+}
+
+Actor FatguyFrozen
+{
+	+nointeraction
+}
+
+Actor PainguyFrozen
+{
+	+nointeraction
+}
+
+Actor CoolguyFrozen
+{
+	+nointeraction
+}
+
+Actor VileguyFrozen
+{
+	+nointeraction
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,155 @@
+/*
+ModDropper
+
+ModDropperLSoul
+
+ModDropperGnaw
+
+ModDropperSpiritBlade
+
+ModDropperBlackBlot
+
+*/
+Actor ModDropperLSoul
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("LSoul", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPLSoul", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCLSoul", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBLSoul", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperGnaw
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("Gnaw", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPGnaw", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCGnaw", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBGnaw", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperSpiritBlade
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("SpiritBlade", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPSpiritBlade", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCSpiritBlade", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBSpiritBlade", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperBlackBlot
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("BlackBlot", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPBlackBlot", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCBlackBlot", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBBlackBlot", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

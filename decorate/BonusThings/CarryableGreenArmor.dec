@@ -1,0 +1,41 @@
+//more rewards n shit
+//also yay for easy copy past stuff!
+
+ACTOR MiniGreenArmorpiece : CustomInventory
+
+{
+		+INVBAR
+		+INVENTORY.UNTOSSABLE
+		+INVENTORY.UNDROPPABLE
+		Inventory.Amount 1
+		Inventory.MaxAmount 2
+		Inventory.InterHubAmount 2
+		Tag "Mini Green Armor Sphere"
+		Inventory.Icon "Z_SPAG"
+		States
+	{
+		Use:
+		TNT1 A 0 A_TakeInventory("MiniGreenArmorpiece", 1)
+		TNT1 A 0  A_SpawnItemEx("GreenArmor", 30, 0, 15)
+		fail
+		}
+}
+
+
+ACTOR MiniGreenArmor : CustomInventory
+{
+	Inventory.Amount 1
+	scale 0.6
+	Inventory.PickupMessage "You got a Mini Green Armor Sphere! Use it to get a Green Armor!"
+	States
+	{
+		Spawn:
+		SPAG A 1 Bright
+		Loop
+		Pickup:
+		TNT1 A 0 A_GiveInventory ("MiniGreenArmorpiece", 1)
+		stop
+	}
+}
+
+

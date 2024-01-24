@@ -1,0 +1,278 @@
+//test
+
+Actor BlueCoin
+{
+	+nointeraction
+}
+
+Actor SilverCoin
+{
+	+nointeraction
+}
+
+Actor RedCoin
+{
+	+nointeraction
+}
+
+Actor GoldCoin
+{
+	+nointeraction
+}
+
+// 		Both Treasure Tech and Guncaster spawn a diamond actor, so this is just 
+//		here purely for my sanity. And to make sure it exists as a reference in
+//		some capacity for both mods
+
+//Actor Diamond
+//{
+//	+nointeraction
+//}
+Actor StarSprite
+{
+	+nointeraction
+}
+Actor ZomStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowZom : inventory
+{
+	+nointeraction
+}
+
+Actor ZomBody
+{
+	+nointeraction
+}
+
+Actor ShoBody 
+{
+	+nointeraction
+}
+
+Actor ShoStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowSho : inventory
+{
+	+nointeraction
+}
+
+Actor ImpBody 
+{
+	+nointeraction
+}
+
+Actor ImpStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowImp : inventory
+{
+	+nointeraction
+}
+
+Actor GunBody 
+{
+	+nointeraction
+}
+
+Actor GunStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowGun : inventory
+{
+	+nointeraction
+}
+
+Actor PinBody 
+{
+	+nointeraction
+}
+
+Actor PinStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowPin : inventory
+{
+	+nointeraction
+}
+
+Actor TronBody 
+{
+	+nointeraction
+}
+
+Actor TronStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowTron : inventory
+{
+	+nointeraction
+}
+
+Actor ArchBody 
+{
+	+nointeraction
+}
+
+Actor ArchStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowArch : inventory
+{
+	+nointeraction
+}
+
+Actor BaronBody 
+{
+	+nointeraction
+}
+
+Actor BaronStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowBaron : inventory
+{
+	+nointeraction
+}
+
+Actor CacBody 
+{
+	+nointeraction
+}
+
+Actor CacStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowCac : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowCacSuper : inventory
+{
+	+nointeraction
+}
+
+Actor ManBody 
+{
+	+nointeraction
+}
+
+Actor ManStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowMan : inventory
+{
+	+nointeraction
+}
+
+Actor KnightBody 
+{
+	+nointeraction
+}
+
+Actor KnightStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowKnight : inventory
+{
+	+nointeraction
+}
+
+Actor SoulStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowSoul : inventory
+{
+	+nointeraction
+}
+
+
+
+Actor PainBody 
+{
+	+nointeraction
+}
+
+Actor PainStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowPain : inventory
+{
+	+nointeraction
+}
+
+Actor RevBody 
+{
+	+nointeraction
+}
+
+Actor RevStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowRev : inventory
+{
+	+nointeraction
+}
+
+Actor GhostBody 
+{
+	+nointeraction
+}
+
+Actor GhostStun : inventory
+{
+	+nointeraction
+}
+
+Actor ThrowGhost : inventory
+{
+	+nointeraction
+}
+
+
+
+
+
+
+
+
+/*
+Actor 
+{
+	+nointeraction
+}
+
+Actor 
+{
+	+nointeraction
+}

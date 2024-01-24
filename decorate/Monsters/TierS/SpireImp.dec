@@ -1,0 +1,113 @@
+
+ACTOR SpireImp
+{
+	SpawnID 5
+	Health 115
+	Radius 16
+	Height 56
+	Mass 100
+	Speed 13
+	PainChance 200
+	DamageFactor "Extinguishing", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Species "Impling"
+	Monster
+	+NOBLOCKMONST
+	+FLOORCLIP
+	+MissileMore
+	+DontHarmSpecies
+	+FLOAT 
+	+FLOATBOB
+	+NOGRAVITY
+	-THRUSPECIES
+	SeeSound "imp/sight"
+	PainSound "imp/pain"
+	DeathSound "imp/death"
+	ActiveSound "imp/active"
+	Obituary "%o died to a SpireImp."
+	DropItem "MiniStimpackSphereDropChecker", 86
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MiniHealthSphereDropChecker", 128
+	dropitem "MiniAmmoPackDropChecker" 128
+	dropitem "MiniArmorSphereDropChecker" 128
+	DropItem "MagicrodSpawner", 5
+	States
+	{
+	Spawn:
+		TRFI AB 10 A_Look
+		Loop
+	See:
+		TRFI AB 0 A_JUMP(50, "Fastly")
+		TRFI AABB 3 A_Chase
+		Loop
+	Fastly:
+		TRFI A 0 A_JUMP(50, "See")
+		TRFI AABB 2 A_Chase
+		TRFI AABB 4 A_FastChase
+		TRFI AABB 2 A_Chase
+		TRFI AABB 2 A_Chase
+		TRFI AABB 2 A_Chase
+		TRFI AABB 2 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(256, "StandardFireball","TriBouncyFireball","AlternatingFireball","BOOMFireball")
+	StandardFireball:
+		TRFI C 8 A_FaceTarget
+		TRFI D 6 A_CustomMissile("GreenImpFireball", 45, 0, 0, 0, 0)
+		Goto See
+	TriBouncyFireball:
+		TRFI C 12 A_FaceTarget
+		TRFI D 6 bright A_CustomMissile("GreenImpFireballBounce", 45, 0, -5, 0, 0)
+		TRFI D 0 bright A_CustomMissile("GreenImpFireball", 45, 0, 0, 0, 0)
+		TRFI D 0 bright A_CustomMissile("GreenImpFireballBounce", 45, 0, 5, 0, 0)
+		Goto See
+	AlternatingFireball:
+		TRFI C 8 A_FaceTarget
+		TRFI D 6 A_CustomMissile("GreenImpFireball", 45, 0, -3, 0, 0)
+		TRFI C 4 A_FaceTarget
+		TRFI D 1 A_CustomMissile("GreenImpFireball", 45, 0, 0, 0, 0)
+		TRFI C 4 A_FaceTarget
+		TRFI D 1 A_CustomMissile("GreenImpFireballBounce", 45, 0, 3, 0, 0)
+		TRFI C 4 A_FaceTarget
+		TRFI D 1 A_CustomMissile("GreenImpFireball", 45, 0, -3, 0, 0)
+		TRFI C 4 A_FaceTarget
+		TRFI D 1 A_CustomMissile("GreenImpFireball", 45, 0, 0, 0, 0)
+		Goto See
+	BOOMFireball:
+		TRFI C 8 A_FaceTarget
+		TRFI D 6 A_CustomMissile("GreenImpFireBallBOOM", 45, 0, 0, 0, 0)
+		Goto See
+	Pain:
+		TRFI E 2
+		TRFI E 2 A_Pain
+		TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+	Death:
+		TNT1 A 0 a_spawnitemex ("ImpModItemDropper",0,0,35)
+		TRFI F 8 A_changeflag(FLOATBOB, false) 
+		TRFI G 8 
+		TRFI H 8 A_Scream
+		TRFI I 6
+		TRFI J 6 A_NoBlocking
+		TRFI J -1
+		Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("ImpModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_changeflag(FLOATBOB, false) 
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XAIR A 5 A_Stop
+		XAIR B 5 A_XScream
+		XAIR C 5   
+		XAIR D 5 A_NoBlocking
+		XAIR E 5
+		TNT1 A 0 
+		Stop
+	Raise:
+		TRFI JIHGF 8
+		Goto See
+	}
+}

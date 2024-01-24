@@ -1,0 +1,1289 @@
+#library "MAPCHECK"
+#library "HEALTHCHECK"
+#include "zcommon.acs"
+#library "CUSTOMDOOM"
+//#pragma fixed on
+
+//MAP CHECK STUFF BELOW HERE
+
+//For future folks sake, this was compiled with acc154win
+
+//MAP CHECK STUFF BELOW HERE
+
+//------------------------------------------------------------------------------
+
+script "GetMapNumber" (void)
+{
+    SetResultValue(GetLevelInfo(LEVELINFO_LEVELNUM));
+}
+
+/*Thanks to Iddqd from the thread here: 
+
+http://forum.zdoom.org/viewtopic.php?f=3&t=53292&hilit=dynamic+enemy+spawner
+
+*/
+
+//------------------------------------------------------------------------------
+
+//From Lud's CustomDoom ver 1.8.2, used with permission.
+
+
+script "DDCWorldInit" open
+{
+    Delay(10); // to give the spawn script enough time to do its thing
+	Spawn("DDCStatChangerGiver", 0, 0, 0);
+}
+
+//------------------------------------------------------------------------------
+// These are for enforcing compatibility, as spawns for DDC take longer than
+//5-7 tics 
+//------------------------------------------------------------------------------
+
+script "MakeLegendoomWorkWithDDC" Enter
+{
+
+if   (GetCvar("PlayerIsUsingLegDoomCvar") == 0) 
+	{ 
+	//Does Nothing, is here to stop an acs error from popping up
+	} 
+if   (GetCvar("PlayerIsUsingLegDoomCvar") == 1) 
+	{ 
+	Delay(10);
+	ACS_NamedExecute("LDWorldInit", 0); 
+	} 
+} 
+
+script "MakeKeymasterWorkWithDDC" open
+{
+
+if   (GetCvar("PlayerIsUsingKeymasterCvar") == 0) 
+	{
+	//Does Nothing, is here to stop an acs error from popping up
+	} 
+if   (GetCvar("PlayerIsUsingKeymasterCvar") == 1) 
+	{ 
+	Delay(15);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	Spawn("KeyMasterHandler", 0, 0, 0, 0, 0); 
+	} 
+}
+
+script "MakeChampionsWorkWithDDC" open
+{
+
+if   (GetCvar("PlayerIsUsingChampionsCvar") == 0) 
+	{
+	//Does Nothing, is here to stop an acs error from popping up
+	} 
+if   (GetCvar("PlayerIsUsingChampionsCvar") == 1) 
+	{ 
+	Delay(10);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	HudMessage(s:""; 0, 1, CR_RED, 0, 0.4, 2.0);
+	Spawn("champion_Handler", 0, 0, 0, 0, 0); 
+	} 
+}
+
+
+//------------------------------------------------------------------------------
+// End Special mod checks
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+//Monster Spawn Checks
+//------------------------------------------------------------------------------
+
+script "ChooseVanillaOrModSpawnCheck" (void)
+{
+
+if   (GetCvar("VanillaOrModSpawnsCvar") == 0) { SetActorState(0,"PlayingVanillaDoom"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("VanillaOrModSpawnsCvar") == 1) { SetActorState(0,"PlayingWithWhatModCheck"); } //Jumps to the set that has a whole butt ton of mods already set
+
+} 
+
+script "VanillaDynamicSpawnChoiceCheck" (void)
+{
+
+if   (GetCvar("VanillaSpawnChoiceCvar") == 0) { SetActorState(0,"VanillaDoomDynSpawner"); } 
+if   (GetCvar("VanillaSpawnChoiceCvar") == 1) { SetActorState(0,"RandomSpawner"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 2) { SetActorState(0,"Tier1Spawns"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 3) { SetActorState(0,"Tier2Spawns"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 4) { SetActorState(0,"Tier3Spawns"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 5) { SetActorState(0,"TierSSpawns"); }
+}
+
+script "SpecialMap07CompatTierCheck" (void)
+{
+
+if   (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"Tier1Map07CompatSpawn"); }
+if   (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"Tier2Map07CompatSpawn"); }
+if   (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"Tier3Map07CompatSpawn"); }
+if   (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"TierSMap07CompatSpawn"); }
+}
+
+//------------------------------------------------------------------------------
+// End of Monster Spawn Checks
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+
+script "StartSpawn" (void) // Might be old
+{
+
+if   (GetCvar("StartSpawnsCvar") == 0) { SetActorState(0,"ChoosingYourDoomSpawns"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("StartSpawnsCvar") == 1) { SetActorState(0,"ChoosingYourDoomSpawns"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+
+} 
+
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//  VVVVV KEEP THIS!!!! VVVVV
+//------------------------------------------------------------------------------
+
+script "ChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"StandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"BuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"GhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"MarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"TeasureTechCompatMonsters"); } No longer needed, found a better way
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+
+} 
+//Tier1-------------------------------------------------------------------------
+script "T1Set1ChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"T1Set1StandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"T1Set1BuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"T1Set1GhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"T1Set1MarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+} 
+
+script "T1Set2ChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"T1Set2StandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"T1Set2BuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"T1Set2GhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"T1Set2MarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+} 
+
+script "T1Set3ChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"T1Set3StandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"T1Set3BuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"T1Set3GhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"T1Set3MarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+} 
+
+script "T1SetSChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"T1SetSStandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"T1SetSBuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"T1SetSGhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"T1SetSMarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+} 
+
+
+//Tier2-------------------------------------------------------------------------
+script "T2set1ChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"T2StandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"T2BuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"T2GhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"T2MarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+
+} 
+//Tier3-------------------------------------------------------------------------
+script "T3ChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"T3StandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"T3BuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"T3GhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"T3MarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+
+} 
+//TierS-------------------------------------------------------------------------
+script "TSChooseModdedMonsterSpawn" (void)
+{
+
+if   (GetCvar("ModdedMonsterSpawnCvar") == 0) { SetActorState(0,"TSStandardMonsters"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("ModdedMonsterSpawnCvar") == 1) { SetActorState(0,"TSBuffedHPMonsters"); } //Jumps to the set that has a whole butt ton of mods already set
+if   (GetCvar("ModdedMonsterSpawnCvar") == 2) { SetActorState(0,"TSGhostlyMonsters"); }
+if   (GetCvar("ModdedMonsterSpawnCvar") == 3) { SetActorState(0,"TSMarchOfTheBurdenedMonsters"); }
+//if   (GetCvar("ModdedMonsterSpawnCvar") == 4) { SetActorState(0,"GibLandMonsters"); }
+
+} 
+
+
+//------------------------------------------------------------------------------
+script "ChoosingYourDoomMonsterSpawns" (void)
+{
+
+if   (GetCvar("VanillaSpawnChoiceCvar") == 0) { SetActorState(0,"VanillaDoomDynSpawner"); } 
+if   (GetCvar("VanillaSpawnChoiceCvar") == 1) { SetActorState(0,"RandomSpawner"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 2) { SetActorState(0,"Tier1Spawns"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 3) { SetActorState(0,"Tier2Spawns"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 4) { SetActorState(0,"Tier3Spawns"); }
+if   (GetCvar("VanillaSpawnChoiceCvar") == 5) { SetActorState(0,"TierSSpawns"); }
+}
+
+//------------------------------------------------------------------------------
+// ^^^^^ End OF KEEP THIS!!! ^^^^^^
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+
+script "IamChoosingAModCheck" (void) //Might be old
+{
+
+if   (GetCvar("ChooseModNameHereCvar") == 0) { SetActorState(0,"PlayingWithBuffedHP"); } //Buffed HP
+if   (GetCvar("ChooseModNameHereCvar") == 1) { SetActorState(0,"PlayingWithMetroidDreadnought"); } //Metroid: Dreadnought
+//if   (GetCvar("ChooseModNameHereCvar") == 2) { SetActorState(0,"BadSpawner"); } //GunCaster
+//if   (GetCvar("ChooseModNameHereCvar") == 3) { SetActorState(0,"BadSpawner"); } //DemonSteele
+//if   (GetCvar("ChooseModNameHereCvar") == 4) { SetActorState(0,"BadSpawner"); } //D4D
+//if   (GetCvar("ChooseModNameHereCvar") == 5) { SetActorState(0,"BadSpawner"); } //MetaDoom
+//if   (GetCvar("ChooseModNameHereCvar") == 6) { SetActorState(0,"BadSpawner"); } //ProjectMSX
+//if   (GetCvar("ChooseModNameHereCvar") == 7) { SetActorState(0,"BadSpawner"); } //Bullet-Eye
+//if   (GetCvar("ChooseModNameHereCvar") == 8) { SetActorState(0,"BadSpawner"); } //JohnnyDoom
+
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//		Map07 Weirdness
+//------------------------------------------------------------------------------
+
+script "CheckTierForMap07" (void)
+{
+if   (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"Tier1Set"); } 
+if   (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"Tier2Set"); }
+if   (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"Tier3Set"); }
+if   (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"TierSSet"); }
+if   (GetCvar("Map07TierCheckerCvar") == 4) { SetActorState(0,"SetRandom"); }
+}
+
+//And now they're useless yaaaaaaaaaaaaaaay
+
+//ARGH so many stupid scripts to make map07 compatible
+
+Script "SetRailStateCheckingArachTier" (void)
+{
+if  (GetCvar("Map07TierCheckerCvar")  == 0) { SetActorState(0,"SetRailTrueTier1"); } 
+if  (GetCvar("Map07TierCheckerCvar")  == 1) { SetActorState(0,"SetRailTrueTier2"); } 
+if  (GetCvar("Map07TierCheckerCvar")  == 2) { SetActorState(0,"SetRailTrueTier3"); } 
+if  (GetCvar("Map07TierCheckerCvar")  == 3) { SetActorState(0,"SpawnBeginMovement"); } 
+}
+
+Script "HealthBuffStateCheckingArachTier" (void)
+{
+if  (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"Tier1SpawnState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"Tier2SpawnState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"Tier3SpawnState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"TierSSpawnState"); } 
+}
+
+Script "SeeStateCheckingArachTier" (void)
+{
+if  (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"Tier1SeeState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"Tier2SeeState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"Tier3SeeState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"TierSSeeState"); } 
+}
+
+Script "MissileStateCheckingArachTier" (void)
+{
+if  (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"Tier1RegMissileState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"Tier2RegMissileState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"Tier3RegMissileState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"TierSRegMissileState"); } 
+}
+
+Script "PainStateCheckingArachTier" (void)
+{
+if  (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"PainTier1"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"PainTier2"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"PainTier3"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"PainTierS"); }  
+}
+
+Script "DeathStateCheckingArachTier" (void)
+{
+if  (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"Tier1DeathState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"Tier2DeathState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"Tier3DeathState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"TierSDeathState"); } 
+}
+
+Script "XDeathStateCheckingArachTier" (void)
+{
+if  (GetCvar("Map07TierCheckerCvar") == 0) { SetActorState(0,"Tier1XDeathState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 1) { SetActorState(0,"Tier2XDeathState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 2) { SetActorState(0,"Tier3XDeathState"); } 
+if  (GetCvar("Map07TierCheckerCvar") == 3) { SetActorState(0,"TierSXDeathState"); } 
+}
+
+Script "CheckingRailType" (void)
+{
+
+}
+
+Script "CheckingHealthBuff" (void)
+{
+
+}
+
+Script "CheckingArachType" (void)
+{
+
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//		Defunct, Remove Later
+//------------------------------------------------------------------------------
+
+script "BuffedHPSpawnsCheck" (void)
+{
+
+if   (GetCvar("BuffedHPSpawnsCvar") == 0) { SetActorState(0,"BHPDynSpawner"); } 
+if   (GetCvar("BuffedHPSpawnsCvar") == 1) { SetActorState(0,"BHPRandomSpawner"); }
+if   (GetCvar("BuffedHPSpawnsCvar") == 2) { SetActorState(0,"BHPTier1Spawns"); }
+if   (GetCvar("BuffedHPSpawnsCvar") == 3) { SetActorState(0,"BHPTier2Spawns"); }
+if   (GetCvar("BuffedHPSpawnsCvar") == 4) { SetActorState(0,"BHPTier3Spawns"); }
+if   (GetCvar("BuffedHPSpawnsCvar") == 5) { SetActorState(0,"BHPTierSSpawns"); }
+
+
+} 
+
+script "MetroidDreadnoughtSpawnsCheck" (void)
+{
+
+if   (GetCvar("MetroidDreadnoughtSpawnsCvar") == 0) { SetActorState(0,"MDNDynSpawner"); } 
+if   (GetCvar("MetroidDreadnoughtSpawnsCvar") == 1) { SetActorState(0,"MDNRandomSpawner"); }
+if   (GetCvar("MetroidDreadnoughtSpawnsCvar") == 2) { SetActorState(0,"MDNTier1Spawns"); }
+if   (GetCvar("MetroidDreadnoughtSpawnsCvar") == 3) { SetActorState(0,"MDNTier2Spawns"); }
+if   (GetCvar("MetroidDreadnoughtSpawnsCvar") == 4) { SetActorState(0,"MDNTier3Spawns"); }
+
+} 
+
+script "D4DSpawnsCheck" (void)
+{
+
+if   (GetCvar("D4DSpawnsCvar") == 0) { SetActorState(0,"DynSpawner"); } 
+if   (GetCvar("D4DSpawnsCvar") == 1) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("D4DSpawnsCvar") == 2) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("D4DSpawnsCvar") == 3) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("D4DSpawnsCvar") == 4) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("D4DSpawnsCvar") == 5) { SetActorState(0,"DynSpawner"); }
+
+} 
+
+script "MetaDoomSpawnsCheck" (void)
+{
+
+if   (GetCvar("VanillOrModSpawnsCvar") == 0) { SetActorState(0,"VanillaDynSpawner"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("VanillaOrModSpawnsCvar") == 1) { SetActorState(0,"ModDynSpawner"); } //Jumps to the set that has a whole butt ton of mods already set
+
+} 
+
+script "GuncasterSpawnsCheck" (void)
+{
+
+if   (GetCvar("VanillOrModSpawnsCvar") == 0) { SetActorState(0,"VanillaDynSpawner"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("VanillaOrModSpawnsCvar") == 1) { SetActorState(0,"ModDynSpawner"); } //Jumps to the set that has a whole butt ton of mods already set
+
+} 
+
+script "JohnnyDoomSpawnsCheck" (void)
+{
+
+if   (GetCvar("VanillOrModSpawnsCvar") == 0) { SetActorState(0,"VanillaDynSpawner"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("VanillaOrModSpawnsCvar") == 1) { SetActorState(0,"ModDynSpawner"); } //Jumps to the set that has a whole butt ton of mods already set
+
+} 
+
+script "DemonSteeleSpawnsCheck" (void)
+{
+
+if   (GetCvar("VanillOrModSpawnsCvar") == 0) { SetActorState(0,"VanillaDynSpawner"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("VanillaOrModSpawnsCvar") == 1) { SetActorState(0,"ModDynSpawner"); } //Jumps to the set that has a whole butt ton of mods already set
+
+} 
+
+script "BulletEyeSpawnsCheck" (void)
+{
+
+if   (GetCvar("VanillOrModSpawnsCvar") == 0) { SetActorState(0,"VanillaDynSpawner"); } //Jumps to regular spawns, the Dyn, random that sort of thing
+if   (GetCvar("VanillaOrModSpawnsCvar") == 1) { SetActorState(0,"ModDynSpawner"); } //Jumps to the set that has a whole butt ton of mods already set
+
+} 
+
+script "ProjectMSXSpawnsCheck" (void)
+{
+
+if   (GetCvar("VanillOrModSpawnsCvar") == 0) { SetActorState(0,"VanillaDynSpawner"); } //Off State, last one in the set will ALWAYS default to the Vanilla Dynamic Spawner as a failsafe
+if   (GetCvar("VanillaOrModSpawnsCvar") == 1) { SetActorState(0,"ModDynSpawner"); } //Jumps to the set that has a whole butt ton of mods already set
+
+} 
+//------------------------------------------------------------------------------
+//		End Defunct
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+//Bonus Item Spawn Checks
+//------------------------------------------------------------------------------
+
+//goes to ...
+script "ChooseMedpackSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMedpackSpawn") == 0) { SetActorState(0,"SpawnItem"); } 
+if   (GetCvar("ChooseMedpackSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableMiniHealthSpheres
+script "ChooseMiniHealthSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniHealthSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniHealthSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableMiniArmorSpheres
+script "ChooseMiniArmorSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniArmorSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniArmorSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableMiniAmmoPacks
+script "ChooseMiniAmmoSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniAmmoSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniAmmoSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+script "ChooseSpecMiniAmmoSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniSpecAmmoSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniSpecAmmoSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableBossBackPackDrop
+script "ChooseBonusBackpackSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseBossBonusBackpackSpawn") == 0) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseBossBonusBackpackSpawn") == 1) { SetActorState(0,"SpawnItem"); }
+}
+//------------------------------------------------------------------------------
+
+//goes to EnableMedikitSphere
+script "ChooseMedikitSphereSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMedikitSphereSpawn") == 0) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseMedikitSphereSpawn") == 1) { SetActorState(0,"SpawnItem"); }
+}
+
+//goes to EnableStimpackSphere
+script "ChooseStimpackSphereSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseStimpackSphereSpawn") == 0) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseStimpackSphereSpawn") == 1) { SetActorState(0,"SpawnItem"); }
+}
+
+//goes to EnableGreenArmorSphere
+script "ChooseGreenArmorSphereSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseGreenArmorSphereSpawn") == 0) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseGreenArmorSphereSpawn") == 1) { SetActorState(0,"SpawnItem"); }
+}
+
+//goes to EnableBlueArmorSphere
+script "ChooseBlueArmorSphereSpawnCheck" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseBlueArmorSphereSpawn") == 0) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseBlueArmorSphereSpawn") == 1) { SetActorState(0,"SpawnItem"); }
+}
+
+//------------------------------------------------------------------------------
+// End Bonus Item Spawn Checks
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//		S Tier Checks
+//------------------------------------------------------------------------------
+
+script "ChooseSTierSpawnCheckTier1" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"ContinueTier1"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"SpawnRegularTier1NoSTier"); }
+}
+
+script "ChooseSTierSpawnCheckTier2" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"ContinueTier2"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"SpawnRegularTier2NoSTier"); }
+}
+
+script "ChooseSTierSpawnCheckTier3" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"ContinueTier3"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"SpawnRegularTier3NoSTier"); }
+}
+
+script "ChooseSTierSpawnCheckTierS" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"ContinueTierS"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"SpawnBarrels"); }
+}
+
+//------------------------------------------------------------------------------
+// End S Tier Checks
+//------------------------------------------------------------------------------
+
+
+script "ChooseOnlySpawnSpidermindLand" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("SpawnOnlySpidermindLandCvar") == 0) { SetActorState(0,"ContinueSpawn"); } 
+if   (GetCvar("SpawnOnlySpidermindLandCvar") == 1) { SetActorState(0,"ForcingSMMLSpawn"); } 
+
+}
+
+//------------------------------------------------------------------------------
+// Mod Checker
+//------------------------------------------------------------------------------
+
+script "ChooseModDropSpawn" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ModItemDropperCvar") == 0) { SetActorState(0,"SpawnNothing"); } 
+if   (GetCvar("ModItemDropperCvar") == 1) { SetActorState(0,"ListOfModDrops"); }
+if   (GetCvar("ModItemDropperCvar") == 2) { SetActorState(0,"MetroidDreadnoughtDrops"); }
+}
+
+//------------------------------------------------------------------------------
+
+script "ChooseModMonsterSpawn" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("DDCModdedMonsterChoiceCvar") == 0) { SetActorState(0,"DDCStandardMonsters"); } 
+if   (GetCvar("DDCModdedMonsterChoiceCvar") == 1) { SetActorState(0,"DDCMetroidDreadnought"); } 
+if   (GetCvar("DDCModdedMonsterChoiceCvar") == 2) { SetActorState(0,"DDCDemonsteele"); }
+if   (GetCvar("DDCModdedMonsterChoiceCvar") == 3) { SetActorState(0,"DDCGuncaster"); }
+if   (GetCvar("DDCModdedMonsterChoiceCvar") == 4) { SetActorState(0,"DDCBrutalDoom"); }
+}
+//------------------------------------------------------------------------------
+// End Mod Checks
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Gamemode checks
+//------------------------------------------------------------------------------
+
+script "BHPChooseSTierSpawnCheckTier1" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"BHPContinueTier1"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"BHPSpawnRegularTier1NoSTier"); }
+}
+
+script "BHPChooseSTierSpawnCheckTier2" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"BHPContinueTier2"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"BHPSpawnRegularTier2NoSTier"); }
+}
+
+script "BHPChooseSTierSpawnCheckTier3" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"BHPContinueTier3"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"BHPSpawnRegularTier3NoSTier"); }
+}
+
+script "BHPChooseSTierSpawnCheckTierS" (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseSTierSpawn") == 0) { SetActorState(0,"BHPContinueTierS"); } 
+if   (GetCvar("ChooseSTierSpawn") == 1) { SetActorState(0,"BHPSpawnBarrels"); }
+}
+
+
+
+/*
+
+Note: putting it all in one script to make things easier/less laggy hopefully
+also keeping the old ones just because.
+
+*/
+
+//Named scripts MUST be in quotations, otherwise the compiler will have a fit
+//TBDynSpawner
+/*
+Script "BasicSpawnChecker" (void)
+{
+//if   (GetCvar("DynamicSpawnCvar") == 0) { SetActorState(0,"NormalSpawner"); }
+//Will eventually set these to be their proper settings
+if   (GetCvar("DynamicSpawnCvar") == 0) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 1) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 2) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 3) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 4) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 5) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 6) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 7) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 8) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 9) { SetActorState(0,"TBDynSpawner"); }
+}
+*/
+
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//For Standard Dynamic Doom Spawns
+//Currently goes to TrailBlazer Spawns becuase I happen to be playing that alot
+
+// Hahahaha why do I still have this.
+
+script 1478 (void)//"DynamicCvarChecker" (void)//1478 (void)
+{
+//if   (GetCvar("DynamicSpawnCvar") == 0) { SetActorState(0,"NormalSpawner"); }
+//Will eventually set these to be their proper settings
+if   (GetCvar("DynamicSpawnCvar") == 0) { SetActorState(0,"DynSpawner"); } //Might work as a skip?
+if   (GetCvar("DynamicSpawnCvar") == 1) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 2) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 3) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 4) { SetActorState(0,"DynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 5) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 6) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 7) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 8) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 9) { SetActorState(0,"TBDynSpawner"); }
+}
+
+//------------------------------------------------------------------------------
+
+//TO-BE-REMOVED
+
+//goes to EnableCarryAbleHealthItems
+script 1120 (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMedpackSpawn") == 0) { SetActorState(0,"SpawnItem"); } 
+if   (GetCvar("ChooseMedpackSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableMiniHealthSpheres
+script 1121 (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniHealthSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniHealthSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableMiniArmorSpheres
+script 1122 (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniArmorSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniArmorSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableMiniAmmoPacks
+script 1123 (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniAmmoSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniAmmoSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableMiniAmmoPacks
+script 1125 (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseMiniSpecAmmoSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseMiniSpecAmmoSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+
+//goes to EnableBossBackPackDrop
+script 1124 (void)
+{
+//Will eventually set these to be their proper settings
+if   (GetCvar("ChooseBonusBackpackSpawn") == 0) { SetActorState(0,"SpawnItem"); }
+if   (GetCvar("ChooseBonusBackpackSpawn") == 1) { SetActorState(0,"SpawnNothing"); }
+}
+//------------------------------------------------------------------------------
+// Possessed Humans Weapon and Item Drop check
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+script "ChoosePossessedItemDropCheck" (void) // DEFUNCT - DELETE LATER - !!!!
+{
+if   (GetCvar("ChoosePossessedItemDropSpawn") == 0) { SetActorState(0,"SpawnNormal"); }
+if   (GetCvar("ChoosePossessedItemDropSpawn") == 1) { SetActorState(0,"SpawnEquivalentAmmo"); }
+if   (GetCvar("ChoosePossessedItemDropSpawn") == 2) { SetActorState(0,"SpawnNothing"); }
+}
+//------------------------------------------------------------------------------
+
+script "ChooseZombiemanWeaponDropCheck" (void)
+{
+if   (GetCvar("ChooseZombiemanWeaponDropSpawnCVAR") == 0) { SetActorState(0,"SpawnNormal"); }
+if   (GetCvar("ChooseZombiemanWeaponDropSpawnCVAR") == 1) { SetActorState(0,"SpawnEquivalentAmmo"); }
+if   (GetCvar("ChooseZombiemanWeaponDropSpawnCVAR") == 2) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseZombiemanWeaponDropSpawnCVAR") == 3) { SetActorState(0,"SpawnUniqueModItem"); }
+}
+
+script "ChooseShotgunGuyWeaponDropCheck" (void)
+{
+if   (GetCvar("ChooseShotgunGuyWeaponDropSpawnCVAR") == 0) { SetActorState(0,"SpawnNormal"); }
+if   (GetCvar("ChooseShotgunGuyWeaponDropSpawnCVAR") == 1) { SetActorState(0,"SpawnEquivalentAmmo"); }
+if   (GetCvar("ChooseShotgunGuyWeaponDropSpawnCVAR") == 2) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseShotgunGuyWeaponDropSpawnCVAR") == 3) { SetActorState(0,"SpawnUniqueModItem"); }
+}
+
+script "ChooseChainGunGuyDropCheck" (void)
+{
+if   (GetCvar("ChooseChainGunGuyWeaponDropSpawnCVAR") == 0) { SetActorState(0,"SpawnNormal"); }
+if   (GetCvar("ChooseChainGunGuyWeaponDropSpawnCVAR") == 1) { SetActorState(0,"SpawnEquivalentAmmo"); }
+if   (GetCvar("ChooseChainGunGuyWeaponDropSpawnCVAR") == 2) { SetActorState(0,"SpawnNothing"); }
+if   (GetCvar("ChooseChainGunGuyWeaponDropSpawnCVAR") == 3) { SetActorState(0,"SpawnUniqueModItem"); }
+}
+
+//------------------------------------------------------------------------------
+// End of Possessed Humans Weapon and Item Drop check
+//------------------------------------------------------------------------------
+
+//Removes HealthBackPackPiece from player
+script "RemoveHealthBackPackPiece" (void) Net 
+{
+	
+	if (CheckInventory("HealthBackPackPiece"))
+	{
+		TakeInventory("HealthBackPackPiece", 150);
+		//Print(s:"Removed HealthBackpacks");
+	}
+}
+
+//Removes MiniHealthSpherePiece from player
+script "RemoveMiniHealthSpherePiece" (void) Net 
+{
+	
+	if (CheckInventory("MiniHealthSpherePiece"))
+	{
+		TakeInventory("MiniHealthSpherePiece", 10);
+		//Print(s:"Removed HealthSpheres");
+	}
+}
+
+//Removes ArmorSpherePiece from player
+script "RemoveArmorSpherePiece" (void) Net 
+{
+	
+	if (CheckInventory("ArmorSpherePiece"))
+	{
+		TakeInventory("ArmorSpherePiece", 10);
+		//Print(s:"Removed ArmorSpheres");
+	}
+}
+
+//Removes AmmopackPiece from player
+script "RemoveAmmopackPiece" (void) Net 
+{
+	
+	if (CheckInventory("AmmopackPiece"))
+	{
+		TakeInventory("AmmopackPiece", 20);
+		//Print(s:"Removed AmmoPacks");
+	}
+}
+
+//Removes AmmopackPiece from player
+script "RemoveSpecAmmopackPiece" (void) Net 
+{
+	
+	if (CheckInventory("SpecAmmoPackPiece"))
+	{
+		TakeInventory("SpecAmmoPackPiece", 20);
+		//Print(s:"Removed SpecAmmoPacks");
+	}
+}
+
+//------------------------------------------------------------------------------
+
+//Removes Minimedikit from player
+script "RemoveMinimedikit" (void) Net 
+{
+	
+	if (CheckInventory("Minimedikitpiece"))
+	{
+		TakeInventory("Minimedikitpiece", 20);
+		//Print(s:"Removed MedikitSphere");
+	}
+}
+
+//Removes Ministimpack from player
+script "RemoveMinistimpack" (void) Net 
+{
+	
+	if (CheckInventory("Ministimpackpiece"))
+	{
+		TakeInventory("Ministimpackpiece", 20);
+		//Print(s:"Removed StimpackSphere");
+	}
+}
+
+
+//Removes MiniGreenArmor from player
+script "RemoveMiniGreenArmor" (void) Net 
+{
+	
+	if (CheckInventory("MiniGreenArmorpiece"))
+	{
+		TakeInventory("MiniGreenArmorpiece", 20);
+		//Print(s:"Removed GreenArmorSphere");
+	}
+}
+
+
+//Removes MiniBlueArmor from player
+script "RemoveMiniBlueArmor" (void) Net 
+{
+	
+	if (CheckInventory("MiniBlueArmorpiece"))
+	{
+		TakeInventory("MiniBlueArmorpiece", 20);
+		//Print(s:"Removed GreenArmorSphere");
+	}
+}
+
+script "RemoveAllDDCInvItems" (void) Net 
+{
+	
+	TakeInventory("HealthBackPackPiece", 150);
+	TakeInventory("MiniBlueArmorpiece", 20);
+	TakeInventory("MiniGreenArmorpiece", 20);
+	TakeInventory("Ministimpackpiece", 20);
+	TakeInventory("Minimedikitpiece", 20);
+	TakeInventory("SpecAmmoPackPiece", 20);
+	TakeInventory("AmmopackPiece", 20);
+	TakeInventory("ArmorSpherePiece", 10);
+	TakeInventory("MiniHealthSpherePiece", 10);
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+
+//HEALTHCHECK STUFF BELOW HERE
+//#include "zcommon.acs"
+//#library "HEALTHCHECK"
+
+Script "Check max health" (void)
+{
+  // [Blue Shadow] Checking on the player's max health returns zero (this's only
+  // the case if the modder hasn't defined a max health for the player) instead of
+  // hundred, which what the default max health is. This line makes sure it's a
+  // hundred to get the right values for the comparison below.
+  If(GetActorProperty(0, APROP_SpawnHealth) == 0)
+  If(GetActorProperty(0, APROP_SpawnHealth) <= 75)
+  
+    SetActorProperty(0, APROP_SpawnHealth, 75);
+	// print (s:"Player Health Restored!");
+  // [Blue Shadow] Health comparison; if the player needs healing, return 'true',
+  // otherwise return 'false'.
+  If(GetActorProperty(0, APROP_Health) < GetActorProperty(0, APROP_SpawnHealth))
+    //print (s:"Player Health Restored!");
+	SetResultValue(TRUE);
+	 
+  Else SetResultValue(FALSE);
+  //print (s:"Cannot heal Player for more than 75 hp!");
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+
+script "ShowItemAmount" Enter
+{
+		If (CheckInventory("HealthBackPackPiece") > 1  && GetCvar("LemmeSeeMyHPBackpackCvar") == 1) 
+			{
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Green", 610.0, 440.0, 0, 1.0);
+			}
+				if (CheckInventory("HealthBackPackPiece") > 1 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+				{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					
+				}
+				else if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+		If (CheckInventory("HealthBackPackPiece") <= 150  && GetCvar("LemmeSeeMyHPBackpackCvar") == 1) 
+			{
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Green", 610.0, 440.0, 0, 1.0);
+			}
+				if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}	
+					else if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+		
+	
+		else if  (CheckInventory("HealthBackPackPiece") == 0 && GetCvar("LemmeSeeMyHPBackpackCvar") == 1)
+			{ 
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount"; 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Red", 610.0, 440.0, 0, 1.0);
+			}
+				if (CheckInventory("HealthBackPackPiece") == 0 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+					else if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+				
+	   delay(1);
+
+}
+
+script "CheckAndModifyItemAmount" (void)
+{
+		If (CheckInventory("HealthBackPackPiece") > 1  && GetCvar("LemmeSeeMyHPBackpackCvar") == 1) 
+			{
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Green", 610.0, 440.0, 0, 1.0);
+			}
+				if (CheckInventory("HealthBackPackPiece") > 1 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+				{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					
+				}
+				else if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+		If (CheckInventory("HealthBackPackPiece") <= 150  && GetCvar("LemmeSeeMyHPBackpackCvar") == 1) 
+			{
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Green", 610.0, 440.0, 0, 1.0);
+			}
+				if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}	
+					else if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+		
+	
+		else if  (CheckInventory("HealthBackPackPiece") == 0 && GetCvar("LemmeSeeMyHPBackpackCvar") == 1)
+			{ 
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount"; 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Red", 610.0, 440.0, 0, 1.0);
+			}
+				if (CheckInventory("HealthBackPackPiece") == 0 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+					else if (CheckInventory("HealthBackPackPiece") <= 150 && GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+					{
+					HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+					HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+					}
+				
+	   delay(1);
+
+}
+
+Script "ClearVisibleItemsOnHud" (void)
+{
+	//HudMessage(s:"";HUDMSG_PLAIN,1000,0,0.0,0.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,1484,0,0.0,0.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,1485,0,0.0,0.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,1486,0,0.0,0.0,0);
+}
+
+
+
+
+/* OLD - DELETE LATER - 
+Script "Viewable HpBackpack" Enter
+{
+	if (GetCvar("LemmeSeeMyHPBackpackCvar") == 1)
+		{
+			if (CheckInventory("HealthBackPackPiece") > 0)
+				{
+					SetHudSize(630,590,1);
+					SetFont("BIGFONT");
+					HudMessage(s:"HP Kit Amount"; 
+					HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+					HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+					HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+					SetFont("MMSPB0");
+					HudMessage(s:"A"; //(s:"J Grenades\n", d:CheckInventory("J_HandGrenadeAmmo"); 
+					HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Green", 610.0, 440.0, 0, 1.0);
+				}
+		}
+	
+			if  (CheckInventory("HealthBackPackPiece") == 0 )
+				{ 
+					SetHudSize(630,590,1);
+					SetFont("BIGFONT");
+					HudMessage(s:"HP Kit Amount"; 
+					HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+					HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+					HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+					SetFont("MMSPB0");
+					HudMessage(s:"A";//(s:"J Grenades\n", d:CheckInventory("J_HandGrenadeAmmo"); 
+					HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Green", 610.0, 440.0, 0, 1.0);
+				}
+			
+	else if (GetCvar("LemmeSeeMyHPBackpackCvar") == 0)
+			{
+				SetHudSize(0,0,0);
+				HudMessage(s:"";HUDMSG_PLAIN,1000,0,0.0,0.0,0);
+			}
+}
+
+//------------------------------------------------------------------------------
+/*
+
+So this stuff below here was originally going to be used to show how much of a 
+given item you had on you, in this case, the HpKit item, that's used to heal the
+player up to 75% of the max standard doom HP. However, I could not get a toggle 
+for it so players could turn it on or off in acs form so here it sits. If you 
+wish to re-enable this, simply remove the "/*" and re-compile this script with
+acc154win, with the acc.exe provided within it. Once it's on, it cannot be 
+turned off, but it will auto-update any time you get or use the HpKit.
+
+*/
+
+/*
+
+
+script "ShowRegenKitAmount" Enter
+{
+		If (CheckInventory("HealthBackPackPiece") > 0 )
+			{
+				Delay(1);
+				ACS_NamedTerminate("ShowRegenKitAmount", 0);// Do not show info
+				Delay(1);
+				ACS_NamedTerminate("CheckAndModifyRegenKitAmount", 0);// Do not show info
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount"; 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";//(s:"J Grenades\n", d:CheckInventory("J_HandGrenadeAmmo"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Green", 610.0, 440.0, 0, 1.0);
+			}
+	
+		else if  (CheckInventory("HealthBackPackPiece") == 0 )
+			{ 
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount"; 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";//(s:"J Grenades\n", d:CheckInventory("J_HandGrenadeAmmo"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Red", 610.0, 440.0, 0, 1.0);
+			}
+				
+	   delay(1);
+
+}
+
+script "ForceOnOffRegenKitAmountDisplay" (void) //Enter
+{
+	if (GetCvar("DDCPlayerToggleOnscreenInfoCvar") == 0) //disable
+		{
+			Delay(1);
+			ACS_NamedTerminate("ShowRegenKitAmount", 0);// Do not show info
+			Delay(1);
+			ACS_NamedTerminate("CheckAndModifyRegenKitAmount", 0);// Do not show info
+		}
+	
+	if (GetCvar("DDCPlayerToggleOnscreenInfoCvar") == 1) //enable
+		{
+			Delay(1);
+			ACS_NamedExecute("ShowRegenKitAmount", 0);
+			Delay(1);
+			ACS_NamedExecute("CheckAndModifyRegenKitAmount", 0);
+			
+		}
+}
+
+script "CheckAndModifyRegenKitAmount" (void)
+{
+	//if (GetCvar("DDCPlayerToggleOnscreenInfoCvar") == 0) 
+	//{
+	//	ACS_NamedTerminate("CheckAndModifyRegenKitAmount", 0);// Do not show info
+		
+		delay(1);
+	//}
+	
+	//if (GetCvar("DDCPlayerToggleOnscreenInfoCvar") == 1) 
+	//{
+		// Show info	
+		
+		If (CheckInventory("HealthBackPackPiece") > 0 )
+			{
+				ACS_NamedTerminate("ShowRegenKitAmount",0);
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount"; 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";//(s:"J Grenades\n", d:CheckInventory("J_HandGrenadeAmmo"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Red", 610.0, 440.0, 0, 1.0);
+			}
+	
+		else if  (CheckInventory("HealthBackPackPiece") == 0 )
+			{ 
+				ACS_NamedTerminate("ShowRegenKitAmount",0);
+				SetHudSize(630,590,1);
+				SetFont("BIGFONT");
+				HudMessage(s:"HP Kit Amount"; 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1484, "Gold", 603.0, 420.0, 0, 1.0);
+				HudMessage(d:CheckInventory("HealthBackPackPiece"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1485, "Red", 634.0, 440.0, 0, 1.0);
+				SetFont("MMSPB0");
+				HudMessage(s:"A";//(s:"J Grenades\n", d:CheckInventory("J_HandGrenadeAmmo"); 
+				HUDMSG_PLAIN | HUDMSG_COLORSTRING | HUDMSG_ALPHA | HUDMSG_NOTWITHFULLMAP | HUDMSG_NOTWITHOVERLAYMAP, 1486, "Red", 610.0, 440.0, 0, 1.0);
+			}
+		//}		
+	   delay(1);
+
+}
+
+
+
+
+
+
+
+
+
+
+

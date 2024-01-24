@@ -1,0 +1,427 @@
+/*
+ModDropper
+
+ModDropperBasicZombieman
+ModDropperBasicZombiemanAltGreen
+ModDropperBasicZombiemanAltBlue
+
+ModDropperTrooperZombieman
+ModDropperTrooperZombiemanAltGreen
+ModDropperTrooperZombiemanAltRed
+
+ModDropperEliteZombieman
+ModDropperEliteZombiemanAltRed
+ModDropperEliteZombiemanAltGreen
+
+ModDropperPulseGunZombie
+
+*/
+Actor ModDropperBasicZombieman
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 0 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("BasicZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPBasicZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCBasicZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBBasicZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperBasicZombiemanAltGreen
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 0 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("BasicZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPBasicZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCBasicZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBBasicZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperBasicZombiemanAltBlue
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 0 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("BasicZombiemanAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPBasicZombiemanAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCBasicZombiemanAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBBasicZombiemanAltBlue", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperTrooperZombieman
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("TrooperZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPTrooperZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCTrooperZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBTrooperZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperTrooperZombiemanAltGreen
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("TrooperZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPTrooperZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCTrooperZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBTrooperZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperTrooperZombiemanAltRed
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("TrooperZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPTrooperZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCTrooperZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBTrooperZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperEliteZombieman
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("EliteZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPEliteZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCEliteZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBEliteZombieman", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperEliteZombiemanAltRed
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("EliteZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPEliteZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCEliteZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBEliteZombiemanAltRed", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperEliteZombiemanAltGreen
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("EliteZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPEliteZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCEliteZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBEliteZombiemanAltGreen", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}
+
+Actor ModDropperPulseGunZombie
+{
+health 0
+//+ISMonster
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckFlag("AMBUSH", "CanAmbush", AAPTR_MASTER)
+		goto SpawnContinued
+	CanAmbush:
+		TNT1 A 0 A_ChangeFlag("AMBUSH", TRUE)
+	SpawnContinued:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseModdedMonsterSpawn",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	StandardMonsters:
+		TNT1 A 0 A_SpawnItemEx("PulseGunZombie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	BuffedHPMonsters:
+		TNT1 A 0 A_SpawnItemEx("BHPPulseGunZombie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	GhostlyMonsters:
+		TNT1 A 0 A_SpawnItemEx("GDDCPulseGunZombie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	MarchOfTheBurdenedMonsters:
+		TNT1 A 0 A_SpawnItemEx("MOTBPulseGunZombie", 0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL|SXF_SETMASTER)
+		TNT1 A -1
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	
+	}
+}

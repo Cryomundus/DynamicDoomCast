@@ -1,0 +1,72 @@
+/*
+Based entirely off of Yholl's LegendDoom's bit where it gives a selection of enemies
+the legendary token.
+
+Modified to instead just give this to all monsters so players
+
+
+
+ACTOR DDCIgnoreFlagsAndPlayerFlagChanges
+{
+	+NOGRAVITY
+	+THRUACTORS
+	+NOTONAUTOMAP
+    +NOTIMEFREEZE
+	+NOCLIP
+    States
+    {
+    Spawn:
+	    TNT1 A 1
+        Stop
+    }
+}
+
+ACTOR DDCGiveMonstersTheGoods : CustomInventory
+{
+  -COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.PickupMessage ""
+  Inventory.PickupSound ""
+  States
+  {
+  Spawn:
+    TNT1 A 1
+    Stop
+  Pickup:
+    TNT1 A 0
+	TNT1 A 0
+    Stop
+  }
+}
+
+
+//I swear this bit originated from TheZombieKiller
+//can't find the thread tho.
+//I do know that the 16384 is the max map size
+//tho you can build levels beyond that and I believe gzdoom can actually
+//handle it now. 
+//though I think the actual max is like 32768, and beyond that stuff gets a bit
+//messed up.
+
+//look doom maps and pyhsics and other such things are weird ok.
+ACTOR DDCStatChangerGiver : DDCIgnoreFlagsAndPlayerFlagChanges
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 NoDelay A_RadiusGive ("DDCStatChangerActualItem", 16384, RGF_MONSTERS | RGF_NOSIGHT | RGF_CUBE, 1)
+    TNT1 A 2
+    Stop
+  }
+}
+
+ACTOR DDCStatChangerActualItem : DDCGiveMonstersTheGoods
+{
+  States
+  {
+  Pickup:
+	TNT1 A 0 ACS_NamedExecuteAlways("DDCMonsterStatsEditor", 0)
+    Stop
+  }
+}
+

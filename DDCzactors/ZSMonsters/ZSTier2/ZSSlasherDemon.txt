@@ -1,0 +1,375 @@
+Actor Slasher : DemonModStatesinheritor
+{
+	HitObituary "%o was shredded by a Slasher's wicked scythes!"
+	Health 150
+	Radius 22
+	Height 56
+	Mass 200
+	Speed 14
+	PainChance 64
+	MeleeDamage 4
+	DamageFactor "Wrangler", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	SeeSound "Slasher/Sight"
+	PainSound "Slasher/Pain"
+	DeathSound "Slasher/Death"
+	ActiveSound "Slasher/Active" 
+	MeleeSound "Imp/Melee"
+	Monster
+	-THRUSPECIES
+	+FloorClip
+	+FASTMELEE
+	+MissileMore
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	States
+	{
+		Spawn:
+			SDRX A 1
+			SDRX A 0 A_JumpIf(Args[0] > 0, "Spawn2")
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "StopTeleport")
+			SDRX A 1 A_Look
+			Goto Spawn+1
+		Spawn2:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "StopTeleport")
+			SDRX A 1 A_LookEx(8, 0, 0, 0, 0, "Teleport")
+			Loop
+		StopTeleport:
+			SDRX A 0 A_SpawnItem("TeleportFog")
+			SDRX A 0 A_ChangeFlag("Invulnerable", 0)
+			SDRX A 0 A_SetShootable
+			SDRX A 0 A_ChangeFlag("NonShootable", 0)
+			SDRX A 0 A_ChangeFlag("Shootable", 1)
+			SDRX A 0 A_ChangeFlag("NoTeleport", 0)
+			SDRX A 0 A_ChangeFlag("NoRadiusDMG", 0)
+			SDRX A 0 A_TakeInventory("WraithTeleporting", 1)
+			Goto Spawn
+		See:
+			TNT1 A 0 A_jump(60, "DashySlasher")
+			SDRX B 2 A_Chase("", "", 0)
+			SDRX BBCCCDDDEEE 2 A_Chase
+			SDRX B 0 A_JumpIf(Args[1] > 0, 1)
+			Goto See+1
+			SDRX B 0 A_Jump(16, "Missile")
+			Goto See+1
+		DashySlasher:
+			SDRX B 2 A_Chase
+			SDRX BBCCCDDDEEE 2 A_FastChase
+			goto see
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(2500, "MissileDecider")
+			goto see
+		MissileDecider:
+			TNT1 A 0 A_Jump(256, "see", "LeapAttack")
+		Melee:
+			TNT1 A 0 A_Jump(256, "Standard", "QuickSlash", "LeapAttack")
+		Standard:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 4 A_FaceTarget
+			SDRX F 3 A_ChangeVelocity(15,0,6,CVF_RELATIVE)
+			SDRX G 5 A_CustomMeleeAttack((15), "baron/melee","D3Wraith/Attack")
+			Goto See
+		QuickSlash:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 2 A_FaceTarget
+			SDRX F 2 A_ChangeVelocity(15,0,6,CVF_RELATIVE)
+			SDRX G 3 A_CustomMeleeAttack((15), "baron/melee","D3Wraith/Attack")
+			Goto See
+		LeapAttack:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 6 A_FaceTarget
+			SDRX B 0 A_PlaySound("Slasher/sight")
+			SDRX CD 3 A_ChangeVelocity(15,0,6,CVF_RELATIVE)
+			SDRX D 0 ThrustThing(angle*256/360, 3, 1, 0)
+			SDRX D 0 ThrustThingZ(0,2,0,1)
+			SDRX F 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			SDRX A 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			SDRX F 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			Goto See
+		Warp:
+			SDRX A 0 A_SpawnItem("TeleportFog")
+			SDRX A 0 A_ChangeFlag("Invulnerable", 0)
+			SDRX A 0 A_SetShootable
+			SDRX A 0 A_ChangeFlag("NonShootable", 0)
+			SDRX A 0 A_ChangeFlag("Shootable", 1)
+			SDRX A 0 A_ChangeFlag("NoTeleport", 0)
+			SDRX A 0 A_ChangeFlag("NoRadiusDMG", 0)
+			SDRX A 0 A_ChangeFlag("DropOff", 0)
+			SDRX A 0 A_TakeInventory("WraithTeleporting", 1)
+			SDRX F 5 A_FaceTarget
+			SDRX G 0 A_PlayWeaponSound("D3Wraith/Attack")
+			SDRX G 8 A_MeleeAttack
+			Goto See
+		Missile:
+			TNT1 A 0 A_Jump(256, "TeleportOrSee", "LeapAttack")
+		TeleportOrSee:
+			SDRX A 0 A_JumpIfCloser(128, 2)
+			SDRX A 0 A_JumpIfCloser(1024, 2)
+			SDRX A 0
+			Goto See
+			SDRX A 0 A_Jump(128, "Teleport", "LeapAttack")
+			Goto See
+		Teleport:
+			SDRX AAA 6 A_FaceTarget
+			TNT1 A 0 A_GiveInventory("WraithTeleporting", 1)
+			TNT1 A 0 A_SpawnItem("TeleportFog")
+			TNT1 A 0 A_ChangeFlag("Invulnerable", 1)
+			TNT1 A 0 A_ChangeFlag("NonShootable", 1)
+			TNT1 A 0 A_ChangeFlag("NoTeleport", 1)
+			TNT1 A 0 A_ChangeFlag("NoRadiusDMG", 1)
+			TNT1 A 0 A_ChangeFlag("DropOff", 1)
+			TNT1 A 0 A_UnSetShootable
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(1, 0, 0, 0)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(1, 0, 0, 0)
+			TNT1 A 1 A_ExtChase(1, 0, 0, 0)
+			SDRX A 0 A_SpawnItem("TeleportFog")
+			SDRX A 0 A_ChangeFlag("Invulnerable", 0)
+			SDRX A 0 A_SetShootable
+			SDRX A 0 A_ChangeFlag("NonShootable", 0)
+			SDRX A 0 A_ChangeFlag("Shootable", 1)
+			SDRX A 0 A_ChangeFlag("NoTeleport", 0)
+			SDRX A 0 A_ChangeFlag("NoRadiusDMG", 0)
+			SDRX A 0 A_ChangeFlag("DropOff", 0)
+			SDRX A 0 A_TakeInventory("WraithTeleporting", 1)
+			SDRX AA 6 A_FaceTarget
+			Goto See
+		Pain:
+			SDRX A 4
+			SDRX A 4 A_Pain
+			TNT1 A 0 A_Jump(60, "LeapAttack")
+			Goto See
+		Death:
+			TNT1 A 0 a_spawnitemex ("DemonModItemDropper",0,0,35)
+			SDRX H 8
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2")
+			TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			SDRX I 8 A_Scream
+			SDRX J 6
+			SDRX K 6 A_NoBlocking
+			SDRX L -1
+			Stop
+		XDeath:
+			TNT1 A 0 a_spawnitemex ("DemonModItemDropper",0,0,35)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+			TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+			TNT1 A 0 A_Scream
+			TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			XMED A 0 A_NoBlocking
+			XMED B 5
+			XMED C 5 
+			XMED D 5 
+			XMED E -1
+			stop
+		Raise:
+			TROO LKJIH 8
+			Goto See
+	}
+}
+
+actor GhostlySlasher : Slasher
+{
+	RenderStyle Shadow
+}
+
+Actor SlasherAltRed : Slasher
+{
+	Health 160
+	speed 15
+	+FASTMELEE
+	+MissileMore
+	Translation "112:127=16:47", "9:9=44:44"
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	States
+	{
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(2500, "MissileDecider")
+			goto see
+		MissileDecider:
+			TNT1 A 0 A_Jump(256, "see", "HighLeapAttack")
+		Melee:
+			TNT1 A 0 A_Jump(256, "Standard", "LeapAttack", "HighLeapAttack", "HighJump","Standard")
+		Standard:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 4 A_FaceTarget
+			SDRX F 3 A_ChangeVelocity(15,0,6,CVF_RELATIVE)
+			SDRX G 5 A_CustomMeleeAttack((15), "baron/melee","D3Wraith/Attack")
+			Goto See
+		QuickSlash:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 2 A_FaceTarget
+			SDRX F 2 A_ChangeVelocity(15,0,6,CVF_RELATIVE)
+			SDRX G 3 A_CustomMeleeAttack((15), "baron/melee","D3Wraith/Attack")
+			Goto See
+		HighJump:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 6 A_FaceTarget
+			SDRX A 0 A_PlaySound("Slasher/Sight")
+			SDRX B 5 A_ChangeVelocity(8,0,10,CVF_RELATIVE)
+			SDRX B 0 A_Spawnitemex("SlasherAltRedTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX B 0 ThrustThing(angle*256/360, 0, 0, 0)
+			SDRX C 0 A_Recoil(-2)
+			SDRX D 4 A_PlaySound("D3Wraith/Attack")
+			SDRX A 1 A_FaceTarget
+			SDRX F 2 A_CustomMeleeAttack((5), "baron/melee","D3Wraith/Attack")
+			SDRX A 2 A_CustomMeleeAttack((5), "baron/melee","D3Wraith/Attack")
+			SDRX F 2 A_CustomMeleeAttack((5), "baron/melee","D3Wraith/Attack")
+			Goto See
+		LeapAttack:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 6 A_FaceTarget
+			SDRX B 0 A_PlaySound("Slasher/sight")
+			SDRX CD 3 A_ChangeVelocity(15,0,16,CVF_RELATIVE)
+			SDRX D 0 ThrustThing(angle*256/360, 3, 1, 0)
+			SDRX D 0 ThrustThingZ(0,2,0,1)
+			SDRX F 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			SDRX A 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			SDRX F 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			Goto See
+		HighLeapAttack:
+			SDRX A 0 A_JumpIfInventory("WraithTeleporting", 1, "Warp")
+			SDRX A 6 A_FaceTarget
+			SDRX B 0 A_PlaySound("Slasher/sight")
+			SDRX CD 3 A_ChangeVelocity(14,0,6,CVF_RELATIVE)
+			SDRX D 0 ThrustThing(angle*256/360, 3, 1, 0)
+			SDRX D 0 ThrustThingZ(0,2,0,1)
+			SDRX D 0 A_Recoil(-2)
+			SDRX F 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			SDRX A 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			SDRX F 2 A_CustomMeleeAttack((7), "baron/melee","D3Wraith/Attack")
+			Goto See
+		Warp:
+			SDRX A 0 A_SpawnItem("TeleportFog")
+			SDRX A 0 A_ChangeFlag("Invulnerable", 0)
+			SDRX A 0 A_SetShootable
+			SDRX A 0 A_ChangeFlag("NonShootable", 0)
+			SDRX A 0 A_ChangeFlag("Shootable", 1)
+			SDRX A 0 A_ChangeFlag("NoTeleport", 0)
+			SDRX A 0 A_ChangeFlag("NoRadiusDMG", 0)
+			SDRX A 0 A_ChangeFlag("DropOff", 0)
+			SDRX A 0 A_TakeInventory("WraithTeleporting", 1)
+			SDRX F 5 A_FaceTarget
+			SDRX G 0 A_PlayWeaponSound("D3Wraith/Attack")
+			SDRX G 8 A_MeleeAttack
+			Goto See
+	}
+
+}
+
+Actor SlasherAltBlue : SlasherAltRed
+{
+	Health 170
+	speed 17
+	+FASTMELEE
+	+MissileMore
+	Translation "112:127=193:201", "9:9=199:199", "6:6=245:245"
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	DropItem "MicroMedPackDropChecker", 128 
+	States
+	{
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(2500, "MissileDecider")
+			goto see
+		MissileDecider:
+			TNT1 A 0 A_Jump(256, "see", "RushNSlash")
+		Melee: 
+			TNT1 A 0 A_Jump(256,  "Standard", "QuickSlash", "RushNSlash", "RushNSlash", "LeapAttack", "HighLeapAttack")
+		RushNSlash:
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-2)
+			SDRX AAAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase ("Melee", "")
+			SDRX FAF 0 A_CustomMeleeAttack((3), "baron/melee","D3Wraith/Attack")
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-2)
+			SDRX AAAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3))
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3))
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3), "baron/melee","D3Wraith/Attack")
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3))
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3))
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3), "baron/melee","D3Wraith/Attack")
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3))
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 0 A_CustomMeleeAttack((3))
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			TNT1 A 0 A_PlaySound ("demonstep/demonwalk1", 1.0, 1, 0, 2.5)
+			TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0)
+			TNT1 A 0 A_Recoil(-1)
+			SDRX AAAA 0 A_Spawnitemex("SlasherAltBlueTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			SDRX A 1 fast A_Chase
+			SDRX FAF 2 A_CustomMeleeAttack((3), "baron/melee","D3Wraith/Attack")
+			SDRX E 0 A_ChangeVelocity(10,0,0,CVF_RELATIVE)
+			TNT1 A 0 A_facetarget
+			Goto See
+	
+	}
+
+}
+
+Actor WraithTeleporting : Inventory
+{
+	Inventory.MaxAmount 1
+}

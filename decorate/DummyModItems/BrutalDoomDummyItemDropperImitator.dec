@@ -1,0 +1,56 @@
+//test
+
+actor GrenadeAmmorate15 : RandomSpawner
+{
+	dropitem "GrenadeAmmo", 15
+}
+
+actor Clip1Rate128 : RandomSpawner
+{
+	dropitem "Clip1", 128
+}
+
+actor PistolSpawnerRate128 : RandomSpawner
+{
+	dropitem "PistolSpawner", 128
+}
+
+actor RifleDropRate128 : RandomSpawner
+{
+	dropitem "RifleDrop", 128
+}
+
+actor BerserkerRate5 : RandomSpawner
+{
+	dropitem "Berserker", 5
+}
+
+actor DemonStrengthRuneRate2 : RandomSpawner
+{
+	dropitem "DemonStrengthRune", 2
+}
+
+actor DemonStrengthRuneRate3 : RandomSpawner
+{
+	dropitem "DemonStrengthRune", 3
+}
+
+actor DemonStrengthRuneRate5 : RandomSpawner
+{
+	dropitem "DemonStrengthRune", 5
+}
+
+actor SuperBlurSphereRate12 : RandomSpawner
+{
+	dropitem "SuperBlurSphere", 12
+}
+
+actor RevCannonRate128 : RandomSpawner
+{
+	dropitem "HellishMissileLauncher", 128
+}
+
+actor FatFlameCannonRate128 : RandomSpawner
+{
+	dropitem "XDeathMancubusArm", 128
+}

@@ -1,0 +1,93 @@
+/*
+These exist purely because certain mods change literally only the human monsters
+and none of the other monsters, and it's just to drop a weapon.
+
+Generally, the only one that actually NEEDS this is the ChaingunGuy replacements
+since they usually drop a 2nd chaingun slot weapon.
+
+The other ones are there mainly to toggle from weapon drops to ammo drops or
+nothing if you like that.
+*/
+
+Actor ZombiemanItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseZombiemanWeaponDropCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnNormal:
+		TNT1 A 0 A_SpawnItemEx("clip", 0, 7, 0)
+		Stop
+	SpawnEquivalentAmmo:
+		TNT1 A 0 A_SpawnItemEx("clip", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	SpawnUniqueModItem:
+		TNT1 A 0 //A_SpawnItemEx("", 0, 7, 0)
+		Stop
+	
+	}
+}
+
+Actor ShotgunGuyItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseShotgunGuyWeaponDropCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnNormal:
+		TNT1 A 0 A_SpawnItemEx("Shotgun", 0, 7, 0)
+		Stop
+	SpawnEquivalentAmmo:
+		TNT1 A 0 A_SpawnItemEx("Shell", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	SpawnUniqueModItem:
+		TNT1 A 0 //A_SpawnItemEx("", 0, 7, 0)
+		Stop
+	
+	}
+}
+
+Actor ChainGunGuyItemDropper
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 ACS_NamedExecuteAlways("ChooseChainGunGuyDropCheck",0)
+		TNT1 A 1 A_Jump(256,"Checking")
+	Checking:
+		TNT1 A 1
+		loop
+	SpawnNormal:
+		TNT1 A 0 A_SpawnItemEx("Chaingun", 0, 7, 0)
+		Stop
+	SpawnEquivalentAmmo:
+		TNT1 A 0 A_SpawnItemEx("clip", 0, 7, 0)
+		TNT1 A 0 A_SpawnItemEx("clip", 0, 7, 0)
+		Stop
+	SpawnNothing:
+		TNT1 A -1
+		Stop
+	SpawnUniqueModItem:
+		// Insert drops for Trailblazers lead spitters, and wildweasel's uh, 
+		// smg? I dunno I forget.
+		TNT1 A 0 //A_SpawnItemEx("", 0, 7, 0)
+		Stop
+	}
+}

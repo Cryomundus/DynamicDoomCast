@@ -1,0 +1,655 @@
+ACTOR BlizzardWizard : Archvile //32725
+{
+  OBITUARY "%o was blown away by a tornado demon"
+  Health 800
+  Radius 20
+  Height 56
+  Mass 500
+  Speed 20
+  RENDERSTYLE add
+  Bloodcolor blue
+  Alpha 0.50
+  PainChance 10
+  SEESOUND "tornado/see"
+  PAINSOUND "tornado/pain"
+  DEATHSOUND "tornado/death"
+  ACTIVESOUND "tornado/active"
+  DropItem "MiniMedPackDropChecker", 44, 2
+  DropItem "MiniMedPackDropChecker", 44, 2
+  DropItem "MiniMedPackDropChecker", 44, 2
+  DropItem "MiniAmmoPackDropChecker" 
+  DropItem "MiniAmmoPackDropChecker", 88
+  DropItem "MiniAmmoPackDropChecker", 88
+  DropItem "MiniArmorSphereDropChecker", 88
+  DropItem "MiniHealthSphereDropChecker", 88
+  //Bloodcolor "85 85 85"
+  MONSTER
+  DamageFactor "Extinguishing", 3.0
+  Damagefactor "MonsterBeatEmUp", 7.4
+  Species "Reviled"
+  -THRUSPECIES
+  +DONTHARMSPECIES
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  +FLOORCLIP
+  +NOTARGET
+  states
+  {
+  Spawn:
+    LMWZ E 10 A_Look
+    Loop
+  See:
+	LMWZ E 0 A_Jump(128,"Dashy")
+	LMWZ EEFFEEFF 2 A_VileChase
+	LMWZ EEFFEEFF 2 A_Chase
+	Loop
+  Dashy:
+	LMWZ E 0 A_Jump(128,"See")
+    LMWZ EEFFEEFF 2 A_VileChase
+	LMWZ EEFFEEFF 2 A_FastChase
+    //LMWZ A 0 A_Jump(32,1)
+    Loop
+  THEWIZARDSBLIZZARD:
+    LMWZ EFG 5 A_Changeflag(PAINLESS,TRUE)    
+	//LMWZ H 1 A_SetTranslucent(0.90)
+	//LMWZ H 1 A_SetTranslucent(0.80)
+	//LMWZ H 1 A_SetTranslucent(0.70)
+	//LMWZ H 1 A_SetTranslucent(0.60)
+	//LMWZ H 1 A_SetTranslucent(0.50)
+	FX07 ABC 2 
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander   
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander  
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 ABC 2 A_Wander
+	FX07 A 1 A_PlaySound("tornado/form")
+	FX07 A 0 A_CustomMissile("KnockbackTornado",32,0,0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	FX07 A 0 A_CustomMissile("IceBall",Random(16,64),Random(-32,32),Random(0,360),0,0)
+	SPIN ABCDEFGHABCDEFGHABCDEFGHABCDEFGH 1
+	SPIN A 0 A_Changeflag(PAINLESS,FALSE)
+        Goto See
+  Missile:  
+    LMWZ E 0 A_Jump(256,"ToWindOrToNotWind","WizardIceBlast","IceShotA","IceShotB")
+	//LMWZ E 0 BRIGHT A_PlaySound("tornado/form")
+    //LMWZ EFG 10 BRIGHT A_FaceTarget
+    //LMWZ H 8 BRIGHT
+    //LMWZ IJKLMN 8 BRIGHT A_FaceTarget
+  ToWindOrToNotWind:
+    LMWZ E 0 A_Jump(55,"THEWIZARDSBLIZZARD")
+	LMWZ E 0 A_Jump(256,"WizardIceBlast","IceShotA","IceShotB")
+  WizardIceBlast:
+	LMWZ E 0 BRIGHT A_VileStart
+	LMWZ E 10 BRIGHT A_FaceTarget 
+	LMWZ F 5 A_VileTarget("TornadoBlast") 
+    LMWZ E 3 BRIGHT A_FaceTarget
+	LMWZ F 5 A_VileTarget("TornadoBlast") 
+    LMWZ E 3 BRIGHT A_FaceTarget 
+    LMWZ E 3 BRIGHT A_FaceTarget
+	LMWZ F 5 A_VileTarget("TornadoBlast") 
+    LMWZ E 3 A_FaceTarget
+    LMWZ E 3 BRIGHT A_FaceTarget
+	LMWZ F 5 A_VileTarget("TornadoBlast") 
+    LMWZ E 3 BRIGHT A_FaceTarget
+	LMWZ F 0 A_JumpIfTargetInLOS("HealSelfAndBlast") //If target is visible, heal yourself
+    LMWZ F 0 A_Jump(256,"FailHealBlast") //Otherwise don't heal yourself
+    //LMWZ EEFFEEFF 0 HealThing(200)
+	//LMWZ H 3 BRIGHT A_VileAttack
+	//LMWZ A 3 BRIGHT
+    Goto See
+  HealSelfAndBlast:
+	LMWZ F 0 HealThing(200)
+	LMWZ H 3 BRIGHT A_VileAttack("vile/stop",(25),(25))
+	LMWZ A 3 BRIGHT
+    Goto See
+  FailHealBlast:
+  //LMWZ EEFFEEFF 0 HealThing(200)
+	LMWZ H 3 BRIGHT A_VileAttack("vile/stop",(25),(25))
+	LMWZ A 3 BRIGHT
+    Goto See
+	/*LMWZ EEFFEEFF 5 Bright A_VileStart
+    LMWZ EEFFEEFF 15 Bright A_FaceTarget
+	////////////////////////////////////////////////
+    LMWZ EEFFEEFF 15 Bright A_VileTarget("TornadoBlast")//?
+	////////////////////////////////////////////////
+    LMWZ EEFFEEFF 10 Bright A_FaceTarget
+    LMWZ H 15 Bright A_VileAttack
+    LMWZ A 20 Bright*/
+    //Goto See
+  IceShotA:
+    LMWZ H 0 A_PlaySound("wind/away")
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0) 
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0)
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0)
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0)
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0) 
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0)
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0)
+    LMWZ H 0 A_CustomMissile("IceBall",Random(16,64),Random(-64,64),Random(45,-45),0,0)
+    //LMWZ EFGH 8 BRIGHT A_CustomMissile("WindyDisaster",32,0,0,0)
+    LMWZ E 20 BRIGHT
+    Goto See
+  IceShotB:
+    LMWZ E 1 A_PlaySound("wind/away")
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_SpawnItemEx("IceBall",Random(-32,32),0,Random(16,64),3,0,0,Random(0,360),128)
+	LMWZ E 0 A_Changeflag(PAINLESS,FALSE)
+    //LMWZ E 1 A_SetTranslucent(0.50)
+    //LMWZ E 1 A_SetTranslucent(0.40)
+    //LMWZ E 1 A_SetTranslucent(0.30)
+    //LMWZ E 1 A_SetTranslucent(0.20)
+    //LMWZ E 1 A_SetTranslucent(0.10)
+    //NULL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+    //NULL A 0 A_Jump(128,25)
+    //NULL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(0,0,1,1)
+    //LMWZ E 1 A_SetTranslucent(0.10)
+    //LMWZ E 1 A_SetTranslucent(0.20)
+    //LMWZ E 1 A_SetTranslucent(0.30)
+    //LMWZ E 1 A_SetTranslucent(0.40)
+    //LMWZ E 1 A_SetTranslucent(0.50)
+    LMWZ E 0 A_SetShootable
+    LMWZ E 1 A_PlaySound("wind/away")
+	Goto See
+	Heal:
+		LMWZ H 10 Bright
+		Goto See
+	Pain:
+		LMWZ I 3
+		LMWZ I 5 A_Pain
+		TNT1 A 0 a_playsound ("monsters/bighurt",0)
+		//LMWZ I 0 A_PlaySound ("wizard/tele")
+		Goto See
+	Death:
+		TNT1 A 0 a_spawnitemex ("ArchvileModItemDropper",0,0,35)
+		LMWZ J 6 A_Scream
+		LMWZ K 6 A_NoBlocking
+		LMWZ LMNO 6 
+		LMWZ P -1
+		Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("ArchvileModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XMED A 5 A_Stop
+		XMED B 5
+		XMED C 5 A_BossDeath  
+		XMED D 5 A_NoBlocking
+		XMED E 5
+		TNT1 A 0 
+		XMED E -1
+		Stop
+  }
+}
+
+ACTOR KnockbackTornado
+{
+  Height 4
+  Speed 50
+  Radius 50 
+  Height 16
+  PROJECTILE
+  +Randomize 
+  states
+  {
+  Spawn:
+    NULL ABCDEFGHIJK 1 A_RadiusThrust(128,255,0)
+    Stop
+  }
+}
+
+ACTOR TornadoBlast
+{
+  RenderStyle Add
+  Alpha 1
+  +NOBLOCKMAP 
+  +NOGRAVITY
+  states
+  {
+  Spawn:
+    FX07 ABC 2 Bright A_StartFire
+    FX07 ABC 2 Bright A_Fire
+    FX07 ABC 2 Bright A_FireCrackle
+    FX07 ABC 2 Bright A_Fire
+    FX07 ABC 2 Bright A_FireCrackle
+    FX07 ABC 2 Bright A_Fire
+    Stop
+  }
+}
+
+
+ACTOR WindyDisaster
+{
+  Height 4
+  Speed 50
+  Radius 50 
+  Height 16
+  PROJECTILE
+  +Randomize 
+  states
+  {
+  Spawn:  
+    NULL A 0 A_PlaySound("wind/away")
+	NULL AAAAAAAAAAAAAAAAAA 0 A_RadiusThrust(128,255,0) 
+	NULL A 10
+    Stop
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+actor IceBall
+{
+  spawnid 177
+  radius 6
+  height 8
+  speed 18
+  damage (3)
+  renderstyle Add
+  seesound "baron/attack"
+  deathsound "eltimp/explode"
+  PROJECTILE
+  +NOGRAVITY
+  +RANDOMIZE
+  Decal BaronScorch
+  states
+  {
+  Spawn:
+    LMBW AB 4 bright
+    loop
+  Death:
+    LMBW CDE 6 bright
+    stop
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+/*
+
+ACTOR IceBall
+{
+  Radius 8
+  Height 16
+  Speed 15 
+  Damage 4
+  PROJECTILE
+  +Randomize
+  +NoGravity
+  +Float
+  states
+  {
+  Spawn:
+    LEF1 ABCDEFGHI 4 BRIGHT
+	LEF1 ABCDEFGHI 4 BRIGHT
+	LEF1 ABCDEFGHI 4 BRIGHT
+	LEF1 ABCDEFGHI 4 BRIGHT
+	LEF1 ABCDEFGHI 4 BRIGHT
+    Goto death
+  Death:
+    LEF1 A 1 BRIGHT
+    Stop
+  }
+}
+
+ACTOR IceBall
+{
+  Radius 6
+  Height 16
+  Speed 3
+  PROJECTILE
+  +Randomize
+  -NoGravity
+  +Float
+  states
+  {
+  Spawn:
+    LEF2 ABCDEFGHI 4 BRIGHT
+	LEF2 ABCDEFGHI 4 BRIGHT
+	LEF2 ABCDEFGHI 4 BRIGHT
+	LEF2 ABCDEFGHI 4 BRIGHT
+	LEF2 ABCDEFGHI 4 BRIGHT
+    Goto death
+  Death:
+    LEF2 A 1 BRIGHT
+    Stop
+  }
+}
+
+ACTOR IceBall : LoreShot
+{
+  Radius 8
+  Height 16
+  Speed 15
+  Damage 1
+  PROJECTILE
+  +Randomize
+  +NoGravity
+  +Float
+  states
+  {
+  Spawn:
+    LEF1 ABCDEFGHI 1 BRIGHT
+	LEF1 ABCDEFGHI 1 BRIGHT
+	LEF1 ABCDEFGHI 1 BRIGHT
+	LEF1 ABCDEFGHI 1 BRIGHT
+	LEF1 ABCDEFGHI 1 BRIGHT
+    Goto death
+  Death:
+    LEF1 A 1 BRIGHT
+    Stop
+  }
+}   
+

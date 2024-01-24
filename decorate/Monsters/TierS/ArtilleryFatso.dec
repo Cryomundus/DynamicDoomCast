@@ -1,0 +1,214 @@
+//Mostly inspired to DeVloek Volacubi one - Thankx to MagicWazard for suggestions!
+
+//needs : Fatso replaces Fatso version for eventual special tier
+
+ACTOR ArtilleryFatso : Fatso //Replaces Fatso
+	{
+	
+	Radius 48
+	Height 64
+	//Radius 72
+	//Height 88
+	Health 650
+	Mass 600
+	Speed 25
+	+NOBLOCKMONST
+	+FLOAT
+	//+FLOATBOB
+	//+FLOORCLIP
+	+NOGRAVITY
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOINFIGHTING
+	+BOSSDEATH
+	+DONTHURTSPECIES
+	species "Fats"
+	+DONTHARMSPECIES
+	-THRUSPECIES
+	DamageFactor "Scrapper", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	SEESOUND "UNMNROAM"
+	PAINSOUND "UNMNPAIN"
+	DEATHSOUND "UNMNDYIN"
+	Obituary "%o was reduced to pudding by an ArtilleryFatso"
+	DropItem "MiniMedikitSphereDropChecker", 128
+	DropItem "MediumMedPackDropChecker", 128
+	DropItem "MiniMedPackDropChecker", 128
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MiniHealthSphereDropChecker", 128
+	dropitem "MiniAmmoPackDropChecker" 128
+	dropitem "MiniArmorSphereDropChecker" 128
+	dropitem "PBFlameCannonChanceDropper" 128
+	dropitem "PBFlameCannonChanceDropper" 128
+	DropItem "MagicrodSpawner", 45
+	States
+		{
+		Spawn:
+			UNMB AABB 8 A_Look
+			Loop
+		See:
+			UNMB AAAABBBB 4 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_Jump(256,"StandardBarrage","FatsoComboAttack","RadialBlast")
+		StandardBarrage:
+			UNMB C 5 A_FatRaise
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack2("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB C 5 A_FatRaise
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack2("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB C 5 A_FatRaise
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack2("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB C 5 A_FatRaise
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT A_FatAttack2("BigOleFireball")
+			UNMB CD 3
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 7 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB CD 5 A_FaceTarget
+			Goto See
+		RadialBlast:
+			UNMB C 10 A_FatRaise
+			UNMB CD 10 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-5)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,5)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-10)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,10)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-20)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,20)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-30)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,30)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-40)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,40)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-50)
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-5)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,5)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-10)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,10)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-20)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,20)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-30)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,30)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-40)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,40)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-50)
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-5)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,5)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-10)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,10)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-20)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,20)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-30)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,30)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-40)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,40)
+			UNMB E 0 A_CustomMissile ("BigOleFireball",20,0,-50)
+			UNMB CD 5 A_FaceTarget
+			Goto See
+		FatsoComboAttack:
+			UNMB C 10 A_FatRaise
+			UNMB CD 10 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB E 0 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB E 0 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB E 0 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB E 0 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 BRIGHT A_FatAttack1("BigOleFireball")
+			UNMB E 0 BRIGHT A_FatAttack3("BigOleFireball")
+			UNMB CD 10 A_FaceTarget
+			Goto See
+		Pain:
+			UNMB F 4
+			UNMB F 4 A_Pain
+			TNT1 A 0 a_playsound ("monsters/bighurt",0)
+			Goto See
+		Death:
+			TNT1 A 0 a_spawnitemex ("FatsoModItemDropper",0,0,35)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_PlaySound("MainGore/MonGoBoom")
+
+			TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
+			UNMB G 7 A_SetFloorClip
+			UNMB H 6 A_Scream
+			UNMB I 6 A_NoBlocking
+			UNMB JKLM 5 A_UnsetSolid
+			UNMB N -1 A_BossDeath
+			Stop
+		XDeath:
+			TNT1 A 0 a_spawnitemex ("FatsoModItemDropper",0,0,35)
+			TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
+			UNMB G 7 A_SetFloorClip
+			UNMB H 6 
+			UNMB I 6 A_NoBlocking
+			UNMB JKLM 5 A_UnsetSolid
+			UNMB N -1 A_BossDeath
+			Stop
+		Raise:
+			UNMB N 6 A_UnSetFloorClip
+			UNMB MLKJIHG 6 A_SetSolid
+			TNT1 A 0 A_ChangeFlag(FLOATBOB, 1)
+			Goto See
+	}
+}
+

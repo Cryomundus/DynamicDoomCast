@@ -1,0 +1,160 @@
+ACTOR SpiritBandit //12338
+{ 
+
+  Health 550
+  PainChance 25
+  Speed 11
+  Height 55
+  Mass 75
+  Monster
+  RENDERSTYLE Add
+  Species "Pained"
+  -THRUSPECIES
+  +NOGRAVITY
+  +DROPOFF
+  +FLOAT
+  +FLOORCLIP
+  +TELESTOMP
+  +FLOATBOB
+  +DONTHARMSPECIES
+  DamageFactor "Antiair", 3.0
+  Damagefactor "MonsterBeatEmUp", 7.4
+  SeeSound "RotWraith/Sight"
+  PainSound "RotWraith/Pain"
+  DeathSound "RotWraith/Death"
+  ActiveSound "RotWraith/Active"
+  
+  DropItem "MediumMedPackDropChecker", 88, 2
+  DropItem "MiniAmmoPackDropChecker", 88, 2 
+  DropItem "MiniArmorSphereDropChecker", 88, 2
+  DropItem "MiniHealthSphereDropChecker", 88, 2
+  Speed 8
+  Obituary "%o was plagued by a RotWraith."
+
+  States
+  {
+  Spawn:
+    FARG AB 15 A_Look
+    Loop
+  See:
+    FARG AABBCCDD 2 A_Chase
+	TNT1 A 0 A_jumpifcloser(100,"SingleBlade")//to let players do the old "stand in front of PE and he can't do shit" trick
+    Loop
+  Pain:
+    FARG A 2
+    FARG H 6 A_Pain
+    TNT1 A 0 a_playsound ("monsters/midhurt",0)
+	Goto See
+  //Melee:
+  Missile:
+	TNT1 A 0 A_Jump(256,"FartShot","SingleBlade","DualBlade")
+  FartShot:
+    FARG E 6 A_FaceTarget
+    FARG F 6
+    FARG G 6 A_CustomMissile("FartBall", 32, 0)
+    Goto See
+  SingleBlade:
+    FARG E 6 A_FaceTarget
+    FARG F 6
+    FARG G 6 A_PainAttack("SpiritBlade")
+    Goto See
+  DualBlade:
+    FARG E 6 A_FaceTarget
+    FARG F 6
+    FARG G 6 A_DualPainAttack("SpiritBlade")
+    Goto See
+  Death:
+	TNT1 A 0 a_spawnitemex ("PainElementalModItemDropper",0,0,35)
+    FARG I 4 A_ChangeFlag("FLOATBOB", 0)
+    FARG J 4 A_Scream
+    FARG KL 4
+    FARG M 4 A_NoBlocking
+    FARG N 4
+    FARG O 4 A_PainDie("LSoulSpawner")
+    FARG PQ 5
+    FARG R -1
+    Stop
+  XDeath:
+	TNT1 A 0 a_spawnitemex ("PainElementalModItemDropper",0,0,35)
+    FARX A 5 A_ChangeFlag("FLOATBOB", 0)
+    FARX B 5 A_Scream
+    FARX CD 5
+    FARX E 5 A_NoBlocking
+    FARX F 5 A_PainDie("LSoulSpawner")
+    FARX G 5
+    FARX H -1
+    Stop
+  Ice:
+    FARX I 5 A_FreezeDeath
+    FARX I 1 A_FreezeDeathChunks
+    Wait
+  }
+}
+
+actor GreenFartCloud
+{
+  radius 2
+  height 2
+  renderstyle Translucent
+  DamageType "MonsterBeatEmUp"
+  +NOINTERACTION
+  Poisondamage 4
+  states
+  {
+  Spawn:
+    FUGS ABCDE 3
+  Fade:
+    FUGS ABCDE 3 A_FadeOut (0.05)
+    loop
+  }
+}
+
+actor FartBallFX
+{
+  radius 2
+  height 2
+  renderstyle Add
+  Scale 0.25
+  +NOINTERACTION
+  states
+  {
+  Spawn:
+    CSSF DE 4 A_FadeOut (0.2)
+    loop
+  }
+}
+
+ACTOR FartBall
+{
+  Speed 15
+  Radius 8
+  Height 8
+  Damage (5)
+  DamageType "MonsterBeatEmUp"
+  Projectile
+  RenderStyle Add
+  SeeSound "RotWraith/Attack"
+  DeathSound "RotWraith/Explode"
+  States
+  {
+  Spawn:
+    CSSF DDDDEEEE 1 Bright A_SpawnItemEx ("FartBallFX", 0, random (-3, 3), random (-3, 3), 0, 0, 0, 0, 160) 
+    Loop
+  Death:
+    CSSF F 4 Bright
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("GreenFartCloud", random (-64, 64), random (-64, 64), random (-48, 48), 0, 0, 0.5, 0, 160) 
+    TNT1 AAAAA 0 A_SpawnItemEx ("GreenFartCloud", random (-80, 80), random (-80, 80), random (-48, 64), 0, 0, 0.5, 0, 160)
+    CSSF GHI 4 Bright
+    TNT1 AAAAAAAAAA 5 A_Explode((2), 80, 0, 0, 80)
+    Stop
+  }
+}
+
+
+
+
+
+
+
+
+

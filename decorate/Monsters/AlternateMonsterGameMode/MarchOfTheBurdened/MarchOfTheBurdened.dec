@@ -1,0 +1,3022 @@
+//BasicZombieman
+//Tier 1
+ACTOR  MOTBBasicZombieman : BasicZombieman
+{
+health 30
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(20, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR  MOTBBasicZombiemanAltGreen : BasicZombiemanAltGreen
+{
+health 40
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(30, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR  MOTBBasicZombiemanAltBlue : BasicZombiemanAltBlue
+{
+health 50
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(40, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 2 
+ACTOR MOTBTrooperZombieman : TrooperZombieman
+{
+Health 45
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(35, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBTrooperZombiemanAltGreen : TrooperZombiemanAltGreen
+{
+Health 55
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(45, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBTrooperZombiemanAltRed : TrooperZombiemanAltRed
+{
+Health 65
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(55, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 3
+Actor MOTBEliteZombieman : EliteZombieman //: Rebel 238
+{
+Health 55
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(45, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBEliteZombiemanAltRed : EliteZombiemanAltRed //: Rebel 238
+{
+Health 65
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(55, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBEliteZombiemanAltGreen : EliteZombiemanAltGreen //: Rebel 238
+{
+Health 75
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(65, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier S
+Actor MOTBPulseGunZombie : PulseGunZombie 
+{
+Health 75
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(65, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//ShotGunner
+//Tier 1
+Actor MOTBShotGunner : ShotGunner
+{
+health 45
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(35, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+Actor MOTBShotGunnerAltGreen : ShotGunnerAltGreen
+{
+health 55
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(45, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+Actor MOTBShotGunnerAltBlue : ShotGunnerAltBlue
+{
+health 65
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(55, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 2
+ACTOR MOTBSSGZombie : SSGZombie
+{
+Health 55
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(45, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBSSGZombieAltYellow : SSGZombieAltYellow
+{
+Health 65
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(55, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+ACTOR MOTBSSGZombieAltGrey : SSGZombieAltGrey
+{
+Health 75
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(65, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier3
+ACTOR MOTBAutoShotGunner : AutoShotGunner
+{
+Health 85
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(75, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBAutoShotGunnerAltGreen : AutoShotGunnerAltGreen
+{
+Health 95
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(85, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+ACTOR MOTBAutoShotGunnerAltBlue : AutoShotGunnerAltBlue
+{
+Health 105
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(95, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBBladeGunner : BladeGunner
+{
+Health 100
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(90, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//ChainGunner
+//Tier 1
+ACTOR MOTBChainGunner : ChainGunner
+{
+Health 70
+States
+	{
+	Pain:
+		StandardDrop:
+				"####" "#" 0 A_JumpIfHealthLower(60, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBChainGunnerAltBlue : ChainGunnerAltBlue
+{
+Health 80
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(70, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBChainGunnerAltGreen : ChainGunnerAltGreen
+{
+Health 90
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(80, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+
+Actor MOTBChaingunnerMajor : ChaingunnerMajor
+{
+Health 80
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(70, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+Actor MOTBChaingunnerMajorAltGreen : ChaingunnerMajorAltGreen
+{
+Health 90
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(80, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	
+	}
+}
+
+Actor MOTBChaingunnerMajorAltSilver : ChaingunnerMajorAltSilver
+{
+Health 100
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(90, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 3
+Actor MOTBCyborgCommando : CyborgCommando
+{
+Health 90
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(80, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBCyborgCommandoAltGreen : CyborgCommandoAltGreen
+{
+Health 100
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(90, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBCyborgCommandoAltBlue : CyborgCommandoAltBlue
+{
+Health 110
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(100, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBChaosCommando : ChaosCommando
+{
+Health 150
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(140, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//TheDoomImp
+//Tier 1
+ACTOR MOTBTheDoomImp : TheDoomImp
+{
+Health 60
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(50, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBTheDoomImpAltGreen : TheDoomImpAltGreen
+{
+Health 70
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(60, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBTheDoomImpAltBlue : TheDoomImpAltBlue
+{
+Health 80
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(70, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 2 
+actor MOTBBonyImp : BonyImp
+{
+Health 70
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(60, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+actor MOTBBonyImpAltBlue : BonyImpAltBlue 
+{
+Health 80
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(70, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+actor MOTBBonyImpAltGreen : BonyImpAltGreen
+{
+Health 90
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(80, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 3
+Actor MOTBImpGunner : ImpGunner
+{
+Health 80
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(70, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBImpGunnerAltRed : ImpGunnerAltRed
+{
+Health 90
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(80, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBImpGunnerAltBlue: ImpGunnerAltBlue
+{
+Health 100
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(90, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBSpireImp : SpireImp
+{
+Health 115
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(105, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DoomImpBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+
+
+//Pinkie
+//Tier 1
+ACTOR MOTBPinkie : Pinkie
+{
+Health 150
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(140, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBPinkieAltBrown : PinkieAltBrown
+{
+Health 160
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(150, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBPinkieAltDarkGreen : PinkieAltDarkGreen
+{
+Health 170
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(160, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+actor MOTBSlasher : Slasher
+{
+Health 160
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(150, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+actor MOTBSlasherAltRed : SlasherAltRed
+{
+Health 170
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(160, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+actor MOTBSlasherAltBlue : SlasherAltBlue
+{
+Health 180
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(170, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 3
+Actor MOTBBullSpiderMiniSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor MOTBBullSpiderSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor MOTBBullSpiderHordeSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SIXTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SIXTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SEVENTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SEVENTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"EIGHTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	EIGHTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+
+Actor MOTBGhostBullSpiderMiniSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor MOTBGhostBullSpiderSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor MOTBGhostBullSpiderHordeSpawner
+{
+States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 1 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SECONDSPIDER","NOPE")
+		Stop
+	SECONDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"THRIDSPIDER","NOPE")
+		TNT1 A -1 
+		stop 
+	THRIDSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FOURTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FOURTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"FIFTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	FIFTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SIXTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SIXTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"SEVENTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	SEVENTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump (128,"EIGHTHSPIDER","NOPE")
+		TNT1 A -1 
+		stop
+	EIGHTHSPIDER:
+		TNT1 A 0 Bright A_Spawnitemex("MOTBGhostBullSpider",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+Actor MOTBBullSpider : BullSpider
+{
+Health 50
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(40, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBRotfest : Rotfest
+{
+Health 350
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(340, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+
+
+//InvisDemon
+//Tier 1
+ACTOR MOTBInvisDemon : InvisDemon
+{
+Health 150
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(140, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpectreBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 2
+actor MOTBGhostlySlasher : GhostlySlasher
+{
+Health 160
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(150, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpectreBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 3
+Actor MOTBGhostBullSpider : GhostBullSpider
+{
+Health 50
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(40, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpectreBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//TierS
+ACTOR MOTBGhostRotfest : GhostRotfest
+{
+Health 350
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(340, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpectreBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Caco
+//Tier 1
+ACTOR MOTBCaco : Caco
+{
+Health 400
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(380, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBCacoAltGreenBlue : CacoAltGreenBlue
+{
+Health 400
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(380, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBCacoAltBrownDarkGreen : CacoAltBrownDarkGreen
+{
+Health 400
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(380, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+ACTOR MOTBSeere : Seere
+{
+Health 500
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(480, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBSeereAltRed : SeereAltRed
+{
+Health 500
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(480, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBSeereAltSilver : SeereAltSilver
+{
+Health 500
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(480, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 3
+Actor MOTBHelSturm : HelSturm 
+{
+Health 600
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(580, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBHelSturmAltRed : HelSturmAltRed 
+{
+Health 600
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(580, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+Actor MOTBHelSturmAltBlue : HelSturmAltBlue 
+{
+Health 600
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(580, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//TierS
+ACTOR MOTBEternalWatcher : EternalWatcher
+{
+Health 450
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(430, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			"####" "#" 0 A_Jump(128, "BonusSoul")
+			goto "Super::Pain"
+		BonusSoul:
+			"####" "#" 0 A_SpawnItemEx("LostSoulBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+
+//HellKnightAlt
+//Tier 1
+ACTOR MOTBHellKnightAlt : HellKnightAlt
+{
+Health 500
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(480, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+ACTOR MOTBKnightGuard : KnightGuard
+{
+Health 550
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(530, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 3
+ACTOR MOTBHellFireKnight : HellFireKnight
+{
+Health 600
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(580, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//TierS
+ACTOR MOTBLostKnight : LostKnight
+{
+Health 550
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(530, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Baron
+//Tier 1
+ACTOR MOTBBaronOfHellAlt : BaronOfHellAlt
+{
+Health 1000
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(980, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+ACTOR MOTBBaronGuard : BaronGuard
+{
+Health 1100
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(1080, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 3
+ACTOR MOTBHellFireBaron : HellFireBaron
+{
+Health 1200
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(1180, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBLostKing : LostKing
+{
+Health 1150
+States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(1130, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//pain elemental
+//Tier 1
+ACTOR MOTBPainElementalAlt : PainElementalAlt
+{
+Health 450
+	STATES
+	{
+	Missile:
+		PAIN D 5 A_FaceTarget
+		PAIN E 5 A_FaceTarget
+		PAIN F 4 BRIGHT A_FaceTarget
+		PAIN F 1 BRIGHT A_PainAttack("MOTBLSoul")
+		Goto See
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(440, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(200, "ChaoticDrop","StandardDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+ACTOR MOTBTheMaw : TheMaw
+{
+	Health 500
+	STATES
+	{
+	SpawnAGnaw:
+		GREL D 0 A_PlaySound("grell/attack")
+		GREL D 4 A_FaceTarget
+		GREL E 4 Bright A_FaceTarget    
+		GREL F 4 Bright A_PainAttack("MOTBGnaw")//, 32, 0, 0)
+		Goto See
+	SpawnGnaws:
+		//TNT1 A 0 A_Jump(128,"SpawnGnaws")
+		GREL D 0 A_PlaySound("grell/attack")
+		GREL D 4 A_FaceTarget
+		GREL E 4 Bright A_FaceTarget    
+		GREL F 4 Bright A_DualPainAttack("MOTBGnaw")//, 32, 0, 0)
+		Goto See
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(480, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(178, "ChaoticDrop","StandardDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(200, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 3
+ACTOR MOTBSpiritBandit : SpiritBandit
+{
+Health 550
+	STATES
+	{
+	SingleBlade:
+		FARG E 6 A_FaceTarget
+		FARG F 6
+		FARG G 6 A_PainAttack("MOTBSpiritBlade")
+		Goto See
+	DualBlade:
+		FARG E 6 A_FaceTarget
+		FARG F 6
+		FARG G 6 A_DualPainAttack("MOTBSpiritBlade")
+		Goto See
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(530, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(178, "ChaoticDrop","StandardDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(200, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+
+}
+//TierS
+ACTOR MOTBElderWraith : ElderWraith
+{
+Health 575
+	STATES
+	{
+	SpawnABlackBlot:
+		ERWH B 0 A_PlaySound("Blot/Death",CHAN_AUTO, 0.5) 
+		ERWH B 4 A_FaceTarget
+		ERWH C 4 Bright A_FaceTarget    
+		ERWH C 4 Bright A_PainAttack("MOTBBlackBlot")
+		Goto See
+	SpawnBlackBlots:
+		ERWH B 0 A_PlaySound("Blot/Death",CHAN_AUTO, 0.5) 
+		ERWH B 4 A_FaceTarget
+		ERWH C 4 Bright A_FaceTarget    
+		ERWH C 4 Bright A_DualPainAttack("MOTBBlackBlot")
+		Goto See
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(555, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(200, "ChaoticDrop","StandardDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Lost soul
+//Tier 1
+ACTOR MOTBLSoul : LSoul
+{
+ Health 100
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(90, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAlt")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAlt:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+ACTOR MOTBGnaw : Gnaw
+{
+ Health 100
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(90, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAlt")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAlt:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 3
+ACTOR MOTBSpiritBlade : SpiritBlade
+{
+ Health 100
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(90, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAlt")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAlt:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBBlackBlot : BlackBlot
+{
+	Health 25
+	States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(15, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAlt")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAlt:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	Death:
+    TNT1 A 1 A_Stop
+	TNT1 A 0 A_SpawnItemEx ("MOTBYetmoreBlackBlots", -2, random (0, -8), random (-4, 4), 0, random (-2, 2), random (-2, 2), 0, 160)
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-2, 2), random (-2, 2), 0, 160)
+    TNT1 A 1 A_ScreamAndUnblock
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-3, 3), random (-3, 3), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-4, 4), random (-4, 4), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-5, 5), random (-5, 5), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-6, 6), random (-6, 6), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-7, 7), random (-7, 7), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-8, 8), random (-8, 8), 0, 160)
+    TNT1 A 1 A_Stop
+    TNT1 AAAAA 0 A_SpawnItemEx ("BlackBlotSmoke", -2, random (0, -8), random (-4, 4), 0, random (-9, 9), random (-9, 9), 0, 160)
+    stop
+	}
+}
+ACTOR MOTBBlackBlotLast : BlackBlotLast
+{
+Health 25
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(15, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ZombiemanBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAlt")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAlt:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+Actor MOTBYetmoreBlackBlots
+{
+	States
+  {
+	Spawn:
+		TNT1 A 0
+		Goto Death
+	Death:
+		TNT1 A 0 A_Jump (80,"TwoBlackBlots","NOPE")
+		TNT1 A 1 Bright A_Spawnitemex("MOTBBlackBlotLast",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		Stop
+	TwoBlackBlots:
+		TNT1 A 0 A_Jump (128,"ThreeBlackBlots","NOPE")
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBlackBlot",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 1 Bright A_Spawnitemex("MOTBBlackBlotLast",12,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop 
+	ThreeBlackBlots:
+		TNT1 A 0 A_Jump (128,"NOPE")
+		TNT1 A 0 Bright A_Spawnitemex("MOTBBlackBlot",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 1 Bright A_Spawnitemex("MOTBBlackBlotLast",12,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 1 Bright A_Spawnitemex("MOTBBlackBlotLast",-12,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A -1 
+		stop 
+	NOPE:
+		TNT1 A -1
+		stop
+  }
+}
+
+//Mancubus
+//Tier 1
+ACTOR MOTBMancubus : Mancubus
+{
+Health 600
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(590, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+ACTOR MOTBMutantFatso : MutantFatso
+{
+Health 650
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(630, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 3
+ACTOR MOTBRadiantBeast : RadiantBeast
+{
+Health 700
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(680, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBArtilleryFatso : ArtilleryFatso
+{
+Health 650
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(630, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("CacodemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop")
+			"####" "#" 0 A_SpawnItemEx("ShotgunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Revenant
+//Tier 1
+ACTOR MOTBReveNAHHHHHHHHHH : ReveNAHHHHHHHHHH
+{
+Health 350
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(340, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBReveNREEEEN : ReveNREEEEN
+{
+Health 350
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(340, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBReveNLUEEEE : ReveNLUEEEE
+{
+Health 350
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(340, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 2
+ACTOR MOTBRailRevenant : RailRevenant
+{
+Health 375
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(365, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBRailRevenantAltGreenBrown : RailRevenantAltGreenBrown
+{
+Health 375
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(365, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBRailRevenantAltRedBrown : RailRevenantAltRedBrown
+{
+Health 375
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(365, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Tier 3
+ACTOR MOTBElderRev : ElderRev 
+{
+Health 400
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(390, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBElderRevAltBlue : ElderRevAltBlue
+{
+Health 400
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(390, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+ACTOR MOTBElderRevAltRed : ElderRevAltRed
+{
+Health 400
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(390, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//TierS
+ACTOR MOTBWarMonger : WarMonger
+{
+Health 450
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(440, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("DemonBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("HellKnightBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Arachnotron
+//Tier 1
+ACTOR MOTBArachSpider : ArachSpider
+{
+Health 500
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(490, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ArachnotronBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+ACTOR MOTBArachSpiderRail : ArachSpiderRail
+{
+Health 500
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(490, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ArachnotronBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+ACTOR MOTBScattertron : Scattertron
+{
+Health 600
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(590, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ArachnotronBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+ACTOR MOTBScatterRailtron : ScatterRailtron
+{
+Health 600
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(590, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ArachnotronBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 3
+ACTOR MOTBSkulltron : Skulltron
+{
+Health 650
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(640, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ArachnotronBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+ACTOR MOTBSkullSuperRailtron : SkullSuperRailtron
+{
+Health 650
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(640, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ArachnotronBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBArachnoTank : ArachnoTank
+{
+Health 750
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(740, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ArachnotronBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaingunGuyBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPickerNoViles", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+
+//Archvile
+//Tier 1
+Actor MOTBMrArch : MrArch
+{
+Health 750
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(700, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 2
+Actor MOTBBlizzardWizard : BlizzardWizard
+{
+Health 800
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(750, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//Tier 3
+Actor MOTBDireVizar : DireVizar
+{
+Health 850
+ States
+	{
+	Pain:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(800, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+	}
+}
+//TierS
+ACTOR MOTBBloodPriest : BloodPriest
+{
+Health 875
+	States
+	{
+	Pain:
+		TNT1 A 0 A_JumpIfHealthLower(2250, "IFEELNOPAIN")
+		THOR Q 10 A_Pain
+		Goto Pain.BP
+	IFEELNOPAIN:
+		THOR Q 2 A_changeflag(NOPAIN,true)
+		Goto Pain.BP
+	Pain.BP:
+		StandardDrop:
+			"####" "#" 0 A_JumpIfHealthLower(825, "NopeGoToPain")
+			"####" "#" 0 A_Jump(128, "AltDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("RevenantBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		AltDrop:
+			"####" "#" 0 A_Jump(128, "2ndAltDrop")
+			"####" "#" 0 A_SpawnItemEx("SpiderBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		2ndAltDrop:
+			"####" "#" 0 A_Jump(128, "ChaoticDrop")
+			"####" "#" 0 A_SpawnItemEx("MrArchSpawnerBouncyFog", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+			goto "Super::Pain"
+		ChaoticDrop:
+			"####" "#" 0 A_Jump(128, "StandardDrop","NopeGoToPain")
+			"####" "#" 0 A_SpawnItemEx("ChaoticMOTBSetPicker", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		NopeGoToPain:
+			goto "Super::Pain"
+		
+	}
+}
+
+//here just for thematic purposes
+
+//----------------------------------
+Actor MOTBBossBrain : BossBrain
+{
+Health 750
+}
+//----------------------------------
+
+//Spider MasterMind
+//Tier 1
+Actor MOTBSpidermind : Spidermind
+{
+Health 2500
+States
+    {
+	Death:
+		SPID J 10 A_Scream
+		SPID J 10 A_NoBlocking
+		SPID K 5 
+		SPID K 5 
+		SPID L 5
+		SPID L 5 A_BossDeath  //A_SpawnItem
+		TNT1 A 1 Bright A_Spawnitemex("MOTBFlyingSpiderMind",5,-10,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		SPID M 5 A_Fadeout(0.9)
+		SPID M 5 A_Fadeout(0.8)
+		SPID N 5 A_Fadeout(0.7)
+		SPID O 5 A_Fadeout(0.6)
+		SPID P 5 A_Fadeout(0.5)
+		SPID Q 5 A_Fadeout(0.4)
+		SPID R 5 A_Fadeout(0.3)
+		SPID R 5 A_Fadeout(0.2)
+		SPID S 10 A_Fadeout(0.1) 
+		SPID S 10 A_Fadeout(0)
+		SPID S -1 
+		stop   
+	}
+}
+
+ACTOR MOTBFlyingSpiderMind : FlyingSpiderMind
+{
+Health 2500
+}
+//Tier 2
+Actor MOTBBalrog : Balrog
+{
+Health 4250
+ States
+	{
+	
+	}
+}
+//Tier 3
+Actor MOTBGorgosturm : Gorgosturm
+{
+Health 4500
+ States
+	{
+	
+	}
+}
+//TierS
+ACTOR MOTBAncientGuardian : AncientGuardian
+{
+Health 4750
+ States
+	{
+	
+	}
+}
+
+//CyberDemon
+//Tier 1
+actor MOTBCybie : Cybie
+{
+health 5250
+ States
+	{
+	
+	}
+}
+
+//Tier 2
+Actor MOTBGoliath : Goliath
+{
+Health 5500
+ States
+	{
+	
+	}
+}
+
+//Tier 3
+Actor MOTBJuggernaut : Juggernaut
+{
+Health 5000
+ States
+	{
+	
+	}
+}
+//Tier S
+Actor MOTBAncientOne : AncientOne
+{
+Health 5000
+ States
+	{
+	
+	}
+}
+
+//Wolfenstein SS
+Actor MOTBCommandoSS : WolfensteinSS
+{
+Health 100
+ States
+	{
+	
+	}
+}
+
+
+
+
+

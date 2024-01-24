@@ -1,0 +1,41 @@
+//test
+
+Actor HealthBonusSpawner
+{
+	+nointeraction
+}
+
+Actor PIFND
+{
+	+nointeraction
+}
+
+Actor PISAD
+{
+	+nointeraction
+}
+
+Actor PIPND
+{
+	+nointeraction
+}
+
+Actor PICAD
+{
+	+nointeraction
+}
+
+Actor HealthBonusPinata
+{
+	+nointeraction
+}
+
+Actor BallisticAmmoDrop
+{
+	+nointeraction
+}
+
+Actor ExplosiveAmmoDrop
+{
+	+nointeraction
+}

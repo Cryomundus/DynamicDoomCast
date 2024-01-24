@@ -1,0 +1,80 @@
+//more rewards n shit
+//also yay for easy copy past stuff!
+
+ACTOR MiniHealthSpherePiece : CustomInventory
+
+{
+		+INVBAR
+		+INVENTORY.UNTOSSABLE
+		+INVENTORY.UNDROPPABLE
+		Inventory.Amount 1
+		Inventory.MaxAmount 5
+		Inventory.InterHubAmount 5
+		Tag "Mini Health Vial Sphere"
+		Inventory.Icon "Z_IFEA0"
+		States
+	{
+		Use:
+		TNT1 A 0 A_TakeInventory("MiniHealthSpherePiece", 1)
+		TNT1 A 0  A_SpawnItemEx("ASingluarHealthVial", 				   30, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 60, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 30, 20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 30, -20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 40, 30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 40, -30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 40, 40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 50, -40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 50, 50, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 50, -50, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 50, 50, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 50, -50, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 60, 40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 60, -40, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 60, 30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 50, -30, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 50, 20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 60, -20, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 60, 0, 15)
+		TNT1 A 0  A_SpawnItemEx("AchanceforanotherSingluarHealthVial", 60, 0, 15)
+		fail
+		}
+}
+
+
+ACTOR MiniHealthSphere : CustomInventory //HealthBackpack : CustomInventory
+{
+	//+INVBAR
+	Inventory.Amount 1
+	scale 0.6
+	//Inventory.MaxAmount 100
+	//Inventory.InterHubAmount 100
+	Inventory.PickupMessage "You got a Mini Health Vial Sphere! Use it to get some random amounts of Health Vials."
+	//Tag "Health Pack"
+	//Inventory.Icon "I_MBPK"
+	States
+	{
+		Spawn:
+		LIFE ABCDCB 6 Bright
+		Loop
+		Pickup:
+		TNT1 A 0 A_GiveInventory ("MiniHealthSpherePiece", 1)
+		stop
+	}
+}
+
+
+Actor ASingluarHealthVial : RandomSpawner
+{
+	dropitem "HealthBonus"
+}
+
+Actor AchanceforanotherSingluarHealthVial : RandomSpawner
+{
+	dropitem "HealthBonus" 128
+}
+
+Actor ArarechanceformorebaseHP : RandomSpawner
+{
+	dropitem "HealthBonus" 128
+	dropitem "VitalitySerum" 1
+}

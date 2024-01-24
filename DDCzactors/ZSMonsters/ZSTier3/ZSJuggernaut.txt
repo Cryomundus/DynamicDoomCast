@@ -1,0 +1,311 @@
+///////////////////////////////////////////////////////////////////
+//Terminator
+//created by: Vader
+///////////////////////////////////////////////////////////////////
+
+
+ACTOR Juggernaut
+{ 
+	Health 5000 
+	radius 40
+	height 110
+	Mass 1500 
+	Speed 22 
+	PainChance 8
+	scale 1.7
+	MONSTER
+	DamageFactor "Heroic", 3.0
+	Damagefactor "MonsterBeatEmUp", 10.4
+	Obituary "%o was obliterated by a Juggernaut."
+	translation "32:47=112:127", "168:191=117:125", "0:0=0:0", "16:31=112:118"
+	species Cybs
+	-THRUSPECIES
+	+dontharmspecies
+	+FLOORCLIP 
+	+MISSILEMORE
+	+MISSILEEVENMORE	
+	+BOSS
+	+DONTHURTSPECIES
+	//+NORADIUSDMG
+	Missiletype Grenadeblast
+	Damagefactor "Redblast", 0.0
+	SeeSound "monster/termsit" 
+	PainSound "monster/termpin" 
+	DeathSound "monster/termdth"
+	ActiveSound "Terminator/termact"
+	DropItem "MiniMedikitSphereDropChecker"
+	DropItem "MiniGreenArmorSphereDropChecker"
+	DropItem "MiniAmmoPackDropChecker" 
+	DropItem "MiniAmmoPackDropChecker"
+	DropItem "MiniHealthSphereDropChecker"
+	DropItem "MiniArmorSphereDropChecker"
+	DropItem "BossBonusBackpackDropChecker"
+	DropItem "BigMedPackDropChecker"
+
+	States 
+	{ 
+		Spawn: 
+			TERM AB 10 A_Look 
+			Loop 
+		See:
+			TNT1 A 0 A_ChangeFlag("shootable",1)
+			TERM A 1 A_Playsound("Terminator/terstepA")
+			TERM A 3 A_Chase
+			TERM A 4 A_Chase
+			TERM B 4 A_Chase
+			TERM B 4 A_Chase
+			TERM C 1 A_Playsound("Terminator/terstepA")
+			TERM C 3 A_Chase 
+			TERM C 4 A_Chase
+			TERM D 4 A_Chase
+			TERM D 4 A_Chase
+			Loop    
+		Missile:
+			TERM E 0 A_Jump(256, "JuggBasicBlaster","JuggPowerShot","JuggHexaBlaster","JuggRapidCannon","JuggMissileBlaster") 
+			//TERM E 8 A_FaceTarget
+			//TERM F 8 Bright A_SpawnProjectile("TerminatorBlaster",38,15,0,0)
+			//TERM E 0 A_jump(128, 1)
+			Goto See
+		JuggBasicBlaster:
+			TERM J 0 A_Jump(92, "JuggPowerShot","JuggRapidCannon")
+			TERM E 8 BRIGHT  A_PlaySound("Zom/Shot",1,0.8)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  27, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  20, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0, -27, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,20)
+			TNT1 A 0 A_SpawnProjectile("TerminatorBlaster",32,0,0)
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,-20)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15,  5, -23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15, -5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50,  5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50, -5, -23, 0, 0)
+			Goto See
+		JuggRapidCannon:
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  22, 0, 0)
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  7, 0, 0)
+			TERM E 8 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  0, 0, 0)
+			TERM E 7 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20, -22, 0, 0)
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  -7, 0, 0)
+			TERM E 6 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 55,  25, -3, 0, 0)
+			TERM E 5 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 55, -25,  3, 0, 0)
+			TERM E 4 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 90,  25,  3, 0, 0)
+			TERM E 3 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 90, -25, -3, 0, 0)
+			TERM E 5 bright A_FaceTarget //return point should here, roughly
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  22, 0, 0)
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  7, 0, 0)
+			TERM E 3 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  0, 0, 0)
+			TERM E 3 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20, -22, 0, 0)
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 73,  20,  -7, 0, 0)
+			TERM E 3 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 55,  25, -3, 0, 0)
+			TERM E 3 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 55, -25,  3, 0, 0)
+			TERM E 3 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 90,  25,  3, 0, 0)
+			TERM E 3 bright A_FaceTarget
+			TERM F 0 bright A_SpawnProjectile("TerminatorBlaster", 90, -25, -3, 0, 0)
+			TERM F 0 A_CheckSight("See") //I was gonna do inv shenanigens till I remembered this thing exists
+			Goto JuggRapidCannon+16
+		JuggHexaBlaster:
+			TERM J 0 A_Jump(92, "JuggPowerShot","JuggRapidCannon")
+			TERM J 15 A_Facetarget
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  27, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  20, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0, -27, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,20)
+		
+			ASGZ F 0 A_SpawnProjectile("TerminatorBlaster", 33,  0,  7, 0, 0)
+			ASGZ F 0 A_SpawnProjectile("TerminatorBlaster", 33,  0,  0, 0, 0)
+			ASGZ F 0 A_SpawnProjectile("TerminatorBlaster", 33,  0, -7, 0, 0)
+			ASGZ F 0 A_SpawnProjectile("TerminatorBlaster", 15,  5, -3, 0, 0)
+			ASGZ F 0 A_SpawnProjectile("TerminatorBlaster", 15, -5,  3, 0, 0)
+			ASGZ F 0 A_SpawnProjectile("TerminatorBlaster", 50,  5,  3, 0, 0)
+			ASGZ F 0 A_SpawnProjectile("TerminatorBlaster", 50, -5, -3, 0, 0)
+		
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,-20)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15,  5, -23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15, -5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50,  5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50, -5, -23, 0, 0)
+			Goto See
+		JuggMissileBlaster:
+			TERM J 0 A_Jump(92, "JuggPowerShot","JuggRapidCannon")
+			TERM J 15 A_Facetarget
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  27, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  20, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0, -27, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,20)
+		
+			TERM E 0 A_SpawnProjectile("GoliathBlasterMissile", 33,  0,  0, 0, 0)
+		
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,-20)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15,  5, -23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15, -5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50,  5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50, -5, -23, 0, 0)
+			Goto See
+		JuggMicroBomber:
+			TNT1 A 0 A_Jump (125,"GolPowerShot")
+			TERM J 0 Bright A_PlaySound("moloch/attack")
+			TERM J 14 A_FaceTarget
+			TNT1 A 0 A_CheckSight ("See")
+			TERM E 5 A_FaceTarget
+			TERM E 0 A_DualPainAttack("MicroRemoteBomb")
+			TERM E 0 A_PlaySound("weapons/rocklf")
+			TERM E 0 A_PlaySound("PulseNail/fire")
+			TERM E 5 A_FaceTarget
+			TERM E 0 A_DualPainAttack("MicroRemoteBomb")
+			TERM E 0 A_PlaySound("weapons/rocklf")
+			TERM E 0 A_PlaySound("PulseNail/fire")
+			TERM E 5 A_FaceTarget
+			TERM E 0 A_DualPainAttack("MicroRemoteBomb")
+			TERM E 0 A_PlaySound("weapons/rocklf")
+			TERM E 0 A_PlaySound("PulseNail/fire")
+			TNT1 A  0 A_Jump (125,"JuggHexaBlaster","JuggBasicBlaster")
+			Goto See
+		JuggPowerShot:
+			TERM J 15 A_Facetarget
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  27, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0,  20, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 33,  0, -27, 0, 0)
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,20)
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,0)
+			TNT1 A 0 A_SpawnProjectile("PowerShot",32,0,-20)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15,  5, -23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 15, -5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50,  5,  23, 0, 0)
+			TERM E 0 A_SpawnProjectile("CZomBullet", 50, -5, -23, 0, 0)
+			Goto See 
+		Pain:
+			TERM L 3 	
+			TERM L 3 A_Pain
+			TNT1 A 0 a_playsound ("monsters/bosshurt",0)
+			TERM E 0 A_Jump(62, "Missile")
+		Goto See
+		Death:
+			TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+			TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
+			TNT1 A 0 A_Spawnitemex("SetACyberDemonModItemDropper",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			goto ContinueDeath
+		DeathSuperMissile:
+			TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
+			TNT1 A 0 A_SpawnItemEx("SetBCyberDemonModItemDropper",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			goto ContinueDeath
+		DeathPowerBomb:
+			TNT1 A 0 A_SpawnItemEx("SetCCyberDemonModItemDropper",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+			goto ContinueDeath
+		DeathBoth:
+			TNT1 A 0 A_SpawnItemEx("SetDCyberDemonModItemDropper",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
+			goto ContinueDeath
+		ContinueDeath:
+			TNT1 A 0 A_ChangeFlag("shootable",0)
+			TERM M 6 A_Scream
+			TERM N 4 
+			TERM OPQ 4 Bright
+			TERM R 0 Bright A_FaceTarget
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+			TERM R 0 Bright A_SpawnItemEx("TerminatorHead", 15, 0, 90, 10, 0, 0, -170, 128)
+			TERM R 0 Bright A_SpawnItemEx("TerminatorShoulder", 60, 0, 75, 8, 0, 0, -70, 128)
+			TERM R 4 Bright A_SpawnItemEx("TerminatorArm", 60, 0, 0, 3, 0, 0, -90, 128)
+			TERM STUV 4 Bright
+			TERM W 4 
+			TERM X 6 A_Fall
+			TERM Y 6
+			TERM Z 1 A_Playsound("Terminator/terstepA")
+			TERM Z 5 
+			TERM [ -1   
+			Stop
+		Crush:
+			POL5 EEEEE 1 
+			POL5 E -1
+			Stop	
+   } 
+}
+
+
+ACTOR MiniJuggernaut : Juggernaut//30666
+	{ 
+	Health 250 
+	radius 24
+	height 24
+	//Radius 24 Height 64 
+	Mass 1500 
+	Speed 18 
+	PainChance 8
+	scale 0.5
+	MONSTER
+	DamageFactor "Heroic", 2.0
+	Obituary "%o was obliterated by a Juggernaut."
+	translation "32:47=112:127", "168:191=117:125", "0:0=0:0", "16:31=112:118"
+	+FLOORCLIP 
+	+MISSILEMORE
+	+BOSS
+	+DONTHURTSPECIES
+	//+NORADIUSDMG
+	Missiletype Grenadeblast
+	dropitem "shell" 
+	dropitem "clip" 
+	dropitem "rocket" 128
+	dropitem "cell" 128
+	dropitem "shell" 128
+	dropitem "clip" 128
+	Damagefactor "Redblast", 0.0
+	SeeSound "monster/termsit" 
+	PainSound "monster/termpin" 
+	DeathSound "monster/termdth"
+	ActiveSound "Terminator/termact"
+	DropItem "MiniAmmoPack" 
+	DropItem "MiniAmmoPack", 128
+	DropItem "MiniAmmoPack", 128
+	DropItem "MiniArmorSphere", 128
+	DropItem "MiniHealthSphere", 128
+	DropItem "BigMedPack", 88, 2
+
+	States 
+		{ 
+			Death:
+				TNT1 A 0 A_ChangeFlag("shootable",0)
+				TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				
+				TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("GenericExplosionTosser",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 AAAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+				TNT1 A 0 A_ScreamAndUnblock
+				XMED A 5 A_Stop
+				XMED B 5 A_XScream
+				XMED C 5 A_KillChildren
+				XMED D 5 A_NoBlocking
+				XMED E 5 Radius_Quake(40,60,0,40,0)
+				TNT1 A 0 A_PlaySound ("Terminator/terstepA")
+				XMED E -1 A_BossDeath
+				Stop	
+   } 
+}

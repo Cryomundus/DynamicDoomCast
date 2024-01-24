@@ -1,0 +1,127 @@
+/*Key
+
+REGMap07DynDoomMancubusSpawner
+BHPMap07DynDoomMancubusSpawner
+GDDCMap07DynDoomMancubusSpawner
+MOTBMap07DynDoomMancubusSpawner
+GLDDCMap07DynDoomMancubusSpawner
+
+REGMap07DynDoomMutantFatsoSpawner
+BHPMap07DynDoomMutantFatsoSpawner
+GDDCMap07DynDoomMutantFatsoSpawner
+MOTBMap07DynDoomMutantFatsoSpawner
+GLDDCMap07DynDoomMutantFatsoSpawner
+
+REGMap07DynDoomRadiantBeastSpawner
+BHPMap07DynDoomRadiantBeastSpawner
+GDDCMap07DynDoomRadiantBeastSpawner
+MOTBMap07DynDoomRadiantBeastSpawner
+GLDDCMap07DynDoomRadiantBeastSpawner
+
+REGMap07DynDoomArtilleryFatsoSpawner
+BHPMap07DynDoomArtilleryFatsoSpawner
+GDDCMap07DynDoomArtilleryFatsoSpawner
+MOTBMap07DynDoomArtilleryFatsoSpawner
+GLDDCMap07DynDoomArtilleryFatsoSpawner
+
+*/
+
+actor REGMap07DynDoomMancubusSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "Mancubus"	
+}
+
+actor BHPMap07DynDoomMancubusSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "BHPMancubus"
+}
+
+actor GDDCMap07DynDoomMancubusSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "GDDCMancubus"
+}
+
+actor MOTBMap07DynDoomMancubusSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "MOTBMancubus"
+}
+
+actor GLDDCMap07DynDoomMancubusSpawner : RandomSpawner replaces Fatso
+{
+	//dropitem Mancubus"
+}
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomMutantFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "MutantFatso"
+}
+
+actor BHPMap07DynDoomMutantFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "BHPMutantFatso"
+}
+
+actor GDDCMap07DynDoomMutantFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "GDDCMutantFatso"
+}
+
+actor MOTBMap07DynDoomMutantFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "MOTBMutantFatso"
+}
+
+actor GLDDCMap07DynDoomMutantFatsoSpawner : RandomSpawner replaces Fatso
+{
+	//dropitem MutantFatso"
+}
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomRadiantBeastSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "RadiantBeast"
+}
+
+actor BHPMap07DynDoomRadiantBeastSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "BHPRadiantBeast"
+}
+
+actor GDDCMap07DynDoomRadiantBeastSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "GDDCRadiantBeast"
+}
+
+actor MOTBMap07DynDoomRadiantBeastSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "MOTBRadiantBeast"
+}
+
+actor GLDDCMap07DynDoomRadiantBeastSpawner : RandomSpawner replaces Fatso
+{
+	//dropitem RadiantBeast"	
+}
+//----------------------------------------------------------------------------//
+actor REGMap07DynDoomArtilleryFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "ArtilleryFatso"
+}
+
+actor BHPMap07DynDoomArtilleryFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "BHPArtilleryFatso"
+}
+
+actor GDDCMap07DynDoomArtilleryFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "GDDCArtilleryFatso"
+}
+
+actor MOTBMap07DynDoomArtilleryFatsoSpawner : RandomSpawner replaces Fatso
+{
+	dropitem "MOTBArtilleryFatso"
+}
+
+actor GLDDCMap07DynDoomArtilleryFatsoSpawner : RandomSpawner replaces Fatso
+{
+	//dropitem ArtilleryFatso"	
+}

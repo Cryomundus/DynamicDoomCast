@@ -1,0 +1,125 @@
+// blah blah
+
+//this is a test line
+
+//#include decorate/Decoratives.dec
+
+ACTOR WarMonger 
+{
+	Health 450
+	Radius 20
+	Height 56
+	Mass 500
+	Speed 12
+	PainChance 100
+	Monster
+	DamageFactor "Scrapper", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	+NOBLOCKMONST
+	+DONTHARMSPECIES
+	+MISSILEMORE 
+	+FLOORCLIP 
+	-THRUSPECIES
+	SeeSound "WarMonger/See"
+	PainSound "WarMonger/pain"
+	DeathSound "WarMonger/die"
+	ActiveSound "WarMonger/active"
+	Obituary "%o failed to take out the WarMonger."
+	DropItem "MiniMedikitSphereDropChecker", 128
+	DropItem "MediumMedPackDropChecker", 128
+   DropItem "MiniMedPackDropChecker", 128
+   DropItem "MicroMedPackDropChecker", 128
+   DropItem "MicroMedPackDropChecker", 128
+   DropItem "MiniHealthSphereDropChecker", 128
+   dropitem "MiniAmmoPackDropChecker" 128
+   dropitem "MiniArmorSphereDropChecker" 128
+   dropitem "PBHellishMissileLauncherChanceDropper" 128
+   dropitem "PBHellishMissileLauncherChanceDropper" 128
+   DropItem "MagicrodSpawner", 35
+	States
+	{
+	Spawn:
+		WRMR AABBCCDD 10 A_Look
+		Loop
+	See:
+		WRMR AABBCCDD 2 A_Chase
+		Loop
+	Missile: 
+		TNT1 A 0 A_Jump(256,"TripleBounce","TripleHomingBounce","TripleClusters","ClusterRail")
+	TripleBounce:
+		WRMR E 10 BRIGHT A_FaceTarget
+		WRMR F 1 A_CustomMissile("RevRocketBounce",50,20,-10,0)
+		WRMR F 1 A_CustomMissile("RevRocketBounce",50,20,0,0)
+		WRMR F 1 A_CustomMissile("RevRocketBounce",50,20,10,0)
+		WRMR F 1 //A_CustomMissile("RevenantTracer2B",50,-20,0,0)
+		WRMR G 18 A_FaceTarget
+		WRMR C 10 A_FaceTarget
+		Goto See
+	TripleHomingBounce:
+		WRMR E 10 BRIGHT A_FaceTarget
+		WRMR F 1 A_CustomMissile("RevRocketPoorHomingBounce",50,20,-10,0)
+		WRMR F 1 A_CustomMissile("RevRocketPoorHomingBounce",50,20,0,0)
+		WRMR F 1 A_CustomMissile("RevRocketPoorHomingBounce",50,20,10,0)
+		WRMR F 1 //A_CustomMissile("RevenantTracer2B",50,-20,0,0)
+		WRMR G 18 A_FaceTarget
+		WRMR C 10 A_FaceTarget
+		Goto See
+	TripleClusters:
+		WRMR E 10 BRIGHT A_FaceTarget
+		WRMR F 1 A_CustomMissile("LowSpeedShottyZombGrenadeCluster",50,20,0,0)
+		WRMR F 1 A_CustomMissile("LowSpeedShottyZombGrenadeCluster",50,20,0,0)
+		WRMR F 1 A_CustomMissile("LowSpeedShottyZombGrenadeCluster",50,20,0,0)
+		WRMR F 1 //A_CustomMissile("RevenantTracer2B",50,-20,0,0)
+		WRMR G 18 A_FaceTarget
+		WRMR C 10 A_FaceTarget
+		Goto See
+	ClusterRail:
+		TNT1 A 0 A_jump (50,"TripleBounce")
+		WRMR E 10 Bright A_FaceTarget
+		WRMR F 2 Bright A_PlayweaponSound("weapons/laser")
+		WRMR F 5 Bright A_CustomMissile("MultiMonsterRailshot", 26, 0, random(-4,4),0)
+		WRMR F 2 Bright A_PlayweaponSound("weapons/laser")
+		WRMR F 5 Bright A_CustomMissile("MultiMonsterRailshot", 26, 0, random(-4,4),0)
+		WRMR F 2 Bright A_PlayweaponSound("weapons/laser")
+		WRMR F 5 Bright A_CustomMissile("MultiMonsterRailshot", 26, 0, random(-4,4),0)
+		WRMR F 2 Bright A_PlayweaponSound("weapons/laser")
+		WRMR F 5 Bright A_CustomMissile("MultiMonsterRailshot", 26, 0, random(-4,4),0)
+		WRMR F 2 Bright A_PlayweaponSound("weapons/laser")
+		WRMR F 5 Bright A_CustomMissile("MultiMonsterRailshot", 26, 0, random(-4,4),0)
+		WRMR G 18 A_FaceTarget
+		WRMR C 10 A_FaceTarget
+		Goto See
+	Pain:
+		WRMR I 5
+		WRMR I 5 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		Goto See
+	Death:
+		TNT1 A 0 a_spawnitemex ("RevenantModItemDropper",0,0,35)
+		WRMR I 7
+		WRMR J 7
+		WRMR K 7 A_Scream
+		WRMR L 7 A_NoBlocking
+		WRMR M 7
+		WRMR N -1
+		Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("RevenantModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		WRMR I 7
+		WRMR J 7
+		WRMR K 7 A_Scream
+		WRMR L 7 A_NoBlocking
+		WRMR M 7 
+		WRMR N -1
+		Stop
+		
+	Raise:
+		WRMR N 5
+		WRMR MLKJI 5
+		Goto See
+	}
+}

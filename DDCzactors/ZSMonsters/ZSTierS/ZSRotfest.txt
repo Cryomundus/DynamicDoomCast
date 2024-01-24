@@ -1,0 +1,116 @@
+ACTOR Rotfest
+{
+	Health 350
+	Radius 30
+	Height 56
+	Mass 500
+	Speed 14
+	Scale 0.5
+	PainChance 100
+	Monster
+	DamageFactor "Scrapper", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	SeeSound "Rotfest/see"
+	PainSound "Rotfest/pain3"
+	DeathSound "Rotfest/die"
+	ActiveSound "Rotfest/active"
+	MeleeSound "skeleton/melee"
+	Obituary "%o was eaten alive by a Rotfest."
+	DropItem "MiniStimpackSphereDropChecker", 128
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MiniHealthSphereDropChecker", 128
+	dropitem "MiniAmmoPackDropChecker" 128
+	dropitem "MiniArmorSphereDropChecker" 128
+	DropItem "MagicrodSpawner", 15
+	+NOBLOCKMONST
+	+DONTHARMSPECIES
+	-THRUSPECIES
+	States
+	{
+	Spawn:
+		FCMW AB 10 A_Look
+		Loop
+	See:
+		FCMW AABBCCDDEEFF 2 A_Chase
+		Loop
+	Melee:
+		FCMW G 1 A_FaceTarget
+		FCMW G 3 A_SKELWhoosh
+		FCMW H 3 A_FaceTarget
+		FCMW I 3 A_SKELFist
+		Goto See
+	Missile:
+		TNT1 A 0 A_Jump(185,"See")
+		FCMW L 3 A_playsound("Facemaw/pain3")
+		FCMW J 3 A_PainAttack("Trite")
+		FCMW K 3
+		TNT1 A 0 A_JumpIfHealthLower(200,"Times4")
+		TNT1 A 0 A_JumpIfHealthLower(250,"Times6")
+		TNT1 A 0 A_JumpIfHealthLower(300,"Times8")
+		Goto See
+	Times4:
+		FCMW AABBCCDDEEFF 1 A_SetSpeed(28)//(32)
+		goto see
+	Times6:
+		FCMW AABBCCDDEEFF 1 A_SetSpeed(42)//(48)
+		goto see
+	Times8:
+		FCMW AABBCCDDEEFF 1 A_SetSpeed(56)//(64)
+		TNT1 A 0 A_changeflag(FASTER, true)
+		TNT1 A 0 A_changeflag(MISSILEEVENMORE, true)
+ 		goto see
+	Pain:
+		TNT1 A 0 A_Jump(50,"SometimesPainAttack")
+		FCMW L 5 
+		FCMW L 5 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		Goto See
+	SometimesPainAttack:
+		TNT1 A 0 A_Jump(50,"SometimesDualPainAttack")
+		FCMW L 8 A_playsound("Facemaw/pain3")
+		FCMW L 3 A_PainAttack("Trite")
+		Goto See
+	SometimesDualPainAttack:
+		FCMW L 8 A_playsound("Facemaw/pain3")
+		FCMW L 3 A_DualPainAttack("Trite")
+		Goto See
+	Death:
+		TNT1 A 0 a_spawnitemex ("DemonModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom")
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW LM 7
+		FCMW N 7 A_Scream
+		FCMW O 7 A_NoBlocking
+		FCMW P 7 
+		FCMW Q 90
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",15,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",-20,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",0,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 90
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",15,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",-20,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",0,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 90
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",15,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",-20,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q 10 Bright A_Spawnitemex("Trite",0,-5,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		FCMW Q -1
+		Stop
+	Raise:
+		FCMW Q 5
+		FCMW PONML 5
+		Goto See
+	}
+}
+
+Actor GhostRotfest : Rotfest
+{
+	RenderStyle Shadow
+}

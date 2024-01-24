@@ -1,0 +1,293 @@
+
+actor BonyImp : DoomImpModStatesinheritor
+{
+    Health 75
+    Radius 20
+    Height 56
+    Speed 14
+    PainChance 160
+	BloodColor Blue
+	Species "Impling"
+	DamageFactor "Extinguishing", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+    MONSTER 
+	-THRUSPECIES
+    +FLOORCLIP
+	+DontHarmSpecies
+    SeeSound "harvester/sight"
+    PainSound "imp/pain"
+    DeathSound "harvester/death"
+    ActiveSound "imp/active"
+    MeleeSound "imp/melee"
+    Obituary "%o couldn't evade the soul harvester's attack."
+    MeleeDamage 3
+    States
+    {
+    Spawn:
+        SLHV AB 10 A_Look
+        Loop
+    See:
+        SLHV AABBCCDD 3 A_Chase
+		TNT1 A 0 A_Jump(128,"RegularShot","TripleRShot","SummonChance")//,"SummonManySoulOrbs")
+        Loop
+    Melee:
+    Missile:
+		TNT1 A 0 A_Jump (256,"RegularShot","TripleRShot","SummonChance")//,"SummonManySoulOrbs")
+	RegularShot:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("SoulHarvesterBallNonHoming",32,0,0)
+		SLHV L 0 Bright A_FaceTarget
+		Goto See
+	TripleRShot: //might get rid of this
+        SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("SoulHarvesterBallNonHoming",32,0,10)
+		SLHV L 0 Bright A_FaceTarget 
+		TNT1 A 0 A_CustomMissile("SoulHarvesterBallNonHoming",32,0,0)
+		SLHV L 0 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("SoulHarvesterBallNonHoming",32,0,-10)
+        SLHV M 10
+        Goto See
+	SummonChance:
+		TNT1 A 0 A_Jump(88,"SummonSoulOrb")
+		Goto Missile
+	SummonSoulOrb:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		SLHV L 1 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV M 10
+		Goto See
+
+//created way, way too much spam way too often
+	/*SummonManySoulOrbs:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		SLHV L 1 Bright A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV M 10
+		Goto See*/
+
+	Pain:
+    	SLHV N 3
+    	SLHV N 3 A_Pain
+    	TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+    Death:
+		TNT1 A 0 a_spawnitemex ("ImpModItemDropper",0,0,35)
+        SLHV O 7 A_Scream
+        SLHV PQR 7 A_KillChildren
+        SLHV S 6 A_SpawnItemEx("SoulHarvesterGhost", 0, 0, 32, 0, 0, 0, 0, 128)
+        SLHV T 5 A_Fall
+        SLHV UV 5 
+        SLHV W -1
+        Stop
+    XDeath:
+		TNT1 A 0 a_spawnitemex ("ImpModItemDropper",0,0,35)
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+        SLHV X 6 
+        SLHV Y 6 A_SpawnItemEx("SoulHarvesterGhost", 0, 0, 32, 0, 0, 0, 0, 128)
+        SLHV Z 6 A_KillChildren
+        SLHV [ 6 A_Fall
+        SLHV ] 6
+        SLHW A -1
+        Stop
+	Crush:
+		POL5 EEEEE 1 
+		POL5 E -1
+		Stop
+    Raise:
+        SLHV WVUTSRQPO 5
+        Goto See
+    }
+}
+
+
+actor BonyImpAltBlue : BonyImp
+{
+    Health 75
+    Radius 20
+    Height 56
+    Speed 16
+    PainChance 160
+	BloodColor Blue
+	Species "Impling"
+	DamageFactor "Extinguishing", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	Translation "80:111=192:200", "1:6=196:200"
+    MONSTER 
+    +FLOORCLIP
+	+DontHarmSpecies
+    SeeSound "harvester/sight"
+    PainSound "imp/pain"
+    DeathSound "harvester/death"
+    ActiveSound "imp/active"
+    MeleeSound "imp/melee"
+    Obituary "%o couldn't evade the soul harvester's attack."
+    DropItem "MicroMedPackDropChecker",128
+	DropItem "MicroMedPackDropChecker",128
+    MeleeDamage 3
+    States
+    {
+    Spawn:
+        SLHV AB 10 A_Look
+        Loop
+    See:
+        SLHV AABBCCDD 3 A_Chase
+		TNT1 A 0 A_Jump(128,"BounceShot","TripleRBouncyShot","SummonChance")//,"SummonManySoulOrbs")
+        Loop
+    Melee:
+    Missile:
+		TNT1 A 0 A_Jump (256,"BounceShot","TripleRBouncyShot","SummonChance")//,"SummonManySoulOrbs")
+	BounceShot:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,0)
+		SLHV L 0 Bright A_FaceTarget
+		Goto See
+	TripleRBouncyShot: //might get rid of this
+        SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,10)
+		SLHV L 0 Bright A_FaceTarget 
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,0)
+		SLHV L 0 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,-10)
+        SLHV M 10
+        Goto See
+	SummonChance:
+		TNT1 A 0 A_Jump(88,"SummonSoulOrb")
+		Goto Missile
+	SummonSoulOrb:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		SLHV L 1 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV M 10
+		Goto See
+
+//created way, way too much spam way too often
+	/*SummonManySoulOrbs:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		SLHV L 1 Bright A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV M 10
+		Goto See*/
+
+	Pain:
+    	SLHV N 3
+    	SLHV N 3 A_Pain
+    	TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+
+    }
+}
+
+actor BonyImpAltGreen : BonyImp
+{
+    Health 75
+    Radius 20
+    Height 56
+    Speed 18
+    PainChance 160
+	BloodColor Blue
+	Species "Impling"
+	DamageFactor "Extinguishing", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "80:111=112:127", "1:6=123:127"
+    MONSTER 
+    +FLOORCLIP
+	+DontHarmSpecies
+    SeeSound "harvester/sight"
+    PainSound "imp/pain"
+    DeathSound "harvester/death"
+    ActiveSound "imp/active"
+    MeleeSound "imp/melee"
+    Obituary "%o couldn't evade the soul harvester's attack."
+    DropItem "MicroMedPackDropChecker",128
+	DropItem "MicroMedPackDropChecker",128
+	DropItem "MicroMedPackDropChecker",128
+    MeleeDamage 3
+    States
+    {
+    Spawn:
+        SLHV AB 10 A_Look
+        Loop
+    See:
+        SLHV AABBCCDD 3 A_Chase
+		TNT1 A 0 A_Jump(128,"BounceShot","TripleRBouncyShot","TripleHomingShot","SummonChance")
+        Loop
+    Melee:
+    Missile:
+		TNT1 A 0 A_Jump (256,"BounceShot","TripleRBouncyShot","TripleHomingShot","SummonChance")
+	BounceShot:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,0)
+		SLHV L 0 Bright A_FaceTarget
+		Goto See
+	TripleRBouncyShot: //might get rid of this
+        SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,10)
+		SLHV L 0 Bright A_FaceTarget 
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,0)
+		SLHV L 0 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("BouncySoulHarvesterBallNonHoming",32,0,-10)
+        SLHV M 10
+        Goto See
+	TripleHomingShot: //might get rid of this
+		TNT1 A 0 A_Jump(50,"SummonChance")
+        SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("SoulHarvesterBallWeakHoming",32,0,10)
+		SLHV L 0 Bright A_FaceTarget 
+		TNT1 A 0 A_CustomMissile("SoulHarvesterBallWeakHoming",32,0,0)
+		SLHV L 0 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("SoulHarvesterBallWeakHoming",32,0,-10)
+        SLHV M 10
+        Goto See
+	SummonChance:
+		TNT1 A 0 A_Jump(88,"SummonSoulOrb","SummonSoulBombs")
+		Goto Missile
+	SummonSoulOrb:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		SLHV L 1 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV M 10
+		Goto See
+	SummonSoulBombs:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		SLHV L 1 A_SpawnItemEx("SoulBomb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV L 1 A_SpawnItemEx("SoulBomb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV L 1 A_SpawnItemEx("SoulBomb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV M 10
+		Goto See
+//SoulBomb
+//created way, way too much spam way too often
+	/*SummonManySoulOrbs:
+		SLHV EFG 4 A_FaceTarget
+        SLHV HIJK 5 Bright A_FaceTarget
+		SLHV L 1 Bright A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("SoulOrb",random(0,180),random(0,180),random(1,32),0,0,0,SXF_SETMASTER)
+		SLHV M 10
+		Goto See*/
+
+	Pain:
+    	SLHV N 3
+    	SLHV N 3 A_Pain
+    	TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+		Goto See
+   
+    }
+}

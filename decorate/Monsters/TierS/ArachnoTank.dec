@@ -1,0 +1,408 @@
+ACTOR ArachnoTank : Arachnotron //replaces Arachnotron
+{
+    Health 750
+    Painchance 50
+    Speed 18
+    Radius 64
+    Height 64
+    Mass 1000
+    SeeSound "ZPTank/see"
+    AttackSound "ZPTank/attack"
+    PainSound "ZPTank/pain"
+    DeathSound "ZPTank/death"
+    Obituary "%o was liquified by a ArachnoTank."
+	translation "192:195=208:212"
+	DamageFactor "Scrapper", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	DropItem "MiniMedikitSphereDropChecker", 128
+	DropItem "MiniGreenArmorSphereDropChecker", 128
+	DropItem "MediumMedPackDropChecker", 128
+    DropItem "MiniMedPackDropChecker", 128
+    DropItem "MicroMedPackDropChecker", 128
+    DropItem "MicroMedPackDropChecker", 128
+    DropItem "MiniHealthSphereDropChecker", 128
+    Dropitem "MiniAmmoPackDropChecker" 128
+    Dropitem "MiniArmorSphereDropChecker" 128
+	DropItem "MagicrodSpawner", 55
+    MONSTER 
+	species "Arach"
+	+DontHarmSpecies
+	+ROLLSPRITE
+	+NOBLOCKMONST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+    +FLOORCLIP
+	+BOSSDEATH
+	-THRUSPECIES
+    States
+    {
+    Spawn:
+		ARTK A 0 A_SetRoll(0)
+	SpawnContinue:
+        ARTK A 4 A_Look
+        Loop
+    See:
+		TNT1 A 0 A_setspeed(18)
+		ARTK A 0 A_SetRoll(0)
+	Seecont:
+		ARTK AB 2 A_Chase
+        ARTK A 0 A_PlaySound ("ZPTank/Run")
+        //ARTK AABB 3 A_Chase
+        Loop
+    Missile:
+		TNT1 A 0 A_Jump(256,"StandardFire","DualShottyCluster","StandardFire","PowerFire","RunNGun")
+	StandardFire:
+        ARTK A 1 A_FaceTarget
+        ARTK C 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK E 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        ARTK A 0 A_Jump(128,1) 
+        goto See 
+        ARTK A 0 A_CPosRefire
+        goto Missile 
+	DualShottyCluster:
+		ARTK C 8 A_FaceTarget
+		ARTK C 3 A_CustomMissile("TerminatorBlaster", 33,  0,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  0,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  0, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  5, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -5,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  5,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -5, -3, 0, 0)
+		ARTK A 3 A_FaceTarget
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+		ARTK A 0 A_Jump(120,"SuperGunTime")
+		Goto See
+	PowerFire:
+		ARTK A 1 A_FaceTarget
+        ARTK D 3 BRIGHT A_CustomMissile("PowerShot",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("PowerShot",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK F 3 BRIGHT A_CustomMissile("PowerShot",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("PowerShot",45,-29,(random(-15,15)),0)
+        ARTK A 0 A_Jump(128,1) 
+		goto See 
+        ARTK A 0 A_CPosRefire
+        goto Missile 
+	RunNGun:
+		ARTK A 0 A_Jump(56,"StandardFire") 
+		ARTK AB 12 bright A_FaceTarget
+		ARTK A 1 A_setspeed(25)
+	SpeedyTime:
+		ARTK A 0 A_PlaySound ("ZPTank/Run")
+        ARTK AABB 1 A_Chase
+		ARTK A 0 A_Jump(80,1) 
+		goto SpeedyTime
+	GunTime:
+		ARTK AB 3 bright A_FaceTarget
+		ARTK A 1 A_setspeed(28)
+		ARTK AB 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+		//The first line will thrust in the direction the actor is facing. 
+		//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+		ARTK D 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK E 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+		ARTK A 1 A_FaceTarget
+		ARTK D 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK E 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+		ARTK A 1 A_FaceTarget
+		ARTK D 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK E 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+		ARTK A 1 A_FaceTarget
+		ARTK A 0 A_PlaySound ("ZPTank/Run")
+        ARTK AABB 1 A_Chase
+		ARTK AB 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+		//The first line will thrust in the direction the actor is facing. 
+		//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+		ARTK D 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK E 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+		ARTK A 1 A_FaceTarget
+		ARTK D 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK E 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+		ARTK A 1 A_FaceTarget
+		ARTK D 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,32,(random(-15,15)),0)
+        ARTK A 1 A_FaceTarget
+        ARTK E 3 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+        TNT1 A 0 BRIGHT A_CustomMissile("TerminatorBlaster",45,-29,(random(-15,15)),0)
+		ARTK A 1 A_FaceTarget
+		ARTK A 1 A_setspeed(18)
+		ARTK A 0 A_Jump(120,"GunTime","GunTime","SuperGunTime")
+		goto see
+	SuperGunTime:
+		ARTK AB 3 bright A_FaceTarget
+		ARTK A 1 A_setspeed(28)
+		ARTK AB 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+		//The first line will thrust in the direction the actor is facing. 
+		//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+        ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+        ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+		ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+        ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+		ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+        ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+		ARTK A 1 A_FaceTarget
+		ARTK A 0 A_PlaySound ("ZPTank/Run")
+        ARTK AABB 1 A_Chase
+		ARTK AB 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+		//The first line will thrust in the direction the actor is facing. 
+		//Adding +64, +128, or +192 will thrust to the right, backwards, or left, respectively. 
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+        ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+		ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+        ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+		ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+64, 20, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+        ARTK A 1 A_FaceTarget
+		ARTK AB 1 ThrustThing(angle*256/360+192, 20, 0, 0)
+        ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10,  7, 0, 0)
+		ARTK C 0 A_CustomMissile("PowerShot", 33,  10,  0, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 33,  10, -7, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15,  15, -3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 15, -15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50,  15,  3, 0, 0)
+		ARTK C 0 A_CustomMissile("TerminatorBlaster", 50, -15, -3, 0, 0)
+		ARTK A 1 A_FaceTarget
+		ARTK A 1 A_setspeed(18)
+		ARTK A 0 A_Jump(120,"GunTime")
+		goto see
+    Pain:
+        ARTK F 4 A_Pain
+        TNT1 A 0 a_playsound ("monsters/bighurt",0)
+		ARTK F 4
+        Goto See
+    Death:
+		//TNT1 A 0 ThrustThing(angle*256/360, 0, 0, 0)
+		TNT1 A 0 a_spawnitemex ("ArachnotronModItemDropper",0,0,35)
+		TNT1 A 0 ThrustThingZ(0, 90, 0, 1)
+		TNT1 A 0 A_SetRoll((roll + 20))
+ 		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll(180)
+        ARTK G 4 A_Scream
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK H 8
+        ARTK I 8 
+        ARTK J 8 
+        ARTK K 8 A_Fall
+		TNT1 A 0 A_CustomMissile("BigGenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("BigGenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GiantGenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK L 8
+        ARTK M 8 
+        ARTK N -1 A_BossDeath
+        Stop
+	XDeath:
+		//TNT1 A 0 ThrustThing(angle*256/360, 0, 0, 0)
+		TNT1 A 0 a_spawnitemex ("ArachnotronModItemDropper",0,0,35)
+		TNT1 A 0 ThrustThingZ(0, 90, 0, 1)
+		TNT1 A 0 A_SetRoll((roll + 20))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		ARTK G 1 A_SetRoll((roll + 20))
+		ARTK G 0 A_SetRoll((roll + 20))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		ARTK G 1 A_SetRoll(180)
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK G 4 A_Scream
+		
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK H 8 
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK I 8 
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK J 8 
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK K 8 A_Fall
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK L 8
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		//TNT1 A 0 A_SetRoll(180)
+        ARTK M 8
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+		TNT1 A 0 A_CustomMissile("GiantGenericExplosionTosser",(random(-15,15)),(random(-15,15)),(random(-15,15)))
+        ARTK N -1 A_BossDeath
+        Stop
+	raise:
+		ARTK NMLKJIHG 15
+		goto see
+    }
+}

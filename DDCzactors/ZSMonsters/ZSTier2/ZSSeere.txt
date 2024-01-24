@@ -1,0 +1,241 @@
+ACTOR Seere : CacodemonModStatesinheritor
+{
+	Health 500
+	Radius 31
+	Height 56
+	Mass 800
+	Speed 12
+	PainChance 178
+	Monster
+	DamageFactor "Antiair", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	species "Caco"
+	-THRUSPECIES
+	+DONTHARMSPECIES
+	+FLOAT 
+	+NOGRAVITY 
+	+DONTHURTSPECIES
+	bloodcolor Green
+	SeeSound "Poe/sight"
+	PainSound "Poe/pain"
+	DeathSound "Poe/death"
+	ActiveSound "Poe/active"
+	MeleeSound "imp/melee"
+	Obituary "%o failed to notice Seere's giant Plasma Shot"
+	HitObituary "%o could not escape Seere's jaws!"
+    MinMissileChance 56
+	States
+	{
+	Spawn:
+		POE1 A 10 A_Look
+		loop
+	See:
+		POE1 A 3 A_Chase //A_FastChase
+		loop
+	Missile:
+       POE1 EF 5 A_FaceTarget
+	   POE1 G 0 Bright A_FaceTarget
+	   TNT1 A 0 A_playsound ("PoeBall/See")
+       POE1 G 0 bright A_SpawnProjectile ("PoeClusterShot",24,0,0,0,0)
+	   //POE1 GGGGGGGG 0 bright A_SpawnProjectile ("PoeBall", 34, 9, random(-12.0,12.0),2,random(-12.0,12.0))
+		Goto See
+	Melee:
+		POE1 AEF 3 A_FaceTarget
+		POE1 G 3 A_CustomMeleeAttack(Random(6,8)*3, "Imp/melee","none")
+		goto See
+	Pain:
+		POE1 H 3
+		POE1 H 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		POE1 I 6
+		Goto See
+	Death:
+		TNT1 A 0 a_spawnitemex ("CacodemonModItemDropper",0,0,35)
+		POE1 J 8
+		POE1 K 8 A_Scream
+		POE1 LM 5 
+		POE1 N -1 A_ChangeFlag("NoGravity", 0)
+    Crash:
+		POE1 OPQ 5 A_ChangeFlag("NoGravity", 0)
+		POE1 R 6 A_NoBlocking
+		POE1 S 1 A_Fall
+		POE1 S 0 A_KillMaster
+		POE1 S -1 A_SetFloorClip
+		Stop
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("CacodemonModItemDropper",0,0,35)
+		XAIR A 5 A_Stop
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XAIR B 5  
+		XAIR C 5 A_BossDeath  
+		XAIR D 5 A_NoBlocking
+		XAIR E 5
+		TNT1 A 0 
+		Stop
+	RAISE:
+		POE1 SRQOPNMLKJ 10
+		GOTO SEE
+	}
+}
+
+ACTOR SeereAltRed : Seere
+{
+	Health 500
+	Radius 31
+	Height 56
+	Mass 800
+	Speed 12
+	PainChance 178
+	Monster
+	DamageFactor "Antiair", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "112:127=174:191"
+	species "Caco"
+	+DONTHARMSPECIES
+	+FLOAT 
+	+NOGRAVITY 
+	+DONTHURTSPECIES
+	bloodcolor Green
+	SeeSound "Poe/sight"
+	PainSound "Poe/pain"
+	DeathSound "Poe/death"
+	ActiveSound "Poe/active"
+	MeleeSound "imp/melee"
+	Obituary "%o failed to notice Seere's giant Plasma Shot"
+	HitObituary "%o could not escape Seere's jaws!"
+    MinMissileChance 56
+	DropItem "MicroMedPackDropChecker",128
+	States
+	{
+	Spawn:
+		POE1 A 10 A_Look
+		loop
+	See:
+		POE1 A 3 A_Chase //A_FastChase
+		loop
+	Missile:
+		TNT1 A 0 A_JUMP(256,"StandardShot","VShotBounce")
+	StandardShot:
+		POE1 EF 5 A_FaceTarget
+	    POE1 G 0 Bright A_FaceTarget
+	    TNT1 A 0 A_playsound ("PoeBall/See")
+        POE1 G 0 bright A_SpawnProjectile ("RedPoeClusterShot",24,0,0,0,0)
+	    Goto See
+	VShotBounce:
+		POE1 EF 5 A_FaceTarget
+		POE1 G 0 Bright A_FaceTarget
+	    TNT1 A 0 A_playsound ("PoeBall/See")
+		POE1 G 0 Bright A_SpawnProjectile("RedPoeClusterShot",24,0,-5,0,0)
+		POE1 G 5 Bright A_SpawnProjectile("RedPoeClusterShot",24,0,5,0,0)
+		Goto See
+	Melee:
+		POE1 AEF 3 A_FaceTarget
+		POE1 G 3 A_CustomMeleeAttack(Random(6,8)*3, "Imp/melee","none")
+		goto See
+	Pain:
+		POE1 H 3
+		POE1 H 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		POE1 I 6
+		Goto See
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("CacodemonModItemDropper",0,0,35)
+		XAIR A 5 A_Stop
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom")
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XAIR B 5 A_XScream
+		XAIR C 5 A_BossDeath  
+		XAIR D 5 A_NoBlocking
+		XAIR E 5
+		TNT1 A 0 
+		Stop
+	}
+}
+
+ACTOR SeereAltSilver : Seere
+{
+	Health 500
+	Radius 31
+	Height 56
+	Mass 800
+	Speed 12
+	PainChance 178
+	Monster
+	DamageFactor "Antiair", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+	translation "112:127=96:111" 
+	species "Caco"
+	+DONTHARMSPECIES
+	+FLOAT 
+	+NOGRAVITY 
+	+DONTHURTSPECIES
+	bloodcolor Green
+	SeeSound "Poe/sight"
+	PainSound "Poe/pain"
+	DeathSound "Poe/death"
+	ActiveSound "Poe/active"
+	MeleeSound "imp/melee"
+	Obituary "%o failed to notice Seere's giant Plasma Shot"
+	HitObituary "%o could not escape Seere's jaws!"
+    MinMissileChance 56
+	DropItem "MicroMedPackDropChecker",128
+	DropItem "MicroMedPackDropChecker",128
+	DropItem "MiniMedPackDropChecker",64
+	States
+	{
+	Spawn:
+		POE1 A 10 A_Look
+		loop
+	See:
+		POE1 A 3 A_Chase //A_FastChase
+		loop
+	Missile:
+		TNT1 A 0 A_JUMP(256,"StandardShot","VShotBounce")
+	StandardShot:
+		POE1 EF 5 A_FaceTarget
+	    POE1 G 0 Bright A_FaceTarget
+	    TNT1 A 0 A_playsound ("PoeBall/See")
+        POE1 G 0 bright A_SpawnProjectile ("SilverPoeClusterShot")
+	    Goto See
+	VShotBounce:
+		POE1 EF 5 A_FaceTarget
+		POE1 G 0 Bright A_FaceTarget
+	    TNT1 A 0 A_playsound ("PoeBall/See")
+		POE1 G 0 Bright A_SpawnProjectile("SilverPoeClusterShot",24,0,-5,0,0)
+		POE1 G 5 Bright A_SpawnProjectile("SilverPoeClusterShot",24,0,5,0,0)
+		Goto See
+	TripleBounce:
+		POE1 EF 5 A_FaceTarget
+		POE1 G 0 Bright A_FaceTarget
+	    TNT1 A 0 A_playsound ("PoeBall/See")
+		POE1 G 0 Bright A_SpawnProjectile("SilverPoeClusterShot",24,0,-5,0,0)
+		POE1 G 0 bright A_SpawnProjectile("SilverPoeClusterShot",24,0,0,0,0)
+		POE1 G 5 Bright A_SpawnProjectile("SilverPoeClusterShot",24,0,5,0,0)
+	Melee:
+		POE1 AEF 3 A_FaceTarget
+		POE1 G 3 A_CustomMeleeAttack(Random(6,8)*3, "Imp/melee","none")
+		goto See
+	Pain:
+		POE1 H 3
+		POE1 H 3 A_Pain
+		TNT1 A 0 a_playsound ("monsters/midhurt",0)
+		POE1 I 6
+		Goto See
+	XDeath:
+		TNT1 A 0 a_spawnitemex ("CacodemonModItemDropper",0,0,35)
+		XAIR A 5 A_Stop
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom")
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		XAIR B 5 A_XScream
+		XAIR C 5 A_BossDeath  
+		XAIR D 5 A_NoBlocking
+		XAIR E 5
+		TNT1 A 0 
+		Stop
+	}
+}	

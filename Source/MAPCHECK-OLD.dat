@@ -1,0 +1,26 @@
+#include "zcommon.acs"
+#library "MAPCHECK"
+
+//Named scripts MUST be in quotations, otherwise the compiler will have a fit
+//TBDynSpawner
+
+script 1478 (void)//"DynamicCvarChecker" (void)//1478 (void)
+{
+//if   (GetCvar("DynamicSpawnCvar") == 0) { SetActorState(0,"NormalSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 0) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 1) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 2) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 3) { SetActorState(0,"TBDynSpawner"); }
+if   (GetCvar("DynamicSpawnCvar") == 4) { SetActorState(0,"TBDynSpawner"); }
+}
+
+script 1479 (void) //"GetMapNumberChecker" (void)//1479 (void)
+{
+    SetResultValue(GetLevelInfo(LEVELINFO_LEVELNUM));
+}
+
+/*Thanks to Iddqd from the thread here: 
+
+http://forum.zdoom.org/viewtopic.php?f=3&t=53292&hilit=dynamic+enemy+spawner
+
+*/

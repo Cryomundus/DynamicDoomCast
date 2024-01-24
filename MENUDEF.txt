@@ -1,0 +1,577 @@
+AddOptionMenu "OptionsMenu"
+{
+	StaticText " "
+	SubMenu "DynamicDoomCast Options",		"DynamicDoomCastOptions"
+}
+
+OptionMenu "DynamicDoomCastOptions"
+{
+	Title "DynamicDoomCast Options"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	""
+	StaticText 	""
+	StaticText 	"You can select the other gameplay mods options here"//, Cyan 
+	StaticText 	""
+	StaticText 	"If you don't want items showing up in your inventory bar,"
+	StaticText 	"please check out 'Cvar Toggle Options' for disabling that,"
+	StaticText 	"and be sure to set up your item binds in 'Item Use Bindings'!"
+	StaticText 	""
+	SubMenu "Enable/Disable Monster Drops",					"Monster Drops"
+	SubMenu "Choose Monster Tier Spawns Here",				"Spawn Choices"
+	SubMenu "Choose Map07 Compat Options Here",				"Map07Spawn Choices"
+	SubMenu "Monster Headshot Options and Stat Changes",	"Monster Options"
+	SubMenu "Other Mod Compatiblity",						"Other Mods Compatibility"
+	SubMenu "Other Mod Options",							"Other Mods"
+	SubMenu "Cvar Toggle Options",							"Cvar Toggles"
+	SubMenu "Item Use Bindings",							"Item Bindings"
+	StaticText 	""
+	StaticText 	""
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+}
+
+OptionValue "ChooseHeadshotHitboxSpawns"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "DrawHeadshotHitbox"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "ChooseNormalOrSpecialSpawns"
+{
+
+//pretty sure this one is defunct, so no touchy
+	0, "Standard"
+	1, "Buffed HP"
+	2, "Ghostly Monsters"
+	3, "The Burdened"
+	//4, "Treasure Tech Compat"
+}
+
+OptionValue "ChooseVanillaSpawnsHere"
+{
+	0, "Dynamic Spawns"
+	1, "Random Spawns"
+	2, "Tier 1"
+	3, "Tier 2"
+	4, "Tier 3"
+	5, "Tier S"
+}
+
+OptionValue "ChooseThyModHereth"
+{
+	0, "Increased HP"
+	//1, "Metroid: Dreadnought"
+	/*
+	2, "D4D"
+	3, "MetaDoom"
+	4, "GunCaster"
+	5, "JohnnyDoom"
+	6, "DemonSteele"
+	7, "Bullet-Eye"
+	8, "ProjectMSX"
+	Insert other mods here
+	*/
+}
+
+//------------------------------------------------------------------------------
+//Bonus Item Choice Options
+//------------------------------------------------------------------------------
+
+OptionValue "EnableCarryAbleHealthItems"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "EnableMiniHealthSpheres" 
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "EnableMiniArmorSpheres"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "EnableMiniAmmoPacks"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "EnableMiniSpecAmmoPacks"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "EnableBossBackPackDrop"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "EnableOnscreenHPKitItemInfo"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+//------------------------------------------------------------------------------
+// End Bonus Item Choice Options
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+// Possessed Humans Weapon/Item drops
+//------------------------------------------------------------------------------
+OptionValue "ChoosePHItemDrops" // OLD DELETE LATER
+{
+	0, "Normal Drops"
+	1, "Equivalent Ammo"
+	2, "Nothing"
+}
+
+OptionValue "ChooseZombiemanWeaponDrops"
+{
+	0, "Normal Drops"
+	1, "Equivalent Ammo"
+	2, "Nothing"
+	3, "Unique Mod Items"
+}
+
+OptionValue "ChooseShotgunGuyWeaponDrops"
+{
+	0, "Normal Drops"
+	1, "Equivalent Ammo"
+	2, "Nothing"
+	3, "Unique Mod Items"
+}
+
+OptionValue "ChooseChaingunGuyWeaponDrops"
+{
+	0, "Normal Drops"
+	1, "Equivalent Ammo"
+	2, "Nothing"
+	3, "Unique Mod Items"
+}
+
+//------------------------------------------------------------------------------
+// End  Possessed Humans Weapon/Item drops
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+// Unique Gameplay Options
+//------------------------------------------------------------------------------
+
+OptionValue "PlayerIsUsingLegDoom"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "PlayerIsUsingKeymaster"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "PlayerIsUsingChampions"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+//------------------------------------------------------------------------------
+// End 
+//------------------------------------------------------------------------------
+
+// Special Map07 compat options
+
+/*
+
+I am a smart man that knows that 1 is true and 0 is false
+
+no really.
+
+Kindly ignore the rest of this page as I TOTALLY know what I'm doing.
+
+*/
+
+OptionValue "EnableMap07Compat"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "EnableNormalMap07Spawns"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "EnableDualMap07Spawns"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "EnableTripleMap07Spawns"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "Map07TierCheck"
+{
+	0, "Tier 1"
+	1, "Tier 2"
+	2, "Tier 3"
+	3, "Tier S"
+	4, "Random"
+}
+
+
+//------------------------------------------------------------------------------
+// End 
+//------------------------------------------------------------------------------
+OptionValue "EnableMedikitSphere"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "EnableStimpackSphere"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "EnableGreenArmorSphere"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "EnableBlueArmorSphere"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+//------------------------------------------------------------------------------
+//For showing hp kit amount on HUD
+
+OptionValue "DrawHPKitOnHud"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "DrawHPKitInInvBar"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+//------------------------------------------------------------------------------
+// End 
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// End 
+//------------------------------------------------------------------------------
+
+OptionValue "EnableSTierSpawns"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+//-------------------------------------------------------------------------
+
+OptionValue "ForceSpiderMindLandSpawn"
+{
+	0, "All Variants"
+	1, "Only Grounded"
+}
+
+//-------------------------------------------------------------------------
+
+OptionValue "EnableModItemDrops"
+{
+	0, "Disabled"
+	1, "Standard Mod Drops"
+	2, "MetroidDreadnought Drops"
+}
+
+//-------------------------------------------------------------------------
+
+OptionValue "ChooseModMonsterSpawns"
+{
+	0, "Standard"
+	1, "Buffed HP"
+	2, "Ghostly Monsters"
+	3, "The Burdened"
+	//4, "Treasure Tech Compat"
+	//4, "Gib Death"
+}
+
+//-------------------------------------------------------------------------
+
+// "_-==========================================================-_"
+
+// "_-=============================-_"
+
+OptionMenu "Other Mods Compatibility"
+{
+	Title "Other Mods Compatibility"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	Title "Toggle these options if you're playing stuff like Legendoom."
+	StaticText 	""
+	Option "Toggle Legendoom Compat",			"PlayerIsUsingLegDoomCvar", 			"PlayerIsUsingLegDoom"
+	Option "Toggle Keymaster Compat",			"PlayerIsUsingKeymasterCvar", 			"PlayerIsUsingKeymaster"																				
+	Option "Toggle Champions Compat",			"PlayerIsUsingChampionsCvar",				"PlayerIsUsingChampions"
+	StaticText 	""
+	StaticText 	"If you are using both Legendoom and Champions together, please"
+	StaticText 	"turn off 'Legendoom Compatibility Enabled?' in the Champions"
+	StaticText	"option menu as DDC already has the compatibility built in."
+	StaticText 	""
+	StaticText 	"Since DDC spawns it's monsters after Legendoom and Champions"
+	StaticText 	"run their scripts, it has its own compatibility for"
+	StaticText 	"handling those two mods in particular, hence the need"
+	StaticText 	"to turn that particular setting off."
+	StaticText 	"_-==========================================================-_"
+}
+
+OptionMenu "Cvar Toggles"
+{
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText "Enable or Disable Custom Items appearing in inventory"
+	Option "Show HPKit Amount on HUD", 			"LemmeSeeMyHPBackpackCvar",				"DrawHPKitOnHud"
+	StaticText 	""
+	Command "Force Hud Change",			"pukename CheckAndModifyItemAmount"
+	StaticText 	""
+	Option "Show HPKit in Inventory Bar", 		"DrawDDCItemsInInventoryCvar",				"DrawHPKitInInvBar"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+}
+
+OptionMenu "Item Bindings"
+{
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText  "If you feel that the inventory bar is too cluttered, here are"
+	StaticText 	"some keybinds you can bind so that you can use stuff easier."
+	StaticText 	""
+	Control 	"Use HealthOnDemandMedkit",		"DDCUsingAMedKit"
+	Control 	"Use HealthSphere",				"DDCUseMiniHealthSpheres"
+	Control 	"Use ArmorSphere",				"DDCUseArmorSpherePiece"
+	Control 	"Use Ammopack",					"DDCUseAmmopackPiece"
+	Control 	"Use SpecAmmoPack",				"DDCUseSpecAmmoPackPiece"
+	Control 	"Use Minimedikit",				"DDCUseMinimedikitpiece"
+	Control 	"Use Ministimpack",				"DDCUseMinistimpackpiece"
+	Control 	"Use MiniGreenArmor",			"DDCUseMiniGreenArmorpiece"
+	Control 	"Use MiniBlueArmor",			"DDCUseMiniBlueArmorpiece"	
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+}
+
+OptionMenu "Other Mods"
+{
+	Title "Other Mods"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	Title "All other Gameplay Mod menus Go Under Here"
+	StaticText 	""
+	SubMenu "LegenDoom Options",				"LegenDoom"
+	Submenu "KEYMASTER Options", 				"KeymasterOptions"
+	SubMenu "DRLA Options",						"DoomRLA"
+	Submenu "The Trooper Options",				"TRSettings"
+	Submenu "DemonSteele Options",     			"Changes-TurnThePage"
+	Submenu "MetroidDreadnought Options", 		"MetroodOptions"
+	SubMenu "ProjectIronclad Options",			"ProjectIroncladoptions"
+	Submenu "Ketchup Options - GZDoom",			"KetchupOptionsGZDoom"
+	Submenu "DarkDoomZ Settings",  				"Dark_Adjust"
+	Submenu "Droplets Options",					"BloodOptions"
+	Submenu "JP Health Bar Options",			"JPHUDOptions"
+	StaticText 	""
+	StaticText  "If you want another menu here," 
+	StaticText 	"let me know so I can update this"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+}
+
+OptionMenu "Monster Drops"
+{
+	Title "Monster Drops"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"The options below will remove all of a given inventory item!"
+	StaticText 	"Please note it will only take effect when you leave the"
+	StaticText 	"menu, then the items will be removed."
+	StaticText 	""
+	Command "Remove All DDC Items",			"pukename RemoveAllDDCInvItems"
+	Command "Remove HealthBackPack",		"pukename RemoveHealthBackPackPiece"
+	Command "Remove HealthSpheres",			"pukename RemoveMiniHealthSpherePiece"
+	Command "Remove ArmorSpheres",			"pukename RemoveArmorSpherePiece"
+	Command "Remove Ammopacks",				"pukename RemoveAmmopackPiece"
+	Command "Remove SpecAmmopacks",			"pukename RemoveSpecAmmopackPiece"
+	Command "Remove MedikitSpheres",		"pukename RemoveMinimedikit"
+	Command "Remove StimpackSpheres",		"pukename RemoveMinistimpack"
+	Command "Remove GreenArmorSpheres",		"pukename RemoveMiniGreenArmor"
+	Command "Remove BlueArmorSpheres",		"pukename RemoveMiniBlueArmor"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"The option below is for handling Possessed Human's" 
+	StaticText  "(Zombieman, ShotgunGuy, and ChainGunGuy)"
+	StaticText 	"item drops, should you want to adjust that."
+	StaticText 	""
+	//Option "Possessed Humans Drop...",			"ChoosePossessedItemDropSpawn",				"ChoosePHItemDrops"
+	Option "Zombiemen Drop...",						"ChooseZombiemanWeaponDropSpawnCVAR", 		"ChooseZombiemanWeaponDrops"
+	Option "ShotgunGuys Drop...",					"ChooseShotgunGuyWeaponDropSpawnCVAR",		"ChooseShotgunGuyWeaponDrops"	
+	Option "ChaingunGuys Drop...",					"ChooseChainGunGuyWeaponDropSpawnCVAR",		"ChooseChaingunGuyWeaponDrops"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"The options below will allow you to"//, "Cyan" 
+	StaticText  "either enable or disable certain Monster only drops"//, Cyan 
+	StaticText 	""
+	Option "Carryable HealthPacks", 			"ChooseMedpackSpawn", 					"EnableCarryAbleHealthItems"
+	Option "Mini Health Spheres", 				"ChooseMiniHealthSpawn",				"EnableMiniHealthSpheres"
+	Option "Mini Armor Spheres", 				"ChooseMiniArmorSpawn", 				"EnableMiniArmorSpheres"
+	Option "Mini Ammo Packs", 					"ChooseMiniAmmoSpawn", 					"EnableMiniAmmoPacks"
+	Option "Mini SpecAmmo Packs", 				"ChooseMiniSpecAmmoSpawn", 				"EnableMiniSpecAmmoPacks"
+	Option "Bosses Drop Backpacks", 			"ChooseBossBonusBackpackSpawn", 		"EnableBossBackPackDrop"
+	Option "Carryable Medikits", 				"ChooseMedikitSphereSpawn", 			"EnableMedikitSphere"
+	Option "Carryable Stimpacks", 				"ChooseStimpackSphereSpawn", 			"EnableStimpackSphere"
+	Option "Carryable GreenArmors", 			"ChooseGreenArmorSphereSpawn", 			"EnableGreenArmorSphere"
+	Option "Carryable BlueArmor", 				"ChooseBlueArmorSphereSpawn", 			"EnableBlueArmorSphere"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"The option below will enable monsters to drop mod items."
+	StaticText 	"MetroidDreadnought is it's own option due to being"
+	StaticText 	"an acs script rather than an actual item drop."
+	StaticText 	""
+	Option "Choose Mod Drops", 					"ModItemDropperCvar", 					"EnableModItemDrops"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	
+
+}
+
+OptionMenu "Spawn Choices"
+{
+	Title "Spawn Choices"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"This option will force the spawner to use only the regular"
+	StaticText 	"grounded SpiderMasterMind."
+	StaticText 	""
+	Option "Spawn Other Mastermind Variants", 	"SpawnOnlySpidermindLandCvar", 			"ForceSpiderMindLandSpawn"
+	StaticText 	""
+	StaticText 	"This option removes all S-Tier monsters, leaving only"
+	StaticText 	"the normal monster spawns"
+	StaticText 	""
+	Option "Enable/Disable S-Tier Monsters", 	"ChooseSTierSpawn", 				"EnableSTierSpawns"
+	StaticText 	""
+	StaticText 	"This option determines what sortof monsters"
+	StaticText 	"you wish to fight"
+	StaticText 	""
+	Option "Choose Normal or Specialized!", 	"ModdedMonsterSpawnCvar", 			"ChooseModMonsterSpawns"
+	StaticText 	""
+	StaticText 	"Choose what sort of Vanilla spawns you want below."//, Green
+	StaticText 	"This will allow you to choose from"//, DarkGreen
+	StaticText	"Dynamic Spawns, Random Spawns, Tier 1/2/3 spawns"//, DarkGreen
+	StaticText 	""
+	Option "Choose Vanilla Spawns!", 			"VanillaSpawnChoiceCvar", 			"ChooseVanillaSpawnsHere"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+}
+
+OptionMenu "Map07Spawn Choices"
+{
+	Title "Spawn Choices"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"This will force the spawner to use a specific set of monsters"
+	StaticText 	"so that Map07 will not break horribly."
+	StaticText 	""
+	Option "Enable/Disable Map07 Compat", 		"ToggleDDCMap07CompatCvar", 				"EnableMap07Compat"
+	StaticText 	""
+	StaticText 	"Toggle the below options if you wish to have more variety"
+	StaticText 	"1 is just the normal variant"
+	StaticText 	"2 is the normal variant and rail variant"
+	StaticText 	"3 is normal, rail and Tank variants"
+	StaticText 	"Note: enabling 3 overrides the 'Enable/Disable 2 variants'"
+	option "Enable/Disable 1 variant", 			"ToggleDDCMap07NormalSpawmCvar", 				"EnableNormalMap07Spawns"
+	Option "Enable/Disable 2 variants", 		"ToggleDDCMap07DualSpawnCvar", 					"EnableDualMap07Spawns"
+	Option "Enable/Disable 3 variants", 		"ToggleDDCMap07TripleSpawnCvar", 				"EnableTripleMap07Spawns"
+	StaticText 	""
+	StaticText 	"Choose what sort of Vanilla spawns you want below."
+	StaticText 	"This will set what spawns you will get for map07"
+	StaticText 	"this is considered seperate from the normal set of spawns"
+	StaticText	"You may choose Tiers 1, 2, 3, or S"
+	StaticText 	""
+	Option "Choose Map07 Tier Spawns!", 		"Map07TierCheckerCvar", 			"Map07TierCheck"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+}
+
+OptionMenu "Monster Options"
+{
+	Title "Monster Options"
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*"
+	StaticText 	"ALL OPTIONS ARE EXECUTED AT START AND ARE FINAL"
+	StaticText 	"UNTIL NEW GAME OR MAP TRANSITION."
+	StaticText 	"*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	StaticText 	"This option determines whether or not monsters"
+	StaticText 	"will have headshots enabled"
+	StaticText 	""
+	StaticText 	"_-=Mikk's Universal Headshot=-_"
+	StaticText 	""
+	Option "Enable Headshots", 					"DDCUniheadshothitboxspawn", 		"ChooseHeadshotHitboxSpawns"
+	StaticText 	""	
+	Option "Draw Headshot Hitbox", 				"DDChs_hitbox", 					"DrawHeadshotHitbox"
+	StaticText 	""
+	Slider "HeadShot Damage Multi", 			"DDChs_factor",						0, 12, 0.1, 1
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"This option will change all monsters"
+	StaticText 	"HP. Leave it at 1 if you do not"
+	StaticText 	"want anything changed."
+	StaticText 	""	
+	StaticText 	"Lud's CustomDoom - Monster Stat Manipulation"	
+	StaticText 	""	
+	Slider "Monster HP Multi", 					"DDCMonsterHPStat", 				1, 25, 0.1, 1
+	StaticText 	""
+	Slider "Monster Speed Multi", 				"DDCMonsterSpeedStat",				1, 3, 0.1, 1
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+	StaticText 	""
+	StaticText 	"WARNING: Use once per level!"
+	StaticText 	"Legendoom Force Legenderayization"
+	Command "Force LD Initialization ",			"pukename LDWorldInit"
+	StaticText 	""
+	StaticText 	"_-==========================================================-_"
+}

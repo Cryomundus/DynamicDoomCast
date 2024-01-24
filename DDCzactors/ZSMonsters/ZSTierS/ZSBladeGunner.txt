@@ -1,0 +1,107 @@
+ACTOR BladeGunner
+{
+    Health 100
+    Radius 16
+    Height 56
+    Speed 18
+    PainChance 70
+    MONSTER 
+	+NOBLOCKMONST
+    +FLOORCLIP
+	+MissileMore
+	+MissileEvenMore
+	+NOINFIGHTING
+	-THRUSPECIES
+	DamageFactor "Exorcist", 3.0
+	Damagefactor "MonsterBeatEmUp", 7.4
+    SeeSound "grunt/sight"
+    AttackSound "Weapons/KarasawaFire"
+    PainSound "grunt/pain"
+    DeathSound "grunt/death"
+    ActiveSound "grunt/active"
+    Obituary "%o got ripped apart by a BladeGunner."
+   // DropItem Cell // DropItem KSawaCell
+	Dropitem "ShotgunGuyItemDropper" 
+	Dropitem "ShotgunGuyModItemDropper"
+	DropItem "MiniStimpackSphereDropChecker", 64
+    DropItem "MicroMedPackDropChecker", 128
+	DropItem "MicroMedPackDropChecker", 128
+	DropItem "MiniHealthSphereDropChecker", 128
+	dropitem "MiniAmmoPackDropChecker" 128
+	dropitem "MiniArmorSphereDropChecker" 128
+	DropItem "MagicrodSpawner", 5
+    States
+    {
+    Spawn:
+        KSWZ AB 10 A_Look
+        Loop
+    See:
+        KSWZ AABBCCDD 4 A_Chase
+        Loop
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(750, "LowSpeedShots")
+		TNT1 A 0 A_JumpIfCloser(2500, "MidSpeedShots")
+		TNT1 A 0 A_JumpIfCloser(4500, "HighSpeedShots")
+	LowSpeedShots:
+		KSWZ E 8 bright A_FaceTarget
+		KSWZ F 0 A_PlaySound("Weapons/KarasawaFire")
+		KSWZ F 0 A_SpawnProjectile("GunsawBolt", 33,  0,  7, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("FastGunsawBolt", 33,  0,  0, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("GunsawBolt", 33,  0, -7, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15,  5, -3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("LowSpeedShottyBullet", 15, -5,  3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50,  5,  3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("LowSpeedShottyBullet", 50, -5, -3, 0, 0)
+		goto See
+	MidSpeedShots:
+		KSWZ E 8 A_FaceTarget
+		KSWZ E 0 A_PlaySound("Weapons/KarasawaFire")
+		KSWZ F 0 A_SpawnProjectile("GunsawBolt", 33,  0,  7, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("FastGunsawBolt", 33,  0,  0, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("GunsawBolt", 33,  0, -7, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15,  5, -3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("MidSpeedShottyBullet", 15, -5,  3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50,  5,  3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("MidSpeedShottyBullet", 50, -5, -3, 0, 0)
+		goto See
+	HighSpeedShots:
+		KSWZ E 8 A_FaceTarget
+		KSWZ E 0 A_PlaySound("Weapons/KarasawaFire")
+		KSWZ F 0 A_SpawnProjectile("GunsawBolt", 33,  0,  7, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("FastGunsawBolt", 33,  0,  0, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("GunsawBolt", 33,  0, -7, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15,  5, -3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("HighSpeedShottyBullet", 15, -5,  3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50,  5,  3, 0, 0)
+		KSWZ F 0 A_SpawnProjectile("HighSpeedShottyBullet", 50, -5, -3, 0, 0)
+		goto See
+    Pain:
+        KSWZ G 3
+        KSWZ G 3 A_Pain
+        TNT1 A 0 a_playsound ("monsters/weakhurt",0)
+	    Goto See
+    Death:
+        KSWZ H 5 
+        KSWZ I 5 A_Scream
+        KSWZ J 5 A_Fall
+        KSWZ K 5
+        KSWZ L 5
+        KSWZ M 5 
+        KSWZ N -1
+        Stop
+    XDeath:
+		TNT1 AAAAA 0 A_Spawnitemex("Blood",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("MainGore/MonGoBoom2",CHAN_AUTO)
+		TNT1 A 0 A_Scream
+		TNT1 AAAA 0 A_Spawnitemex("DynDoomGore_GibChucker",0,0,6,0,0,0,0, SXF_NOPOINTERS| SXF_NOCHECKPOSITION)
+        KSWZ O 5
+        KSWZ P 5 A_XScream
+        KSWZ Q 5 A_Fall
+        KSWZ RSTUV 5 
+        KSWZ W -1
+        Stop
+    Raise:
+        KSWZ NMLKJIH 10
+        Goto See
+    }
+}
